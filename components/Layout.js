@@ -1,16 +1,20 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import { useState } from "react";
+import Head from "next/head";
+import styles from "./Layout.module.css";
+import utilStyles from "../styles/utils.module.css";
+import Link from "next/link";
+import Navbar from "./Navbar";
 
-const name = 'Ed in the Clouds'
-export const siteTitle = 'Ed in the Clouds'
+const name = "Ed in the Clouds";
+export const siteTitle = "Ed in the Clouds";
 
 export default function Layout({ children, home }) {
+  const [showBurger, setShowBurger] = useState(false);
+
   return (
     <div className={styles.container}>
       <Head>
-{/*         <link rel="icon" href="/favicon.ico" /> */}
+        {/*         <link rel="icon" href="/favicon.ico" /> */}
         <meta
           name="description"
           content="Learn how to build a personal website using Next.js"
@@ -28,6 +32,7 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
+            <Navbar home showBurger setShowBurger/>
             <img
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
@@ -36,28 +41,11 @@ export default function Layout({ children, home }) {
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
-          <>
-            <Link href="/">
-              <a>
-                <img
-                  src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
-          </>
+          <Navbar />
         )}
       </header>
 
-      <main>
-        {children}
-      </main>
+      <div className={styles.container}>{children}</div>
 
       {!home && (
         <div className={styles.backToHome}>
@@ -67,5 +55,5 @@ export default function Layout({ children, home }) {
         </div>
       )}
     </div>
-  )
+  );
 }
