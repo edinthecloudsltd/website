@@ -1,12 +1,14 @@
+import { useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function Burger(props) {
+  const [show, setShow] = useState('');
   return (
-    <Wrapper onClick={props.showBurger}>
-      <div className={props.setShowBurger ? "open" : ""}>
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
+    <Wrapper onClick={() => setShow(!show)}>
+      <div className={show ? "open" : ""}>
+        <Link href="/blog">Blog</Link>
+        <Link href="/contact">Contact</Link>
       </div>
     </Wrapper>
   );

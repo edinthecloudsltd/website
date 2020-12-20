@@ -9,7 +9,6 @@ const name = "Ed in the Clouds";
 export const siteTitle = "Ed in the Clouds";
 
 export default function Layout({ children, home }) {
-  const [showBurger, setShowBurger] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -32,7 +31,7 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
-            <Navbar home showBurger setShowBurger/>
+            <Navbar home />
             <img
               src="/images/profile.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
@@ -46,14 +45,6 @@ export default function Layout({ children, home }) {
       </header>
 
       <div className={styles.container}>{children}</div>
-
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
     </div>
   );
 }

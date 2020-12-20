@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 import Link from "next/link";
@@ -6,8 +6,6 @@ import Burger from "./Burger";
 import CollapseMenu from "./CollapseMenu";
 
 export default function Navbar(props) {
-  
-
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
     transform: "translate3d(0, 0, 0)",
@@ -26,27 +24,25 @@ export default function Navbar(props) {
         <FlexContainer>
           {!props.home && (
             <Link href="/">
-                <Logo src="/images/profile.jpg" />
+              <Logo src="/images/profile.jpg" />
             </Link>
           )}
           <a /> {/* Space out flexbox */}
           <NavLinks style={linkAnimation}>
-            <a href="/">Blog</a>
-            <a href="/">Contact</a>
+            <Link href="/blog">
+              <a>Blog</a>
+            </Link>
+            <Link href="/contact">
+              <a>Contact</a>
+            </Link>
           </NavLinks>
           <BurgerWrapper>
-            <Burger
-              navbarState={props.showBurger}
-              handleNavbar={props.setShowBurger}
-            />
+            <Burger />
           </BurgerWrapper>
         </FlexContainer>
       </NavBar>
 
-      <CollapseMenu
-        navbarState={props.navbarState}
-        handleNavbar={props.handleNavbar}
-      />
+      <CollapseMenu />
     </>
   );
 }
