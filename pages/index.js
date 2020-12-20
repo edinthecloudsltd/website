@@ -5,6 +5,7 @@ import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/Date";
 
+const name = "Ed in the Clouds";
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
@@ -12,6 +13,11 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
+        <img
+          src="/images/profile.jpg"
+          className={`${utilStyles.homeLogo}`}
+        />
+        <h1 className={utilStyles.heading2Xl}>{name}</h1>
         <p>Hi, I'm Ed</p>
         <p>I'm a platform engineer based in Manchester, UK</p>
       </section>

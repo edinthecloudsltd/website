@@ -1,11 +1,7 @@
-import { useState } from "react";
 import Head from "next/head";
 import styles from "./Layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
 import Navbar from "./Navbar";
 
-const name = "Ed in the Clouds";
 export const siteTitle = "Ed in the Clouds";
 
 export default function Layout({ children, home }) {
@@ -29,21 +25,9 @@ export default function Layout({ children, home }) {
       </Head>
 
       <header className={styles.header}>
-        {home ? (
-          <>
-            <Navbar home />
-            <img
-              src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <Navbar />
-        )}
+        {home ? <Navbar home /> : <Navbar />}
       </header>
-
+      
       <div className={styles.container}>{children}</div>
     </div>
   );

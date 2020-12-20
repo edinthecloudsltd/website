@@ -6,7 +6,8 @@
 .header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: right;
+  color: #353434be
 }
 
 .headerImage {

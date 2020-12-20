@@ -35,12 +35,12 @@ export default function Navbar(props) {
               <a>Contact</a>
             </Link>
           </NavLinks>
-
-          <BurgerWrapper>
-            <Burger />
-          </BurgerWrapper>
         </FlexContainer>
       </NavBar>
+
+      <BurgerWrapper>
+        <Burger />
+      </BurgerWrapper>
     </>
   );
 }
@@ -51,6 +51,10 @@ const NavBar = styled(animated.nav)`
   background: white;
   z-index: 1;
   font-size: 1.4rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -87,17 +91,16 @@ const NavLinks = styled(animated.ul)`
     cursor: pointer;
 
     &:hover {
-      color: #fdcb6e;
-      border-bottom: 1px solid #fdcb6e;
+      color: #666464;
+      border-bottom: 1px solid #666464;
     }
-  }
-
-  @media (max-width: 768px) {
-    display: none;
   }
 `;
 
 const BurgerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin: auto 0;
 
   @media (min-width: 769px) {
