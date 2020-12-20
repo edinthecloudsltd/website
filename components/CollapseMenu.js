@@ -1,33 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useSpring, animated } from 'react-spring';
+import React from "react";
+import styled from "styled-components";
+import { useSpring, animated } from "react-spring";
 
 export default function CollapseMenu(props) {
-  const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
+  const dropDownAnimation = useSpring({
+    from: { transform: "translate3d(0, -10rem, 0)" },
+    transform: "translate3d(0, 0, 0)",
+  });
 
-  if (props.navbarState === true) {
-    return (
-      <CollapseWrapper style={{
-        transform: open.interpolate({
-          range: [0, 0.2, 0.3, 1],
-          output: [0, -20, 0, -200],
-        }).interpolate(openValue => `translate3d(0, ${openValue}px, 0`),
-      }}
-      >
-        <NavLinks>
-          <li><a href="/" onClick={props.handleNavbar}>link n1</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>link n2</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>link n3</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>link n4</a></li>
-        </NavLinks>
-      </CollapseWrapper>
-    );
-  }
-  return null;
-};
+  return (
+    <CollapseWrapper style={dropDownAnimation}>
+      <NavLinks>
+        <li>
+          <a href="/" onClick={props.handleNavbar}>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/" onClick={props.handleNavbar}>
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/" onClick={props.handleNavbar}>
+            Contact
+          </a>
+        </li>
+      </NavLinks>
+    </CollapseWrapper>
+  );
+}
 
 const CollapseWrapper = styled(animated.div)`
-  background: #2d3436;
+  background: none;
   position: fixed;
   top: 4.5rem;
   left: 0;
@@ -39,6 +44,7 @@ const NavLinks = styled.ul`
   padding: 2rem 1rem 2rem 0rem;
 
   & li {
+    background: #fff;
     transition: all 300ms linear 0s;
   }
 

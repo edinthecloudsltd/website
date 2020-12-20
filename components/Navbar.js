@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 import Link from "next/link";
 import Burger from "./Burger";
-import CollapseMenu from "./CollapseMenu";
 
 export default function Navbar(props) {
   const barAnimation = useSpring({
@@ -36,13 +35,12 @@ export default function Navbar(props) {
               <a>Contact</a>
             </Link>
           </NavLinks>
+
           <BurgerWrapper>
             <Burger />
           </BurgerWrapper>
         </FlexContainer>
       </NavBar>
-
-      <CollapseMenu />
     </>
   );
 }
@@ -92,10 +90,10 @@ const NavLinks = styled(animated.ul)`
       color: #fdcb6e;
       border-bottom: 1px solid #fdcb6e;
     }
+  }
 
-    @media (max-width: 768px) {
-      display: none;
-    }
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 

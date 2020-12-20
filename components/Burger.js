@@ -1,16 +1,25 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import CollapseMenu from "./CollapseMenu";
 
-export default function Burger(props) {
-  const [show, setShow] = useState('');
+export default function Burger() {
+  const [show, setShow] = useState(false);
+
   return (
+    <>
     <Wrapper onClick={() => setShow(!show)}>
       <div className={show ? "open" : ""}>
-        <Link href="/blog">Blog</Link>
-        <Link href="/contact">Contact</Link>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
       </div>
     </Wrapper>
+
+    {show && (
+      <CollapseMenu />
+    )}
+    </>
   );
 }
 
@@ -30,6 +39,11 @@ const Wrapper = styled.div`
     transition: all ease-in-out 0.2s;
   }
 
+  .open span:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 11px;
+  }
+
   .open span:nth-child(2) {
     opacity: 0;
   }
@@ -39,8 +53,4 @@ const Wrapper = styled.div`
     top: -11px;
   }
 
-  .open span:nth-child(1) {
-    transform: rotate(-45deg);
-    top: 11px;
-  }
 `;
