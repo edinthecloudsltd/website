@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "edintheclouds-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,8 @@
     "gray-matter": "^4.0.2",
     "next": "^10.0.0",
     "postcss": "^8.2.1",
+    "postcss-import": "^14.0.0",
+    "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-spring": "^8.0.27",

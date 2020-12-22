@@ -23,3 +23,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#os
+.DS_Store
+.tmp
+
+#sls
+admin.env
+.env
+_meta
+.serverless
+.serverless_nextjs
