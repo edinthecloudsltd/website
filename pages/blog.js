@@ -11,9 +11,9 @@ export default function Blog({ allPostsData }) {
       <Head>
         <title>Blog</title>
       </Head>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Latest Posts</h2>
-        <ul className={utilStyles.list}>
+      <section>
+        <h2 class="text-gray-600 dark:text-gray-400">Latest Posts</h2>
+        <ul class="list-none">
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>

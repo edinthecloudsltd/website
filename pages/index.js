@@ -11,7 +11,7 @@ export default function Home() {
         <title>{siteTitle}</title>
       </Head>
       <section class="container pb-10">
-        <img src="/images/profile.jpg" className={`${utilStyles.homeLogo}`} />
+        <img src="/images/profile.png" className={`${utilStyles.homeLogo}`} />
         <h1 class="text-gray-800 dark:text-gray-400 text-center text-5xl font-extrabold p-2">
           {name}
         </h1>
@@ -24,12 +24,12 @@ export default function Home() {
           I've been working in IT for what is rapidly approaching to be 10
           years. I have worked multiple roles including support, consultant and
           engineering across a variety of sectors. Currently I am known as a
-          Platform Engineer (But what does that even mean these days?!)
+          Platform Engineer (But what does that even mean these days?)
         </p>
         <h2>Skills</h2>
         <div class="flex flex-wrap justify-evenly shadow-lg dark:bg-gray-600">
           {skills.map((skill) => (
-            <img src={skill.src} alt={skill.alt} style={{textShadow: "0px 10px 10px -5px rgba(0,0,0,0.05)"}}class="flex-shrink h-20 mx-2" />
+            <img src={skill.src} alt={skill.alt} class="flex-shrink h-20 mx-2" />
           ))}
         </div>
       </article>

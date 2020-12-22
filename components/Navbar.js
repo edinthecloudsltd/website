@@ -39,8 +39,6 @@ const NavLinks = styled(animated.ul)`
   margin: auto 0;
 
   & a {
-    color: #a0a0a0;
-
     font-weight: 600;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
@@ -76,7 +74,7 @@ export default function Navbar(props) {
   const linkAnimation = useSpring({
     from: { transform: "translate3d(0, 30px, 0)", opacity: 0 },
     to: { transform: "translate3d(0, 0, 0)", opacity: 1 },
-    delay: 800,
+    delay: 400,
     config: config.wobbly,
   });
 
@@ -86,16 +84,16 @@ export default function Navbar(props) {
         <FlexContainer>
           {!props.home && (
             <Link href="/">
-              <Logo src="/images/profile.jpg" />
+              <Logo src="/images/profile.png" />
             </Link>
           )}
           <a /> {/* Space out flexbox */}
           <NavLinks style={linkAnimation}>
             <Link href="/blog">
-              <a>Blog</a>
+              <a class="text-gray-400">Blog</a>
             </Link>
             <Link href="/contact">
-              <a>Contact</a>
+              <a class="text-gray-400">Contact</a>
             </Link>
           </NavLinks>
         </FlexContainer>
