@@ -1,3 +1,4 @@
 # serverless.yml
 edintheclouds-blog:
- component: "@sls-next/serverless-component"
+  component: "@sls-next/serverless-component"
+  bucketRegion: "eu-west-2"

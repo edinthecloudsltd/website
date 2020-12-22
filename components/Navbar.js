@@ -83,7 +83,7 @@ const BurgerWrapper = styled.div`
   }
 `;
 
-export default function Navbar(props) {
+export default function Navbar({home, animated}) {
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
     transform: "translate3d(0, 0, 0)",
@@ -100,7 +100,7 @@ export default function Navbar(props) {
     <>
       <NavBar style={barAnimation} class="bg-white dark:bg-gray-800">
         <FlexContainer>
-          {!props.home && (
+          {!home && (
             <Link href="/">
               <Logo src="/images/profile.png" />
             </Link>

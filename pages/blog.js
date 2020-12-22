@@ -11,7 +11,7 @@ export default function Blog({ allPostsData }) {
       <Head>
         <title>Blog</title>
       </Head>
-      <section>
+      <article class="prose dark:prose-dark mx-auto">
         <h2 class="text-gray-600 dark:text-gray-400">Latest Posts</h2>
         <ul class="list-none">
           {allPostsData.map(({ id, date, title }) => (
@@ -26,7 +26,7 @@ export default function Blog({ allPostsData }) {
             </li>
           ))}
         </ul>
-      </section>
+      </article>
     </Layout>
   );
 }

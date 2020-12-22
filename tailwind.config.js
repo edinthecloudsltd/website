@@ -1,6 +1,6 @@
 module.exports = {
   darkMode: "media",
-  purge: ['./pages/**/*.js', './components/**/*.js'],
+  purge: ["./pages/**/*.js", "./components/**/*.js"],
   theme: {
     extend: {
       colors: {
@@ -12,12 +12,12 @@ module.exports = {
           css: {
             color: theme("colors.gray.900"),
             a: {
-              color: theme("colors.blue.700"),
+              color: theme("colors.blue.400"),
               "&:hover": {
                 color: theme("colors.blue.700"),
-                textDecoration: "none",
               },
             },
+
             "h2 a": {
               color: theme("colors.gray.900"),
               textDecoration: "none",
@@ -37,9 +37,9 @@ module.exports = {
             color: theme("colors.gray.400"),
 
             a: {
-              color: "#9ECE6A",
+              color: theme("colors.blue.400"),
               "&:hover": {
-                color: "#9ECE6A",
+                color: theme("colors.blue.700"),
               },
             },
 
@@ -99,7 +99,7 @@ module.exports = {
     },
   },
   variants: {
-    typography: ["dark"]
+    typography: ["dark"],
   },
   plugins: [require("@tailwindcss/typography")],
 };
