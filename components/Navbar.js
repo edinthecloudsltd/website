@@ -4,14 +4,22 @@ import Link from "next/link";
 import Burger from "./Burger";
 
 const NavBar = styled(animated.nav)`
-  position: relative;
+  position: fixed;
   width: 100%;
   z-index: 1;
   font-size: 1.4rem;
-  padding: 1.4rem;
+  padding: .5rem 1rem .5rem 1rem;
+  top: 0;
+  background-color: white;
+  box-shadow: 0px 12px 12px 2px rgba(0,0,0,0.1);
 
   @media (max-width: 768px) {
     display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+    box-shadow: 0px 12px 15px 1px rgba(0,0,0,0.35);
   }
 `;
 
@@ -54,14 +62,24 @@ const NavLinks = styled(animated.ul)`
 `;
 
 const BurgerWrapper = styled.div`
+  position: fixed;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-end;
   margin: auto 0;
-  padding: 5%;
+  padding: .5rem 1.4rem .5rem 0;
+  top: 0;
+  background-color: white;
+  box-shadow: 0px 12px 12px 2px rgba(0,0,0,0.1);
 
   @media (min-width: 769px) {
     display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+    box-shadow: 0px 12px 15px 1px rgba(0,0,0,0.2);
   }
 `;
 

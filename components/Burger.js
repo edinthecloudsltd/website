@@ -41,11 +41,15 @@ const Wrapper = styled.div`
 `;
 
 const Nav = styled(animated.div)`
-  background: #fff;
   position: fixed;
-  top: 4.5rem;
-  left: -1em;
+  top: 4rem;
+  left: 0;
   right: 0;
+  background-color: white;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  }
 `;
 
 const Li = styled(animated.li)`

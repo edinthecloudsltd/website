@@ -24,7 +24,7 @@ export default function Layout({ children, home }) {
 
         <header>{home ? <Navbar home /> : <Navbar />}</header>
 
-        <div class="container p-5 max-w-5xl mx-auto">{children}</div>
+        <div class="container mx-auto mt-28 sm:py-12 md:py-24 px-5 max-w-5xl">{children}</div>
       </body>
   );
 }
