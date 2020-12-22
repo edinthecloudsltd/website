@@ -1,4 +1,8 @@
 # serverless.yml
 edintheclouds-blog:
   component: "@sls-next/serverless-component"
-  bucketRegion: "eu-west-2"
+  inputs:
+    bucketRegion: "eu-west-2"
+    domain: ["www", "edintheclouds.io"]
+    certificateArn: "arn:aws:acm:us-east-1:146864147024:certificate/c67f0d0c-c895-49ef-a562-ade05ff3de2b"
+    

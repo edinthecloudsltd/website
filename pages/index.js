@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/Layout";
 import utilStyles from "../styles/utils.module.css";
-import { platform, langs, cicd, frameworks } from './skills';
 
 const name = "Ed in the Clouds";
 
@@ -93,3 +92,71 @@ export default function Home() {
     </Layout>
   );
 }
+
+const platform = [
+  {
+    alt: "Amazon Web Services",
+    src: "/images/aws.svg",
+  },
+  {
+    alt: "Azure",
+    src: "/images/azure.svg",
+  },
+  {
+    alt: "Serverless",
+    src: "/images/serverless.svg",
+  },
+  {
+    alt: "Kubernetes",
+    src: "/images/k8s.svg",
+  },
+]
+
+const langs = [
+  {
+    alt: "Bash",
+    src: "/images/bash.svg",
+  },
+  {
+    alt: "Python",
+    src: "/images/python.svg",
+  },
+  {
+    alt: "Go",
+    src: "/images/go.svg",
+  },
+  {
+    alt: "Javascript",
+    src: "/images/javascript.svg",
+  },
+  {
+    alt: "Terraform",
+    src: "/images/terraform.svg",
+  },
+]
+
+const cicd = [
+  {
+    alt: "Jenkins",
+    src: "/images/jenkins.svg",
+  },
+  {
+    alt: "Gitlab",
+    src: "/images/gitlab.svg",
+  },
+  {
+    alt: "Github",
+    src: "/images/github.svg",
+  },
+]
+
+const frameworks = [
+  {
+    alt: "Flask",
+    src: "/images/flask.svg",
+  },
+  {
+    alt: "React",
+    src: "/images/react.svg",
+  },
+]
