@@ -9,77 +9,6 @@ import {
   config,
 } from "react-spring";
 
-export default function Burger() {
-  const [show, setShow] = useState(false);
-
-  return (
-    <>
-      <Wrapper onClick={() => setShow(!show)}>
-        <div className={show ? "open" : ""}>
-          <span>&nbsp;</span>
-          <span>&nbsp;</span>
-          <span>&nbsp;</span>
-        </div>
-      </Wrapper>
-
-      <Menu show={show} />
-    </>
-  );
-}
-
-const menuItems = [
-  { name: "Home", link: "/" },
-  { name: "Blog", link: "/blog/" },
-  { name: "Contact", link: "/contact/" },
-];
-
-// https://codesandbox.io/s/react-spring-menu-animation-f17cz?file=/src/index.js
-const Menu = ({ show }) => {
-
-  const navRef = useRef();
-  const liRef = useRef();
-
-  const springProps = useSpring({
-    ref: navRef,
-    config: config.default,
-    from: { width: "0%" },
-    to: { 
-      width: show ? "100%" : "0%",
-      height: "100%"
-    },
-  });
-
-  const liTransitions = useTransition(
-    show ? menuItems : [],
-    (item) => item.name,
-    {
-      ref: liRef,
-      trail: 400 / menuItems.length,
-      from: { opacity: 0, transform: "translateY(20px)" },
-      enter: { opacity: 1, transform: "translateY(0)" },
-      leave: { opacity: 0, transform: "translateY(20px)" },
-    }
-  );
-
-  // On showMenu, start with nav animationm then nav items
-  useChain(show ? [navRef, liRef] : [liRef, navRef], [
-    0,
-    show ? 0.2 : 0.4,
-  ]);
-
-  return (
-    <Nav style={springProps}>
-      <ul>
-        {liTransitions.map(({ item, key, props }) => (
-          <Li key={key} style={props}>
-            <a href={item.link}>{item.name}</a>
-          </Li>
-        ))}
-      </ul>
-    </Nav>
-  );
-};
-
 const Wrapper = styled.div`
   position: relative;
   padding-top: 0.7rem;
@@ -114,7 +43,7 @@ const Wrapper = styled.div`
 const Nav = styled(animated.div)`
   background: #fff;
   position: fixed;
-  top: 4rem;
+  top: 4.5rem;
   left: -1em;
   right: 0;
 `;
@@ -122,12 +51,87 @@ const Nav = styled(animated.div)`
 const Li = styled(animated.li)`
   list-style: none;
 
-  a {
+  & a {
     color: #a0a0a0;
+
     font-size: 50px;
     font-weight: bold;
-    text-transform: lowercase;
+    border-bottom: 1px solid transparent;
+    margin: 0 1.5rem;
+    transition: all 300ms linear 0s;
     text-decoration: none;
-    line-height: 1.3;
+    cursor: pointer;
+
+    &:hover {
+      color: #666464;
+      border-bottom: 1px solid #666464;
+    }
   }
 `;
+
+export default function Burger() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <>
+      <Wrapper onClick={() => setShow(!show)}>
+        <div className={show ? "open" : ""}>
+          <span>&nbsp;</span>
+          <span>&nbsp;</span>
+          <span>&nbsp;</span>
+        </div>
+      </Wrapper>
+
+      <Menu show={show} />
+    </>
+  );
+}
+
+const menuItems = [
+  { name: "Home", link: "/" },
+  { name: "Blog", link: "/blog/" },
+  { name: "Contact", link: "/contact/" },
+];
+
+// https://codesandbox.io/s/react-spring-menu-animation-f17cz?file=/src/index.js
+const Menu = ({ show }) => {
+  const navRef = useRef();
+  const liRef = useRef();
+
+  const springProps = useSpring({
+    ref: navRef,
+    config: config.default,
+    from: { width: "0%" },
+    to: {
+      width: show ? "100%" : "0%",
+      height: "100%",
+    },
+  });
+
+  const liTransitions = useTransition(
+    show ? menuItems : [],
+    (item) => item.name,
+    {
+      ref: liRef,
+      trail: 400 / menuItems.length,
+      from: { opacity: 0, transform: "translateY(20px)" },
+      enter: { opacity: 1, transform: "translateY(0)" },
+      leave: { opacity: 0, transform: "translateY(20px)" },
+    }
+  );
+
+  // On showMenu, start with nav animationm then nav items
+  useChain(show ? [navRef, liRef] : [liRef, navRef], [0, show ? 0.2 : 0.4]);
+
+  return (
+    <Nav style={springProps}>
+      <ul>
+        {liTransitions.map(({ item, key, props }) => (
+          <Li key={key} style={props}>
+            <Link href={item.link}>{item.name}</Link>
+          </Li>
+        ))}
+      </ul>
+    </Nav>
+  );
+};

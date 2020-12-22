@@ -1,56 +1,14 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 import Link from "next/link";
 import Burger from "./Burger";
 
-export default function Navbar(props) {
-  const barAnimation = useSpring({
-    from: { transform: "translate3d(0, -10rem, 0)" },
-    transform: "translate3d(0, 0, 0)",
-  });
-
-  const linkAnimation = useSpring({
-    from: { transform: "translate3d(0, 30px, 0)", opacity: 0 },
-    to: { transform: "translate3d(0, 0, 0)", opacity: 1 },
-    delay: 800,
-    config: config.wobbly,
-  });
-
-  return (
-    <>
-      <NavBar style={barAnimation}>
-        <FlexContainer>
-          {!props.home && (
-            <Link href="/">
-              <Logo src="/images/profile.jpg" />
-            </Link>
-          )}
-          <a /> {/* Space out flexbox */}
-          <NavLinks style={linkAnimation}>
-            <Link href="/blog">
-              <a>Blog</a>
-            </Link>
-            <Link href="/contact">
-              <a>Contact</a>
-            </Link>
-          </NavLinks>
-        </FlexContainer>
-      </NavBar>
-
-      <BurgerWrapper>
-        <Burger />
-      </BurgerWrapper>
-    </>
-  );
-}
-
 const NavBar = styled(animated.nav)`
   position: relative;
   width: 100%;
-  background: white;
   z-index: 1;
   font-size: 1.4rem;
+  padding: 1.4rem;
 
   @media (max-width: 768px) {
     display: none;
@@ -102,8 +60,50 @@ const BurgerWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin: auto 0;
+  padding: 5%;
 
   @media (min-width: 769px) {
     display: none;
   }
 `;
+
+export default function Navbar(props) {
+  const barAnimation = useSpring({
+    from: { transform: "translate3d(0, -10rem, 0)" },
+    transform: "translate3d(0, 0, 0)",
+  });
+
+  const linkAnimation = useSpring({
+    from: { transform: "translate3d(0, 30px, 0)", opacity: 0 },
+    to: { transform: "translate3d(0, 0, 0)", opacity: 1 },
+    delay: 800,
+    config: config.wobbly,
+  });
+
+  return (
+    <>
+      <NavBar style={barAnimation} class="bg-white dark:bg-gray-800">
+        <FlexContainer>
+          {!props.home && (
+            <Link href="/">
+              <Logo src="/images/profile.jpg" />
+            </Link>
+          )}
+          <a /> {/* Space out flexbox */}
+          <NavLinks style={linkAnimation}>
+            <Link href="/blog">
+              <a>Blog</a>
+            </Link>
+            <Link href="/contact">
+              <a>Contact</a>
+            </Link>
+          </NavLinks>
+        </FlexContainer>
+      </NavBar>
+
+      <BurgerWrapper>
+        <Burger />
+      </BurgerWrapper>
+    </>
+  );
+}

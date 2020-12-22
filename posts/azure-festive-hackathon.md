@@ -40,10 +40,10 @@ This command should give you an output that resembles the following:
 }
 ```
 Use the above values to create the following secrets in your Github repository.
-- `ARM_CLIENT_ID`
-- `ARM_CLIENT_SECRET`
-- `ARM_SUBSCRIPTION_ID`
-- `ARM_TENANT_ID`
+- ARM_CLIENT_ID
+- ARM_CLIENT_SECRET
+- ARM_SUBSCRIPTION_ID
+- ARM_TENANT_ID
 
 4. Create a new storage account that we will use as our terraform state backend. Feel free to change the region to your preferred location.
 ```

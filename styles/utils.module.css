@@ -16,7 +16,7 @@
 }
 
 .headingLg {
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.4;
   margin: 1rem 0;
 }
@@ -48,6 +48,7 @@
 }
 
 .listItem {
+  font-size: 1.5rem;
   margin: 0 0 1.25rem;
 }
 
