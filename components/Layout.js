@@ -5,13 +5,12 @@ export const siteTitle = "Ed in the Clouds";
 
 export default function Layout({ children, home }) {
   return (
-    <html class="bg-white dark:bg-gray-800 object-cover">
-      <div class="container mx-auto">
+      <body class="bg-white dark:bg-gray-800">
         <Head>
           {/*         <link rel="icon" href="/favicon.ico" /> */}
           <meta
-            name="description"
-            content="Learn how to build a personal website using Next.js"
+            name="Ed in the Clouds consulting"
+            content="Ed in the Clouds blog site"
           />
           <meta
             property="og:image"
@@ -26,7 +25,6 @@ export default function Layout({ children, home }) {
         <header>{home ? <Navbar home /> : <Navbar />}</header>
 
         <div class="container p-5 max-w-5xl mx-auto">{children}</div>
-      </div>
-    </html>
+      </body>
   );
 }

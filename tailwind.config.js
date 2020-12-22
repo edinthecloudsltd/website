@@ -28,12 +28,17 @@ module.exports = {
             ".tag a": {
               textDecoration: "none",
             },
+
+            p: {
+              color: theme("colors.gray.800"),
+            },
           },
         },
 
         dark: {
           css: {
             color: theme("colors.gray.400"),
+
             a: {
               color: "#9ECE6A",
               "&:hover": {
@@ -64,6 +69,10 @@ module.exports = {
               color: theme("colors.gray.400"),
             },
 
+            p: {
+              color: theme("colors.gray.300"),
+            },
+
             strong: {
               color: theme("colors.gray.400"),
             },
@@ -83,13 +92,17 @@ module.exports = {
             "::selection": {
               backgroundColor: "#6f7bb635",
             },
+
+            ":root": {
+              backgroundColor: theme("colors.gray.800"),
+            },
           },
         },
       }),
     },
   },
   variants: {
-    typography: ["dark"],
+    typography: ["dark"]
   },
   plugins: [require("@tailwindcss/typography")],
 };

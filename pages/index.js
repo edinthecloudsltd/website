@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styled from "styled-components";
 import Layout, { siteTitle } from "../components/Layout";
 import utilStyles from "../styles/utils.module.css";
 
@@ -7,27 +6,84 @@ const name = "Ed in the Clouds";
 
 export default function Home() {
   return (
-      <Layout home>
-        <Head>
-          <title>{siteTitle}</title>
-        </Head>
-        <section class="container pb-10">
-          <img src="/images/profile.jpg" className={`${utilStyles.homeLogo}`} />
-          <h1 class="text-gray-800 dark:text-gray-500 text-center text-5xl font-extrabold p-2">{name}</h1>
-        </section>
+    <Layout home>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <section class="container pb-10">
+        <img src="/images/profile.jpg" className={`${utilStyles.homeLogo}`} />
+        <h1 class="text-gray-800 dark:text-gray-400 text-center text-5xl font-extrabold p-2">
+          {name}
+        </h1>
+      </section>
 
-        <article class="mx-auto prose lg:prose-xl">
-          <p class="text-gray-600 dark:text-gray-400 leading-loose">Hi, I'm Ed.</p>
+      <article class="prose dark:prose-dark mx-auto">
+        <p class="leading-loose">Hi, I'm Ed.</p>
 
-          <p class="text-gray-600 dark:text-gray-400 leading-loose">
-            I've been working in IT for what is rapidly approaching to be 10
-            years. I have worked multiple roles including support, consultant
-            and engineering across a variety of sectors. Currently I am known as
-            a Platform Engineer (But what does that even mean these days?!)
-          </p>
-
-          <h2 class="text-gray-800 dark:text-gray-500">Skills</h2>
-        </article>
-      </Layout>
+        <p class="leading-loose">
+          I've been working in IT for what is rapidly approaching to be 10
+          years. I have worked multiple roles including support, consultant and
+          engineering across a variety of sectors. Currently I am known as a
+          Platform Engineer (But what does that even mean these days?!)
+        </p>
+        <h2>Skills</h2>
+        <div class="flex flex-wrap justify-evenly shadow-lg dark:bg-gray-600">
+          {skills.map((skill) => (
+            <img src={skill.src} alt={skill.alt} style={{textShadow: "0px 10px 10px -5px rgba(0,0,0,0.05)"}}class="flex-shrink h-20 mx-2" />
+          ))}
+        </div>
+      </article>
+    </Layout>
   );
 }
+
+const skills = [
+  {
+    alt: "Amazon Web Services",
+    src: "/images/aws.svg",
+  },
+  {
+    alt: "Azure",
+    src: "/images/azure.svg",
+  },
+  {
+    alt: "Docker",
+    src: "/images/docker.svg",
+  },
+  {
+    alt: "ELK",
+    src: "/images/elk.svg",
+  },
+  {
+    alt: "Go",
+    src: "/images/go.svg",
+  },
+  {
+    alt: "Javascript",
+    src: "/images/javascript.svg",
+  },
+  {
+    alt: "Kubernetes",
+    src: "/images/k8s.svg",
+  },
+  {
+    alt: "Linux",
+    src: "/images/tux.svg",
+  },
+  {
+    alt: "Python",
+    src: "/images/python.svg",
+  },
+  {
+    alt: "React",
+    src: "/images/react.svg",
+  },
+  {
+    alt: "Terraform",
+    src: "/images/terraform.svg",
+  },
+  {
+    alt: "Windows",
+    src: "/images/windows.svg",
+  },
+];
