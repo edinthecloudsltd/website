@@ -26,7 +26,7 @@ An App Service is deployed into each region that is specified. Traffic Manager u
 
 Unfortunately there are some manual steps when setting up this demo. I tried to keep them to a minimum, but there are nuances when it comes to the terraform azurerm provider, such as [not supporting service principal login via azure-cli](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli#important-notes-about-authenticating-using-the-azure-cli).
 
-1. Clone or fork this repository.
+1. Clone or fork [this](https://github.com/tedsmitt/azure-festive-hackathon-submission) repository.
 
 2. Login to azure CLI using `az login` and select the appropriate subscription using the command `az account set -s <my-subscription-id>`
 
