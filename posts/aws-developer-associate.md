@@ -1,6 +1,8 @@
 ---
 title: "Passing the AWS Developer Associate Exam"
 date: "2019-01-17"
+description: "A few thoughts on passing the AWS Developer Associate exam"
+tags: [aws, developer, exam]
 ---
 
 Before Christmas I sat the AWS Certified Developer - Associate (CDA) exam and passed! Here are a couple of my thoughts on the exam.

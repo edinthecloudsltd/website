@@ -3,11 +3,19 @@ import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/Date";
 import utilStyles from "../../styles/utils.module.css";
+
 export default function Post({ postData }) {
+
   return (
     <Layout>
       <Head>
         <title>{postData.title}</title>
+        <meta name="description" content={`${postData.description} ${postData.tags}`} />
+        <meta
+          property="og:description"
+          content={postData.description}
+          key="ogdesc"
+        />
       </Head>
       <article class="prose dark:prose-dark mx-auto">
         <h1>{postData.title}</h1>

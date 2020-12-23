@@ -1,12 +1,21 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
 
+const pageDescription = "Contact information for Ed in the Clouds";
+
 export default function Contact() {
   return (
     <Layout>
       <Head>
-        <title>Contact</title>
+        <title>Ed in the Clouds - Contact</title>
+        <meta name="description" content={pageDescription} />
+        <meta
+          property="og:description"
+          content={pageDescription}
+          key="ogdesc"
+        />
       </Head>
+
       <article class="prose dark:prose-dark mx-auto p-12">
         <h2>Email</h2>
         <p>

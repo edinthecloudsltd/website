@@ -86,7 +86,7 @@ const BurgerWrapper = styled.div`
 `;
 
 export default function Navbar({ home }) {
-  const router = useRouter()
+  const router = useRouter();
 
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },

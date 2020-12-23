@@ -1,6 +1,8 @@
 ---
 title: "Azure Festive Tech Calendar Hackathon"
 date: "2020-12-17"
+description: "Azure Hackathon involving multi-region, geo-mapped application with containers and traffic manager. Deployed using terraform."
+tags: [github, github-actions, cicd, terraform, for-each, azure, app-service, docker, containers, traffic-manager, geo-mapping]
 ---
 
 The kind people over at [Intercept](https://hackathon.cloudadventures.org/) organised a Christmas themed hackathon for December. 
@@ -61,7 +63,7 @@ echo $STORAGE_ACCOUNT
 ```
 
 
-5. Update the terraform map variable `app_locations` in the `variables.tf` file to include each region you want to deploy to. For example, if I want to deploy to the _West Europe_ and _UK South_ regions, it would look like the following:
+5. Thanks to Terraform `for_each` we can easily re-use our code to deploy to several locations with ease. Update the terraform map variable `app_locations` in the `variables.tf` file to include each region you want to deploy to. For example, if I want to deploy to the _West Europe_ and _UK South_ regions, it would look like the following:
 ```
 variable "app_locations" {
   type        = map
