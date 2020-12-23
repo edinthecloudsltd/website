@@ -10,7 +10,7 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section class="container mx-auto pb-10">
+      <section class="mx-auto pb-10">
         <img src="/images/profile.png" className={`${utilStyles.homeLogo}`} />
         <h1 class="text-gray-800 dark:text-gray-400 text-center text-5xl font-extrabold p-2">
           {name}
@@ -39,12 +39,12 @@ export default function Home() {
 
         <h3>Platform</h3>
         <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-grow justify-evenly">
+          <div class="flex flex-row flex-wrap justify-center">
           {platform.map((i) => (
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink h-20 mx-2"
+              class="flex-shrink w-16 mx-2"
             />
           ))}
           </div>
@@ -52,12 +52,12 @@ export default function Home() {
 
         <h3>Programming/Scripting Languages</h3>
         <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-grow justify-evenly">
+        <div class="flex flex-row flex-wrap justify-center">
           {langs.map((i) => (
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink h-20 mx-2"
+              class="flex-shrink w-16 mx-2"
             />
           ))}
           </div>
@@ -65,12 +65,12 @@ export default function Home() {
 
         <h3>CI/CD</h3>
         <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-grow justify-evenly">
+        <div class="flex flex-row flex-wrap justify-center">
           {cicd.map((i) => (
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink h-20 mx-2"
+              class="flex-shrink w-16 mx-2"
             />
           ))}
           </div>
@@ -78,12 +78,12 @@ export default function Home() {
 
         <h3>Frameworks</h3>
         <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-grow justify-evenly">
+        <div class="flex flex-row flex-wrap justify-center">
           {frameworks.map((i) => (
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink h-20 mx-2"
+              class="flex-shrink w-16 mx-2"
             />
           ))}
           </div>
@@ -101,10 +101,6 @@ const platform = [
   {
     alt: "Azure",
     src: "/images/azure.svg",
-  },
-  {
-    alt: "Serverless",
-    src: "/images/serverless.svg",
   },
   {
     alt: "Kubernetes",
