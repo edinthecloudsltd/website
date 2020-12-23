@@ -139,14 +139,13 @@ const Menu = ({ show }) => {
   return (
     <Nav style={springProps}>
       <ul>
-        {liTransitions.map(
-          ({ item, key, props }) =>
-            router.pathname != item.link && (
-              <Li key={key} style={props}>
-                <Link href={item.link}>{item.name}</Link>
-              </Li>
-            )
-        )}
+        {liTransitions.map(({ item, key, props }) => (
+          router.pathname != item.link && (
+          <Li key={key} style={props}>
+            <Link href={item.link}>{item.name}</Link>
+          </Li>
+          )
+        ))}
       </ul>
     </Nav>
   );

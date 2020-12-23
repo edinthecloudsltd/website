@@ -13,7 +13,7 @@ export default function Blog({ allPostsData }) {
       </Head>
       <article class="prose dark:prose-dark mx-auto">
         <h2 class="text-gray-600 dark:text-gray-400">Latest Posts</h2>
-        <ul class="list-none">
+        <ul class="list-none" style={{zIndex: "-1"}}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>

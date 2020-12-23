@@ -29,6 +29,10 @@ module.exports = {
             p: {
               color: theme("colors.gray.800"),
             },
+
+            li: {
+              zIndex: 0,
+            }
           },
         },
 

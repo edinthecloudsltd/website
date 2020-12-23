@@ -17,3 +17,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.prose ul > li {
+  z-index: 0;
+}
