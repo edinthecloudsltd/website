@@ -38,13 +38,13 @@ export default function Home() {
         <h2>Skills</h2>
 
         <h3>Platform</h3>
-        <div class="dark:bg-gray-600">
+        <div class="dark:bg-gray-600 object-cover">
           <div class="flex flex-row flex-wrap justify-center">
           {platform.map((i) => (
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink w-16 mx-2"
+              class="flex-shrink w-16 h-16 mx-2"
             />
           ))}
           </div>
@@ -57,7 +57,7 @@ export default function Home() {
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink w-16 mx-2"
+              class="flex-shrink w-16 h-16 mx-2"
             />
           ))}
           </div>
@@ -70,7 +70,7 @@ export default function Home() {
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink w-16 mx-2"
+              class="flex-shrink w-16 h-16 mx-2"
             />
           ))}
           </div>
@@ -83,7 +83,7 @@ export default function Home() {
             <img
               src={i.src}
               alt={i.alt}
-              class="flex-shrink w-16 mx-2"
+              class="flex-shrink w-16 h-16 mx-2"
             />
           ))}
           </div>

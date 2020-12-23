@@ -1,17 +1,18 @@
-import styled from "styled-components";
-import { useSpring, animated, config } from "react-spring";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Burger from "./Burger";
+import styled from "styled-components";
+import { useSpring, animated, config } from "react-spring";
 
 const NavBar = styled(animated.nav)`
   position: fixed;
   width: 100%;
   z-index: 1;
   font-size: 1.4rem;
-  padding: .5rem 1rem .5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   top: 0;
   background-color: white;
-  box-shadow: 0px 12px 12px 2px rgba(0,0,0,0.1);
+  box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     display: none;
@@ -19,7 +20,7 @@ const NavBar = styled(animated.nav)`
 
   @media (prefers-color-scheme: dark) {
     background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-    box-shadow: 0px 12px 15px 1px rgba(0,0,0,0.35);
+    box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.35);
   }
 `;
 
@@ -68,10 +69,10 @@ const BurgerWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   margin: auto 0;
-  padding: .5rem 1.4rem .5rem 0;
+  padding: 0.5rem 1.4rem 0.5rem 0;
   top: 0;
   background-color: white;
-  box-shadow: 0px 12px 12px 2px rgba(0,0,0,0.1);
+  box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
 
   @media (min-width: 769px) {
     display: none;
@@ -79,11 +80,13 @@ const BurgerWrapper = styled.div`
 
   @media (prefers-color-scheme: dark) {
     background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-    box-shadow: 0px 12px 15px 1px rgba(0,0,0,0.2);
+    box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.2);
   }
 `;
 
-export default function Navbar({home, animated}) {
+export default function Navbar({ home }) {
+  const router = useRouter()
+
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
     transform: "translate3d(0, 0, 0)",
@@ -107,12 +110,21 @@ export default function Navbar({home, animated}) {
           )}
           <a /> {/* Space out flexbox */}
           <NavLinks style={linkAnimation}>
-            <Link href="/blog">
-              <a class="text-gray-400">Blog</a>
-            </Link>
-            <Link href="/contact">
-              <a class="text-gray-400">Contact</a>
-            </Link>
+            {router.pathname != "/" && (
+              <Link href="/">
+                <a class="text-gray-400">Home</a>
+              </Link>
+            )}
+            {router.pathname != "/blog" && (
+              <Link href="/blog">
+                <a class="text-gray-400">Blog</a>
+              </Link>
+            )}
+            {router.pathname != "/contact" && (
+              <Link href="/contact">
+                <a class="text-gray-400">Contact</a>
+              </Link>
+            )}
           </NavLinks>
         </FlexContainer>
       </NavBar>

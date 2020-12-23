@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
+import styled from "styled-components";
 import {
   useSpring,
   useTransition,
@@ -76,6 +77,12 @@ const Li = styled(animated.li)`
 export default function Burger() {
   const [show, setShow] = useState(false);
 
+  /* Disable scrolling when the burger is opened */
+  useEffect(() => {
+    show && (document.body.style.overflow = "hidden");
+    !show && (document.body.style.overflow = "unset");
+  }, [show]);
+
   return (
     <>
       <Wrapper onClick={() => setShow(!show)}>
@@ -93,12 +100,14 @@ export default function Burger() {
 
 const menuItems = [
   { name: "Home", link: "/" },
-  { name: "Blog", link: "/blog/" },
-  { name: "Contact", link: "/contact/" },
+  { name: "Blog", link: "/blog" },
+  { name: "Contact", link: "/contact" },
 ];
 
 // https://codesandbox.io/s/react-spring-menu-animation-f17cz?file=/src/index.js
 const Menu = ({ show }) => {
+  const router = useRouter();
+
   const navRef = useRef();
   const liRef = useRef();
 
@@ -130,11 +139,14 @@ const Menu = ({ show }) => {
   return (
     <Nav style={springProps}>
       <ul>
-        {liTransitions.map(({ item, key, props }) => (
-          <Li key={key} style={props}>
-            <Link href={item.link}>{item.name}</Link>
-          </Li>
-        ))}
+        {liTransitions.map(
+          ({ item, key, props }) =>
+            router.pathname != item.link && (
+              <Li key={key} style={props}>
+                <Link href={item.link}>{item.name}</Link>
+              </Li>
+            )
+        )}
       </ul>
     </Nav>
   );
