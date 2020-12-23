@@ -1,7 +1,13 @@
 ---
-title: "Festive Azure Hackathon"
+title: "Azure Festive Tech Calendar Hackathon"
 date: "2020-12-17"
 ---
+
+The kind people over at [Intercept](https://hackathon.cloudadventures.org/) organised a Christmas themed hackathon for December. 
+
+I saw this as a fun opportunity to refamiliarise myself with Azure. In a previous life I pretty much dealt only with Azure infrastructure before going on to work with primarily AWS organisations. A full list of the solution requirements can be found [here](https://hackathon.cloudadventures.org/Requirements).
+
+Special thanks to [@whaakman](https://twitter.com/whaakman) for putting it together!
 
 ### Solution Architecture
 
@@ -9,7 +15,7 @@ date: "2020-12-17"
   <img src="/images/azure-festive-hackathon/solution-diagram.png">
 </p>
 
-### Website hosting and scaling
+### Hosting and scaling
 The solution makes use of the Azure App Service for hosting the application. This uses a Linux App service plan with containers. Images are stored in ACR and pulled in whenever the image is updated using the continuous deployment feature. ACR is geo-replicated so that the image is highly available, with a copy local to each app service. A scale setting has been configured to satisfy the scaling requirement for the application, with _CpuPercentage_ as the scaling metric. This is configured to scale up during busy periods, and scale down when it is quieter. 
 
 ### Personalisation and Data compliance
@@ -118,6 +124,8 @@ az ad sp delete --id $SP_ID
 3. Delete this repository!
 
 ## Lessons and Retrospective 📒
-I learnt a couple of things whilst participating in this hackathon, it was also a great refresher on Azure as it has been over a year since I last looked at it!
+I was going to use Azure Front Door as it seemed like the perfect match for this kind of solution. With the Rules Engine it seemed like the logical choice, as I could perform geo-matching and URL rewrites to forward traffic to the backend. However, I soon found out that it does not support Websockets, and because of this it wouldn't work properly with the Blazor app. Granted, after 60s it would default to HTTP long polling, however this is less than optimal and would not be great UX. We could potentially configure the app to _only_ use long polling, but this would have been against the rules. This is when I turned to Traffic Manager as it is just simple DNS load balancing (and as it turns out also has geo-matching capabilities!).
 
-I was going to use Azure Front Door as it seemed like the perfect match for this kind of solution. With the Rules Engine it seemed like the logical choice, as I could perform geo-matching and URL rewrites to forward traffic to the backend. However, I soon found out that it does not support Websockets, and because of this it wouldn't work properly with the Blazor app. Granted, after 60s it would default to HTTP long polling, however this is less than optimal. We could potentially configure the app to _only_ use long polling, but this was against the rules. This is when I turned to Traffic Manager, as it is just simple DNS load balancing, and as it turns out also has geo-matching capabilities!
+It was also great to see how App Service looks since I last dealt with it. It looks like they are providing first-class support for containers, which is essential these days. I noticed the Docker-Compose preview in the container settings of the App service, which I think will be a great addition to the service.
+
+All in all I had a great time working on this solution and will definitely be on the look out for more of these hackathons in future!
