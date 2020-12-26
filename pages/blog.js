@@ -1,4 +1,5 @@
 import Head from "next/head";
+import styled from "styled-components";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Layout from "../components/Layout";
@@ -21,10 +22,10 @@ export default function Blog({ allPostsData }) {
         />
       </Head>
 
-      <article class="prose dark:prose-dark mx-auto">
-        <h2 class="text-gray-600 dark:text-gray-400">Latest Posts</h2>
-        <ul class="list-none" style={{ zIndex: "-1" }}>
-          {allPostsData.map(({ id, date, title }) => (
+      <article className="prose dark:prose-dark mx-auto">
+        <h2 className="text-gray-600 dark:text-gray-400">Latest Posts</h2>
+        <ul className="list-none" style={{ zIndex: "-1" }}>
+          {allPostsData.map(({ id, date, title, tags }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>

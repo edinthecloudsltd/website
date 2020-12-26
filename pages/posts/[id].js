@@ -17,12 +17,12 @@ export default function Post({ postData }) {
           key="ogdesc"
         />
       </Head>
-      <article class="prose dark:prose-dark mx-auto">
+      <article className="prose dark:prose-dark mx-auto">
         <h1>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
+        <div classNameName={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
-        <div class="mx-auto max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div className="mx-auto max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </Layout>
   );

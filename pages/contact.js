@@ -16,7 +16,7 @@ export default function Contact() {
         />
       </Head>
 
-      <article class="prose dark:prose-dark mx-auto p-12">
+      <article className="prose dark:prose-dark mx-auto p-12">
         <h2>Email</h2>
         <p>
           If you want to get in touch you are best off emailing me. You can

@@ -17,66 +17,68 @@ export default function Home() {
           key="ogdesc"
         />
       </Head>
-      <section class="mx-auto pb-10">
+      <section className="mx-auto pb-10">
         <img src="/images/profile.png" className={`${utilStyles.homeLogo}`} />
-        <h1 class="text-gray-800 dark:text-gray-400 text-center text-5xl font-extrabold p-2">
+        <h1 className="text-gray-800 dark:text-gray-400 text-center text-5xl font-extrabold p-2">
           Ed in the Clouds
         </h1>
       </section>
 
-      <article class="prose dark:prose-dark mx-auto">
-        <p class="leading-loose">Hi, I'm Ed.</p>
+      <article className="prose dark:prose-dark mx-auto">
+        <p className="leading-loose">Hi, I'm Ed.</p>
 
-        <p class="leading-loose">
-          Throughout my career, I have worked multiple roles across the IT
-          industry. I have held support, administrative and consultant
-          engineering roles across a variety of sectors.
+        <p className="leading-loose">
+          I’m a Platform Engineer, which can mean a number of things these
+          days! Specifically, I deal with cloud infrastructure, containers
+          & orchestration, operations and automation.
         </p>
 
-        <p class="leading-loose">
-          Currently I am known as a Platform Engineer. For the most part I deal
-          with cloud platforms and automation.
+        <p className="leading-loose">
+          Throughout my career, I have held multiple roles across the IT
+          industry including support, administration, engineering and
+          consulting. I have worked with a variety of organisations across both
+          public and private sectors.
         </p>
 
-        <p class="leading-loose">
-          I am an Ops guy by trade, however these days I find myself doing more
-          and more development work in my spare time.
+        <p className="leading-loose">
+          I’m an operations/infrastructure guy by trade, but I also spend a lot
+          of time these days doing more development work.
         </p>
 
         <h2>Skills</h2>
 
         <h3>Platform</h3>
-        <div class="dark:bg-gray-600 object-cover">
-          <div class="flex flex-row flex-wrap justify-center">
-            {platform.map((i) => (
-              <img src={i.src} alt={i.alt} class="flex-shrink w-16 h-16 mx-2" />
+        <div className="dark:bg-gray-600 object-cover">
+          <div className="flex flex-row flex-wrap justify-center">
+            {platform.map((img, id) => (
+              <img key={id} key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
             ))}
           </div>
         </div>
 
         <h3>Programming/Scripting Languages</h3>
-        <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-wrap justify-center">
-            {langs.map((i) => (
-              <img src={i.src} alt={i.alt} class="flex-shrink w-16 h-16 mx-2" />
+        <div className="dark:bg-gray-600">
+          <div className="flex flex-row flex-wrap justify-center">
+            {langs.map((img, id) => (
+              <img key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
             ))}
           </div>
         </div>
 
         <h3>CI/CD</h3>
-        <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-wrap justify-center">
-            {cicd.map((i) => (
-              <img src={i.src} alt={i.alt} class="flex-shrink w-16 h-16 mx-2" />
+        <div className="dark:bg-gray-600">
+          <div className="flex flex-row flex-wrap justify-center">
+            {cicd.map((img, id) => (
+              <img key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
             ))}
           </div>
         </div>
 
         <h3>Frameworks</h3>
-        <div class="dark:bg-gray-600">
-          <div class="flex flex-row flex-wrap justify-center">
-            {frameworks.map((i) => (
-              <img src={i.src} alt={i.alt} class="flex-shrink w-16 h-16 mx-2" />
+        <div className="dark:bg-gray-600">
+          <div className="flex flex-row flex-wrap justify-center">
+            {frameworks.map((img, id) => (
+              <img key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
             ))}
           </div>
         </div>

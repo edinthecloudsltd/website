@@ -8,7 +8,7 @@ export const pageDescription = "A Cloud and Automation blog";
 
 export default function Layout({ children, home }) {
   return (
-    <body class="bg-white dark:bg-gray-800">
+    <body className="bg-white dark:bg-gray-800">
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,7 +20,7 @@ export default function Layout({ children, home }) {
 
       <header>{home ? <Navbar home /> : <Navbar />}</header>
 
-      <div class="mx-auto mt-28 sm:py-12 md:py-18 px-5 w-screen">
+      <div className="mx-auto mt-28 sm:py-12 md:py-18 px-5 w-screen">
         {children}
       </div>
     </body>

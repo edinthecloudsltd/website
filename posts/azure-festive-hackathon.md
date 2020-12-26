@@ -85,7 +85,7 @@ variable "app_locations" {
 
 6. (Optional)  Change the value of the `primary_region` variable if you would like your shared resource group in a different location. Default value is `westeurope`.
 
-6. Configure the storage account that we created earlier as our backend state. Replace the value `<my-storage-account-name>` inside of the `terraform.tf` file
+7. Configure the storage account that we created earlier as our backend state. Replace the value `<my-storage-account-name>` inside of the `terraform.tf` file
 ```
 terraform {
   backend "azurerm" {
@@ -96,7 +96,7 @@ terraform {
   }
 }
 ```
-7. Save the code, commit and push to the `main` branch.
+8. Save the code, commit and push to the `main` branch.
 
 ## Creating the Infrastructure 🏗
 Our terraform and container image is deployed using Github Actions. After you push your first commit up to the branch, it will begin a workflow that will apply terraform, build the container image, and push it to ACR. Once the image is pushed to ACR, the App services are configured to pull down the latest version of the container image.

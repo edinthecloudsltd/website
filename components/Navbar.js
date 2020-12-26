@@ -102,7 +102,7 @@ export default function Navbar({ home }) {
 
   return (
     <>
-      <NavBar style={barAnimation} class="bg-white dark:bg-gray-800">
+      <NavBar style={barAnimation} className="bg-white dark:bg-gray-800">
         <FlexContainer>
           {!home && (
             <Link href="/">
@@ -113,17 +113,17 @@ export default function Navbar({ home }) {
           <NavLinks style={linkAnimation}>
             {router.pathname != "/" && (
               <Link href="/">
-                <a class="text-gray-400">Home</a>
+                <a className="text-gray-400">Home</a>
               </Link>
             )}
             {router.pathname != "/blog" && (
               <Link href="/blog">
-                <a class="text-gray-400">Blog</a>
+                <a className="text-gray-400">Blog</a>
               </Link>
             )}
             {router.pathname != "/contact" && (
               <Link href="/contact">
-                <a class="text-gray-400">Contact</a>
+                <a className="text-gray-400">Contact</a>
               </Link>
             )}
           </NavLinks>
