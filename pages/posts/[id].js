@@ -19,7 +19,7 @@ export default function Post({ postData }) {
       </Head>
       <article className="prose dark:prose-dark mx-auto">
         <h1>{postData.title}</h1>
-        <div classNameName={utilStyles.lightText}>
+        <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
         <div className="mx-auto max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
