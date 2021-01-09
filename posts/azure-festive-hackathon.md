@@ -2,7 +2,7 @@
 title: "Azure Festive Tech Calendar Hackathon"
 date: "2020-12-17"
 description: "Azure Hackathon involving multi-region, geo-mapped application with containers and traffic manager. Deployed using terraform."
-tags: [github, github-actions, cicd, terraform, for-each, azure, app-service, docker, containers, traffic-manager, geo-mapping]
+tags: [github, github actions, cicd, terraform, for_each, azure, app service, docker, containers, traffic manager, geo-mapping]
 ---
 
 The kind people over at [Intercept](https://hackathon.cloudadventures.org/) organised a Christmas themed hackathon for December. 

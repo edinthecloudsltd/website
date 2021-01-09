@@ -1,14 +1,15 @@
 ---
-title: "React and Websocket application hosted on Azure"
-date: "2020-12-26"
+title: "Running a Websockets and React application on AKS"
+date: "2020-09-18"
 description: "Browser based game created with React, with a Golang Websocket backend, hosted on Azure Kubernetes Service"
 tags: [aks, kubernetes, azure, go, golang, react, javascript, websockets, redis]
 ---
 
-tl;dr Ring of Fire / Kings browser game https://ringofire.edsdemo.co.uk
-
 ### Introduction
-After the UK went into national lockdown, I found myself with more free time over the weekends and in the evenings. I took the opportunity to brush up on my coding skills, and ended up learning a new language entirely - Go.
+tl;dr Ring of Fire / Kings browser game 
+<a href="https://ringofire.edsdemo.co.uk" target="_blank">ringofire.edsdemo.co.uk</a>
+
+After the UK went into national lockdown, I found myself with more free time over the weekends and in the evenings. I took the opportunity to brush up on my coding skills, and even ended up learning a new language entirely - Go.
 
 Zoom/Skype calls with my friends became the new Friday/Saturday night, and I wanted to build something that we'd all enjoy using. So, I decided to create a browser-based version of Ring of Fire (or Kings, as it's more commonly known outside the U.K) for us to use during our calls.
 
@@ -19,10 +20,10 @@ As a side note, I'm not currently sharing the codebase for the application as it
 ### Solution Overview
 The infrastructure looks a little something like this.
 <p align="center">
-  <img src="/images/ringofire-aks-flux/ringofire-aks.png">
+  <img src="/images/ringofire-azure/ringofire-azure.png">
 </p>
 
-> I have omitted detailed architectural diagrams for services like external-dns, nginx ingress etc. for brevity. You can find more information on the individual systems inside their documentation.
+I have omitted detailed architectural diagrams for services like external-dns, nginx ingress etc. for brevity. You can find more information on the individual systems inside their documentation.
 
 #### Frontend
 The frontend is a React app built using `create-react-app`. It uses redux, styled-components, and a little bit of particleJs for extra fanciness. A production build of the application is created and uploaded to an Azure Storage account, this acts as an origin for Azure CDN. The CDN provides managed certificates for HTTPS.
