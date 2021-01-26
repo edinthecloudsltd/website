@@ -49,7 +49,7 @@ const Nav = styled(animated.div)`
   background-color: white;
 
   @media (prefers-color-scheme: dark) {
-    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+    background-color: #151515;
   }
 `;
 

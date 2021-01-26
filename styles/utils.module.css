@@ -1,6 +1,7 @@
 .heading2Xl {
   text-align: center;
   font-size: 2.5rem;
+  font-color: #ff4330;
   line-height: 1.2;
   font-weight: 800;
   letter-spacing: -0.05rem;
@@ -28,7 +29,6 @@
 
 .homeLogo {
   border-radius: 9999px;
-  margin: 0 auto;
   width: 8rem;
   height: 8rem;
 }

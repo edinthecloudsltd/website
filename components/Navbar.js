@@ -11,17 +11,17 @@ const NavBar = styled(animated.nav)`
   font-size: 1.4rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   top: 0;
-  background-color: white;
+  background: #151515;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     display: none;
   }
 
-  @media (prefers-color-scheme: dark) {
-    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-    box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.35);
-  }
+  //@media (prefers-color-scheme: dark) {
+  //  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  //  box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.35);
+  //}
 `;
 
 const FlexContainer = styled.div`
@@ -80,7 +80,7 @@ const BurgerWrapper = styled.div`
   }
 
   @media (prefers-color-scheme: dark) {
-    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+    background-color: #151515;
     box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.2);
   }
 `;
@@ -113,17 +113,17 @@ export default function Navbar({ home }) {
           <NavLinks style={linkAnimation}>
             {router.pathname != "/" && (
               <Link href="/">
-                <a className="text-gray-400">Home</a>
+                <a>Home</a>
               </Link>
             )}
             {router.pathname != "/blog" && (
               <Link href="/blog">
-                <a className="text-gray-400">Blog</a>
+                <a>Blog</a>
               </Link>
             )}
             {router.pathname != "/contact" && (
               <Link href="/contact">
-                <a className="text-gray-400">Contact</a>
+                <a>Contact</a>
               </Link>
             )}
           </NavLinks>

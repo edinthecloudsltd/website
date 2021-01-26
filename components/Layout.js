@@ -8,7 +8,7 @@ export const pageDescription = "A Cloud and Automation blog";
 
 export default function Layout({ children, home }) {
   return (
-    <body className="bg-white dark:bg-gray-800">
+    <body className="text-gray-200">
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

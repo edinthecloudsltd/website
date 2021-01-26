@@ -1,35 +1,55 @@
+const { withTheme } = require("styled-components");
+
 module.exports = {
-  darkMode: "media",
+  //darkMode: "media",
   purge: ["./pages/**/*.js", "./components/**/*.js"],
   theme: {
-    extend: {
-      colors: {
-        dark: "#24283b",
-      },
 
+    colors: {
+      red: {
+        300: '#fe4632',
+      },
+      gray: {
+        200: '#e5e7eb',
+        300: '#d1d5db',
+        400: '#9ca3af',
+        500: '#6b7280',
+        600: '#4b5563',
+        700: '#374151',
+      }
+    },
+
+    extend: {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme("colors.gray.900"),
+            color: theme('colors.gray.200'),
             a: {
-              color: theme("colors.blue.400"),
+              color: theme("colors.red.300"),
               "&:hover": {
-                color: theme("colors.blue.700"),
+                color: "#a33327",
               },
             },
-
+            h1: {
+              color: theme("colors.gray.200"),
+            },
+            h2: {
+              color: theme("colors.gray.200"),
+            },
             "h2 a": {
-              color: theme("colors.gray.900"),
+              color: theme("colors.gray.200"),
               textDecoration: "none",
+            },
+            h3: {
+              color: theme("colors.gray.200"),
             },
             ".tag a": {
               textDecoration: "none",
             },
-
             p: {
-              color: theme("colors.gray.800"),
+              color: theme("colors.gray.200"),
+              fontSize: "20px"
             },
-
             li: {
               zIndex: 0,
             }
@@ -95,7 +115,7 @@ module.exports = {
             },
 
             ":root": {
-              backgroundColor: theme("colors.gray.800"),
+              backgroundColor: theme("colors.gray.200"),
             },
           },
         },
@@ -106,4 +126,7 @@ module.exports = {
     typography: ["dark"],
   },
   plugins: [require("@tailwindcss/typography")],
+  corePlugins: {
+    backgroundImage: false,
+  }
 };

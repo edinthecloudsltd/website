@@ -17,20 +17,31 @@ export default function Home() {
           key="ogdesc"
         />
       </Head>
-      <section className="mx-auto pb-10">
-        <img src="/images/profile.png" className={`${utilStyles.homeLogo}`} />
-        <h1 className="text-gray-800 dark:text-gray-400 text-center text-5xl font-extrabold p-2">
+      <section className="max-w-prose mx-auto pb-10 flex">
+        <img
+          src="/images/profile.png"
+          className={`${utilStyles.homeLogo} mr-5 shadow-lg`}
+        />
+        <h1 className="text-red-300 text-6xl text-center font-extrabold align-middle mx-auto shadow-lg">
           Ed in the Clouds
         </h1>
       </section>
 
-      <article className="prose dark:prose-dark mx-auto">
-        <p className="leading-loose">Hi, I'm Ed.</p>
+      <article className="prose dark:prose-dark text-gray-200 mx-auto">
+        <p className="leading-loose font-bold text-1xl text-center">
+          Hi, I'm Ed.
+        </p>
+
+        <p>I'm a Platform Engineer based in Manchester, UK.</p>
 
         <p className="leading-loose">
-          I’m a Platform Engineer, which can mean a number of things these
-          days! Specifically, I deal with cloud infrastructure, containers
-          & orchestration, operations and automation.
+          I'm in my happy place when I'm...
+          <ul>
+            <li>Scripting and automating stuff</li>
+            <li>Working with containers (and container orchestration!)</li>
+            <li>Building and engineering cloud infrastructure</li>
+            <li>...and most importantly, learning!</li>
+          </ul>
         </p>
 
         <p className="leading-loose">
@@ -45,40 +56,63 @@ export default function Home() {
           of time these days doing more development work.
         </p>
 
-        <h2>Skills</h2>
+        <div className="headingLg">
+          <h2 className="mb-2">Skills</h2>
+        </div>
 
-        <h3>Platform</h3>
-        <div className="dark:bg-gray-600 object-cover">
+        <h3 className="mt-2">Platform</h3>
+        <div className="bg-gray-700 dark:bg-gray-600 object-cover">
           <div className="flex flex-row flex-wrap justify-center">
             {platform.map((img, id) => (
-              <img key={id} key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
+              <img
+                key={id}
+                key={id}
+                src={img.src}
+                alt={img.alt}
+                className="flex-shrink w-16 h-16 mx-2"
+              />
             ))}
           </div>
         </div>
 
         <h3>Programming/Scripting Languages</h3>
-        <div className="dark:bg-gray-600">
+        <div className="bg-gray-700 dark:bg-gray-600">
           <div className="flex flex-row flex-wrap justify-center">
             {langs.map((img, id) => (
-              <img key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
+              <img
+                key={id}
+                src={img.src}
+                alt={img.alt}
+                className="flex-shrink w-16 h-16 mx-2"
+              />
             ))}
           </div>
         </div>
 
         <h3>CI/CD</h3>
-        <div className="dark:bg-gray-600">
+        <div className="bg-gray-700 dark:bg-gray-600">
           <div className="flex flex-row flex-wrap justify-center">
             {cicd.map((img, id) => (
-              <img key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
+              <img
+                key={id}
+                src={img.src}
+                alt={img.alt}
+                className="flex-shrink w-16 h-16 mx-2"
+              />
             ))}
           </div>
         </div>
 
         <h3>Frameworks</h3>
-        <div className="dark:bg-gray-600">
+        <div className="bg-gray-700 dark:bg-gray-600">
           <div className="flex flex-row flex-wrap justify-center">
             {frameworks.map((img, id) => (
-              <img key={id} src={img.src} alt={img.alt} className="flex-shrink w-16 h-16 mx-2" />
+              <img
+                key={id}
+                src={img.src}
+                alt={img.alt}
+                className="flex-shrink w-16 h-16 mx-2"
+              />
             ))}
           </div>
         </div>
