@@ -1,10 +1,7 @@
-const { withTheme } = require("styled-components");
-
 module.exports = {
-  //darkMode: "media",
+  darkMode: "class",
   purge: ["./pages/**/*.js", "./components/**/*.js"],
   theme: {
-
     colors: {
       red: {
         300: '#fe4632',
@@ -16,14 +13,17 @@ module.exports = {
         500: '#6b7280',
         600: '#4b5563',
         700: '#374151',
+        800: '#151515',
+      },
+      white: {
+        DEFAULT: "#ffffff"
       }
     },
-
     extend: {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.gray.200'),
+            color: theme('colors.gray.800'),
             a: {
               color: theme("colors.red.300"),
               "&:hover": {
@@ -31,23 +31,23 @@ module.exports = {
               },
             },
             h1: {
-              color: theme("colors.gray.200"),
+              color: theme("colors.gray.800"),
             },
             h2: {
-              color: theme("colors.gray.200"),
+              color: theme("colors.gray.800"),
             },
             "h2 a": {
-              color: theme("colors.gray.200"),
+              color: theme("colors.gray.800"),
               textDecoration: "none",
             },
             h3: {
-              color: theme("colors.gray.200"),
+              color: theme("colors.gray.800"),
             },
             ".tag a": {
               textDecoration: "none",
             },
             p: {
-              color: theme("colors.gray.200"),
+              color: theme("colors.gray.800"),
               fontSize: "20px"
             },
             li: {
@@ -58,7 +58,7 @@ module.exports = {
 
         dark: {
           css: {
-            color: theme("colors.gray.400"),
+            color: theme("colors.gray.300"),
 
             a: {
               color: theme("colors.blue.400"),
@@ -68,26 +68,26 @@ module.exports = {
             },
 
             "h2 a": {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
 
             h1: {
-              color: theme("colors.gray.400"),
+              color: theme("ƒ"),
             },
             h2: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
             h3: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
             h4: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
             h5: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
             h6: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
 
             p: {
@@ -95,11 +95,11 @@ module.exports = {
             },
 
             strong: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
 
             code: {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
             },
 
             figcaption: {

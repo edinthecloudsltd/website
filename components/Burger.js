@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
@@ -46,19 +46,12 @@ const Nav = styled(animated.div)`
   top: 4rem;
   left: 0;
   right: 0;
-  background-color: white;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: #151515;
-  }
 `;
 
 const Li = styled(animated.li)`
   list-style: none;
 
   & a {
-    color: #a0a0a0;
-
     font-size: 50px;
     font-weight: bold;
     border-bottom: 1px solid transparent;
@@ -74,8 +67,8 @@ const Li = styled(animated.li)`
   }
 `;
 
-export default function Burger() {
-  const [show, setShow] = useState(false);
+export default function Burger(props) {
+  const { show, setShow } = props;
 
   /* Disable scrolling when the burger is opened */
   useEffect(() => {
@@ -92,17 +85,11 @@ export default function Burger() {
           <span>&nbsp;</span>
         </div>
       </Wrapper>
-
+      
       <Menu show={show} />
     </>
   );
 }
-
-const menuItems = [
-  { name: "Home", link: "/" },
-  { name: "Blog", link: "/blog" },
-  { name: "Contact", link: "/contact" },
-];
 
 // https://codesandbox.io/s/react-spring-menu-animation-f17cz?file=/src/index.js
 const Menu = ({ show }) => {
@@ -121,6 +108,12 @@ const Menu = ({ show }) => {
     },
   });
 
+  const menuItems = [
+    { name: "Home", link: "/" },
+    { name: "Blog", link: "/blog" },
+    { name: "Contact", link: "/contact" },
+  ];
+
   const liTransitions = useTransition(
     show ? menuItems : [],
     (item) => item.name,
@@ -137,15 +130,16 @@ const Menu = ({ show }) => {
   useChain(show ? [navRef, liRef] : [liRef, navRef], [0, show ? 0.2 : 0.4]);
 
   return (
-    <Nav style={springProps}>
+    <Nav style={springProps} className="bg-white dark:bg-gray-800 text-gray-800 dark:text-red-300 duration-200">
       <ul>
-        {liTransitions.map(({ item, key, props }) => (
-          router.pathname != item.link && (
-          <Li key={key} style={props}>
-            <Link href={item.link}>{item.name}</Link>
-          </Li>
-          )
-        ))}
+        {liTransitions.map(
+          ({ item, key, props }) =>
+            router.pathname != item.link && (
+              <Li key={key} style={props}>
+                <Link href={item.link}>{item.name}</Link>
+              </Li>
+            )
+        )}
       </ul>
     </Nav>
   );

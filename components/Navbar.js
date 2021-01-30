@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Burger from "./Burger";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
+import { useTheme } from "next-themes";
+import Burger from "./Burger";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { useMediaQuery } from "react-responsive";
 
 const NavBar = styled(animated.nav)`
   position: fixed;
@@ -11,17 +15,7 @@ const NavBar = styled(animated.nav)`
   font-size: 1.4rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   top: 0;
-  background: #151515;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-
-  //@media (prefers-color-scheme: dark) {
-  //  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-  //  box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.35);
-  //}
 `;
 
 const FlexContainer = styled.div`
@@ -42,16 +36,15 @@ const Logo = styled.img`
   cursor: pointer;
 `;
 
-const NavLinks = styled(animated.ul)`
-  justify-self: end;
-  list-style-type: none;
+const NavButtons = styled(animated.ul)`
+  display: inline;
   margin: auto 0;
+  justify-content: end;
 
   & a {
     font-weight: 600;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
-    transition: all 300ms linear 0s;
     text-decoration: none;
     cursor: pointer;
 
@@ -60,79 +53,98 @@ const NavLinks = styled(animated.ul)`
       border-bottom: 1px solid #666464;
     }
   }
+
+  & svg {
+    margin: 0 1.5rem;
+  }
 `;
 
-const BurgerWrapper = styled.div`
+const NavBarMobile = styled.div`
   position: fixed;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  flex-direction: column;
-  align-items: flex-end;
   margin: auto 0;
-  padding: 0.5rem 1.4rem 0.5rem 0;
+  padding: 0.5rem 1.4rem 0.5rem 1.4rem;
   top: 0;
-  background-color: white;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
   z-index: 1;
-
-  @media (min-width: 769px) {
-    display: none;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: #151515;
-    box-shadow: 0px 12px 15px 1px rgba(0, 0, 0, 0.2);
-  }
 `;
 
 export default function Navbar({ home }) {
+  const [showBurger, setShowBurger] = useState(false);
+  const { theme, setTheme } = useTheme("light");
   const router = useRouter();
 
-  const barAnimation = useSpring({
-    from: { transform: "translate3d(0, -10rem, 0)" },
-    transform: "translate3d(0, 0, 0)",
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 769px)",
   });
 
   const linkAnimation = useSpring({
     from: { transform: "translate3d(0, 30px, 0)", opacity: 0 },
     to: { transform: "translate3d(0, 0, 0)", opacity: 1 },
-    delay: 400,
     config: config.wobbly,
   });
 
   return (
     <>
-      <NavBar style={barAnimation} className="bg-white dark:bg-gray-800">
-        <FlexContainer>
-          {!home && (
-            <Link href="/">
-              <Logo src="/images/profile.png" />
-            </Link>
-          )}
-          <a /> {/* Space out flexbox */}
-          <NavLinks style={linkAnimation}>
-            {router.pathname != "/" && (
+      {isDesktop ? (
+        <NavBar className="bg-white dark:bg-gray-800 duration-200">
+          <FlexContainer>
+            {!home && (
               <Link href="/">
-                <a>Home</a>
+                <Logo src="/images/profile.png" />
               </Link>
             )}
-            {router.pathname != "/blog" && (
-              <Link href="/blog">
-                <a>Blog</a>
-              </Link>
-            )}
-            {router.pathname != "/contact" && (
-              <Link href="/contact">
-                <a>Contact</a>
-              </Link>
-            )}
-          </NavLinks>
-        </FlexContainer>
-      </NavBar>
-
-      <BurgerWrapper>
-        <Burger />
-      </BurgerWrapper>
+            <a />
+            <NavButtons style={linkAnimation}>
+              {router.pathname != "/" && (
+                <Link href="/">
+                  <a className="text-gray-800 dark:text-gray-200">Home</a>
+                </Link>
+              )}
+              {router.pathname != "/blog" && (
+                <Link href="/blog">
+                  <a className="text-gray-800 dark:text-gray-200">Blog</a>
+                </Link>
+              )}
+              {router.pathname != "/contact" && (
+                <Link href="/contact">
+                  <a className="text-gray-800 dark:text-gray-200">Contact</a>
+                </Link>
+              )}
+              <DarkModeSwitch
+                className="inline-block"
+                sunColor="#151515"
+                checked={theme === "dark" ? true : false}
+                onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+                size={30}
+              />
+            </NavButtons>
+          </FlexContainer>
+        </NavBar>
+      ) : (
+        <NavBarMobile className="bg-white dark:bg-gray-800 duration-200">
+          {showBurger ? (
+            <DarkModeSwitch
+              className="my-auto"
+              sunColor="#151515"
+              checked={theme === "dark" ? true : false}
+              onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+              size={30}
+            />
+          ) : (
+            <a />
+          )}
+          <Burger
+            show={showBurger}
+            setShow={setShowBurger}
+            theme={theme}
+            setTheme={setTheme}
+          />
+        </NavBarMobile>
+      )}
     </>
   );
 }

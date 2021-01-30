@@ -20,9 +20,9 @@ export default function Home() {
       <section className="max-w-prose mx-auto pb-10 flex">
         <img
           src="/images/profile.png"
-          className={`${utilStyles.homeLogo} mr-5 shadow-lg`}
+          className={`${utilStyles.homeLogo} mr-5 shadow-lg dark:shadow-none`}
         />
-        <h1 className="text-red-300 text-6xl text-center font-extrabold align-middle mx-auto shadow-lg">
+        <h1 className="text-red-300 text-6xl text-center font-extrabold align-middle mx-auto">
           Ed in the Clouds
         </h1>
       </section>
@@ -40,7 +40,7 @@ export default function Home() {
             <li>Scripting and automating stuff</li>
             <li>Working with containers (and container orchestration!)</li>
             <li>Building and engineering cloud infrastructure</li>
-            <li>...and most importantly, learning!</li>
+            <li>Learning!</li>
           </ul>
         </p>
 
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
 
         <h3 className="mt-2">Platform</h3>
-        <div className="bg-gray-700 dark:bg-gray-600 object-cover">
+        <div className="bg-gray-200 dark:bg-gray-600 object-cover">
           <div className="flex flex-row flex-wrap justify-center">
             {platform.map((img, id) => (
               <img
@@ -76,7 +76,7 @@ export default function Home() {
         </div>
 
         <h3>Programming/Scripting Languages</h3>
-        <div className="bg-gray-700 dark:bg-gray-600">
+        <div className="bg-gray-200 dark:bg-gray-600">
           <div className="flex flex-row flex-wrap justify-center">
             {langs.map((img, id) => (
               <img
@@ -90,7 +90,7 @@ export default function Home() {
         </div>
 
         <h3>CI/CD</h3>
-        <div className="bg-gray-700 dark:bg-gray-600">
+        <div className="bg-gray-200 dark:bg-gray-600">
           <div className="flex flex-row flex-wrap justify-center">
             {cicd.map((img, id) => (
               <img
@@ -104,7 +104,7 @@ export default function Home() {
         </div>
 
         <h3>Frameworks</h3>
-        <div className="bg-gray-700 dark:bg-gray-600">
+        <div className="bg-gray-200 dark:bg-gray-600">
           <div className="flex flex-row flex-wrap justify-center">
             {frameworks.map((img, id) => (
               <img

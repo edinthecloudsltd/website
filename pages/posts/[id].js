@@ -17,8 +17,8 @@ export default function Post({ postData }) {
           key="ogdesc"
         />
       </Head>
-      <article className="prose dark:prose-dark mx-auto">
-        <h1>{postData.title}</h1>
+      <article className="prose dark:prose-dark mx-auto duration-200">
+        <h1 className="text-gray-800 dark:text-gray-200">{postData.title}</h1>
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
