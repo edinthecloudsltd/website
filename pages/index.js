@@ -1,122 +1,131 @@
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import Layout from "../components/Layout";
-import utilStyles from "../styles/utils.module.css";
-
-const pageDescription =
-  "Cloud and Automation engineering blog. Brought to you from Manchester, UK";
+//import Bubble from '../components/Bubble';
 
 export default function Home() {
   return (
     <Layout home>
-      <Head>
-        <title>Ed in the Clouds</title>
-        <meta name="description" content={pageDescription} />
-        <meta
-          property="og:description"
-          content={pageDescription}
-          key="ogdesc"
-        />
-      </Head>
-      <section className="max-w-prose mx-auto pb-10 flex">
+      <NextSeo
+        title="Ed in the Clouds"
+        description="Cloud and Automation engineering blog. Brought to you from Manchester, UK"
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url: "https://edintheclouds.io",
+          title: "Ed in the Clouds",
+          description:
+            "Cloud and Automation engineering blog. Brought to you from Manchester, UK",
+          images: [
+            {
+              url: "https://edintheclouds.io/images/profile.png",
+              width: 123,
+              height: 128,
+              alt: "Og Image Alt",
+            },
+          ],
+          site_name: "edintheclouds",
+        }}
+        twitter={{
+          handle: "@ed1ntheclouds",
+          site: "@site",
+          cardType: "summary_large_image",
+        }}
+      />
+      <div className="mx-auto flex justify-center m-12">
         <img
           src="/images/profile.png"
-          className={`${utilStyles.homeLogo} mr-5 shadow-lg dark:shadow-none`}
+          className="rounded-full w-36 mr-8 shadow-lg dark:shadow-none"
         />
-        <h1 className="text-red-300 text-6xl text-center font-extrabold align-middle mx-auto">
+        <h1 className="font-sans font-black text-gray-700 dark:text-red-300 text-4xl lg:text-6xl my-auto">
           Ed in the Clouds
         </h1>
-      </section>
+      </div>
 
-      <article className="prose dark:prose-dark text-gray-200 mx-auto">
-        <p className="leading-loose font-bold text-1xl text-center">
-          Hi, I'm Ed.
+      <div className="font-sans leading-9 text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto px-4 lg:px-16 lg:py-12">
+        <p className="font-bold text-2xl lg:text-3xl my-4">Hi, I'm Ed.</p>
+
+        <p className="mb-12">
+          I'm a Platform Engineer based in Manchester, UK.
         </p>
 
-        <p>I'm a Platform Engineer based in Manchester, UK.</p>
+        <p className="font-bold text-2xl">I'm in my happy place when I'm...</p>
 
-        <p className="leading-loose">
-          I'm in my happy place when I'm...
-          <ul>
-            <li>Scripting and automating stuff</li>
-            <li>Working with containers (and container orchestration!)</li>
-            <li>Building and engineering cloud infrastructure</li>
-            <li>Learning!</li>
-          </ul>
-        </p>
+        <ul className="list-disc list-inside my-10">
+          <li className="my-4">Scripting and automating stuff</li>
+          <li className="my-4">
+            Working with containers (and container orchestration)
+          </li>
+          <li className="my-4">
+            Building and engineering cloud infrastructure
+          </li>
+          <li className="my-4">Learning!</li>
+        </ul>
 
-        <p className="leading-loose">
-          Throughout my career, I have held multiple roles across the IT
-          industry including support, administration, engineering and
-          consulting. I have worked with a variety of organisations across both
-          public and private sectors.
-        </p>
+        <h2 className="text-2xl font-bold">What I work with...</h2>
 
-        <p className="leading-loose">
-          I’m an operations/infrastructure guy by trade, but I also spend a lot
-          of time these days doing more development work.
-        </p>
-
-        <div className="headingLg">
-          <h2 className="mb-2">Skills</h2>
-        </div>
-
-        <h3 className="mt-2">Platform</h3>
-        <div className="bg-gray-200 dark:bg-gray-600 object-cover">
-          <div className="flex flex-row flex-wrap justify-center">
-            {platform.map((img, id) => (
-              <img
-                key={id}
-                key={id}
-                src={img.src}
-                alt={img.alt}
-                className="flex-shrink w-16 h-16 mx-2"
-              />
-            ))}
+        <div className="my-6">
+          <h3 className="">Platform</h3>
+          <div className="bg-gray-200 dark:bg-gray-500 object-cover">
+            <div className="flex flex-row flex-wrap justify-center p-4">
+              {platform.map((img, id) => (
+                <img
+                  key={id}
+                  src={img.src}
+                  alt={img.alt}
+                  className="flex-shrink w-16 h-16 m-2"
+                />
+              ))}
+            </div>
           </div>
         </div>
 
-        <h3>Programming/Scripting Languages</h3>
-        <div className="bg-gray-200 dark:bg-gray-600">
-          <div className="flex flex-row flex-wrap justify-center">
-            {langs.map((img, id) => (
-              <img
-                key={id}
-                src={img.src}
-                alt={img.alt}
-                className="flex-shrink w-16 h-16 mx-2"
-              />
-            ))}
+        <div className="my-6">
+          <h3>Programming/Scripting Languages</h3>
+          <div className="bg-gray-200 dark:bg-gray-500">
+            <div className="flex flex-row flex-wrap justify-center p-4">
+              {langs.map((img, id) => (
+                <img
+                  key={id}
+                  src={img.src}
+                  alt={img.alt}
+                  className="flex-shrink w-16 h-16 m-2"
+                />
+              ))}
+            </div>
           </div>
         </div>
 
-        <h3>CI/CD</h3>
-        <div className="bg-gray-200 dark:bg-gray-600">
-          <div className="flex flex-row flex-wrap justify-center">
-            {cicd.map((img, id) => (
-              <img
-                key={id}
-                src={img.src}
-                alt={img.alt}
-                className="flex-shrink w-16 h-16 mx-2"
-              />
-            ))}
+        <div className="my-6">
+          <h3>Certifications</h3>
+          <div className="bg-gray-200 dark:bg-gray-500">
+            <div className="flex flex-row flex-wrap justify-center p-4">
+              {certs.map((img, id) => (
+                <img
+                  key={id}
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-24 h-24 m-2"
+                />
+              ))}
+            </div>
           </div>
         </div>
 
-        <h3>Frameworks</h3>
-        <div className="bg-gray-200 dark:bg-gray-600">
-          <div className="flex flex-row flex-wrap justify-center">
-            {frameworks.map((img, id) => (
-              <img
-                key={id}
-                src={img.src}
-                alt={img.alt}
-                className="flex-shrink w-16 h-16 mx-2"
-              />
-            ))}
+        <div className="my-6">
+          <h3>Frameworks</h3>
+          <div className="bg-gray-200 dark:bg-gray-500">
+            <div className="flex flex-row flex-wrap justify-center p-4">
+              {frameworks.map((img, id) => (
+                <img
+                  key={id}
+                  src={img.src}
+                  alt={img.alt}
+                  className="flex-shrink w-16 h-16 mx-2"
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </article>
+      </div>
     </Layout>
   );
 }
@@ -159,18 +168,21 @@ const langs = [
   },
 ];
 
-const cicd = [
+const certs = [
   {
-    alt: "Jenkins",
-    src: "/images/jenkins.svg",
+    alt: "SA",
+    src:
+      "https://images.youracclaim.com/size/680x680/images/4bc21d8b-4afe-4fbd-9a90-a9de8bf7b240/AWS-SolArchitect-Associate-2020.png",
   },
   {
-    alt: "Gitlab",
-    src: "/images/gitlab.svg",
+    alt: "Dev",
+    src:
+      "https://images.youracclaim.com/size/680x680/images/598f6ac6-2dbd-4394-8ae4-943b2f4c43ea/AWS-Developer-Associate-2020.png",
   },
   {
-    alt: "Github",
-    src: "/images/github.svg",
+    alt: "DevOpsPro",
+    src:
+      "https://images.youracclaim.com/size/680x680/images/7fbb805d-ea82-4276-a227-e63121a2844b/AWS-DevOpsEngineer-Professional-2020.png",
   },
 ];
 

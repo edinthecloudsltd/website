@@ -90,7 +90,7 @@ export default function Navbar({ home }) {
   return (
     <>
       {isDesktop ? (
-        <NavBar className="bg-white dark:bg-gray-800 duration-200">
+        <NavBar className="font-sans bg-white dark:bg-gray-800 duration-200">
           <FlexContainer>
             {!home && (
               <Link href="/">
@@ -101,22 +101,22 @@ export default function Navbar({ home }) {
             <NavButtons style={linkAnimation}>
               {router.pathname != "/" && (
                 <Link href="/">
-                  <a className="text-gray-800 dark:text-gray-200">Home</a>
+                  <a className="text-gray-700 dark:text-gray-200">Home</a>
                 </Link>
               )}
               {router.pathname != "/blog" && (
                 <Link href="/blog">
-                  <a className="text-gray-800 dark:text-gray-200">Blog</a>
+                  <a className="text-gray-700 dark:text-gray-200">Blog</a>
                 </Link>
               )}
               {router.pathname != "/contact" && (
                 <Link href="/contact">
-                  <a className="text-gray-800 dark:text-gray-200">Contact</a>
+                  <a className="text-gray-700 dark:text-gray-200">Contact</a>
                 </Link>
               )}
               <DarkModeSwitch
                 className="inline-block"
-                sunColor="#151515"
+                sunColor="#374151"
                 checked={theme === "dark" ? true : false}
                 onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
                 size={30}
@@ -125,11 +125,11 @@ export default function Navbar({ home }) {
           </FlexContainer>
         </NavBar>
       ) : (
-        <NavBarMobile className="bg-white dark:bg-gray-800 duration-200">
+        <NavBarMobile className="bg-white dark:bg-gray-700 duration-200">
           {showBurger ? (
             <DarkModeSwitch
               className="my-auto"
-              sunColor="#151515"
+              sunColor="#374151"
               checked={theme === "dark" ? true : false}
               onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
               size={30}

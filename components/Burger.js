@@ -130,7 +130,7 @@ const Menu = ({ show }) => {
   useChain(show ? [navRef, liRef] : [liRef, navRef], [0, show ? 0.2 : 0.4]);
 
   return (
-    <Nav style={springProps} className="bg-white dark:bg-gray-800 text-gray-800 dark:text-red-300 duration-200">
+    <Nav style={springProps} className="bg-white dark:bg-gray-700 font-sans text-gray-700 dark:text-red-300 duration-200">
       <ul>
         {liTransitions.map(
           ({ item, key, props }) =>

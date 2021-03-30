@@ -13,7 +13,7 @@ module.exports = {
         500: '#6b7280',
         600: '#4b5563',
         700: '#374151',
-        800: '#151515',
+        800: '#201e1e',
       },
       white: {
         DEFAULT: "#ffffff"
@@ -23,7 +23,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.gray.800'),
+            color: theme('colors.gray.700'),
             a: {
               color: theme("colors.red.300"),
               "&:hover": {
@@ -31,23 +31,23 @@ module.exports = {
               },
             },
             h1: {
-              color: theme("colors.gray.800"),
+              color: theme("colors.gray.700"),
             },
             h2: {
-              color: theme("colors.gray.800"),
+              color: theme("colors.gray.700"),
             },
             "h2 a": {
-              color: theme("colors.gray.800"),
+              color: theme("colors.gray.700"),
               textDecoration: "none",
             },
             h3: {
-              color: theme("colors.gray.800"),
+              color: theme("colors.gray.700"),
             },
             ".tag a": {
               textDecoration: "none",
             },
             p: {
-              color: theme("colors.gray.800"),
+              color: theme("colors.gray.700"),
               fontSize: "20px"
             },
             li: {

@@ -23,7 +23,7 @@ export default function Blog({ allPostsData }) {
       </Head>
 
       <article className="prose dark:prose-dark mx-auto">
-        <h2 className="text-gray-600 dark:text-gray-400">Latest Posts</h2>
+        <p className="text-gray-700 dark:text-gray-300">Latest Posts</p>
         <ul className="list-none" style={{ zIndex: "-1" }}>
           {allPostsData.map(({ id, date, title, tags }) => (
             <li className={utilStyles.listItem} key={id}>
@@ -31,7 +31,7 @@ export default function Blog({ allPostsData }) {
                 <a>{title}</a>
               </Link>
               <br />
-              <small className={utilStyles.lightText}>
+              <small className="text-gray-700 dark:text-gray-300">
                 <Date dateString={date} />
               </small>
             </li>
