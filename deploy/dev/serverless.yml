@@ -1,0 +1,19 @@
+mutatio-digital:
+  component: "@sls-next/serverless-component@3.1.0"
+  inputs:
+    nextConfigDir: ../../
+    build:
+      postBuildCommands:
+        - cd ../../ && ./node_modules/.bin/next-sitemap
+    bucketName: mutatio-digital-nextjs-dev
+    bucketRegion: eu-west-2
+    domain: 
+      #- dev.mutatio.digital
+      - dev.mutatio.co.uk
+    domainType: both
+    domainRedirects:
+      #www.dev.mutatio.digital: https://dev.mutatio.digital
+      www.dev.mutatio.co.uk: https://dev.mutatio.co.uk
+    certificateArn: arn:aws:acm:us-east-1:180844594087:certificate/d43820f7-d20a-487a-8ccf-21b283c9dccc
+    policy: arn:aws:iam::180844594087:policy/CustomNextJSLambdaPolicy
+    useServerlessTraceTarget: true

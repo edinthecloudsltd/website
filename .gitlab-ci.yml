@@ -1,0 +1,75 @@
+image: node:16.8.0-buster
+
+variables:
+  DEV_STATE_BUCKET: mutatio-digital-nextjs-sls-state-dev
+  PROD_STATE_BUCKET: mutatio-digital-nextjs-sls-state-prod
+
+stages:
+  - deploy
+
+deploy-dev:
+    stage: deploy
+    only:
+      refs:
+          - merge_requests
+      variables:
+          - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "dev"
+    cache:
+      key: ${CI_COMMIT_REF_SLUG}
+      paths:
+        - node_modules/
+        - .next/cache/
+    before_script:
+      - apt update > /dev/null
+      - apt install awscli tree -y > /dev/null
+      - npm config set prefix /usr/local
+      - npm install --silent -g serverless 
+      - |
+        if aws s3api list-objects-v2 --bucket "$DEV_STATE_BUCKET" --prefix .serverless > /dev/null; then
+          aws s3 sync s3://$DEV_STATE_BUCKET/.serverless ./deploy/dev/.serverless --quiet --delete
+        fi
+    script:
+      - cp $ENV_VARS .env
+      - tree
+      - npm ci --silent
+      - npm run build
+      - cd ./deploy/dev && APP_ENV=dev serverless
+    after_script:
+      - aws s3 sync ./deploy/dev/.serverless s3://$DEV_STATE_BUCKET/.serverless --quiet --delete
+    environment: 
+      name: dev
+      url: https://dev.mutatio.co.uk
+
+# deploy-prod:
+#     stage: deploy
+#     only:
+#       refs:
+#           - merge_requests
+#       variables:
+#           - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
+#     cache:
+#       key: ${CI_COMMIT_REF_SLUG}
+#       paths:
+#         - node_modules/
+#         - .next/cache/
+#     before_script:
+#       - apt update > /dev/null
+#       - apt install awscli tree -y > /dev/null
+#       - npm config set prefix /usr/local
+#       - npm install --silent -g serverless 
+#       - |
+#         if aws s3api list-objects-v2 --bucket "$PROD_STATE_BUCKET" --prefix .serverless > /dev/null; then
+#           aws s3 sync s3://$PROD_STATE_BUCKET/.serverless ./deploy/prod/.serverless --quiet --delete
+#         fi
+#       - npm ci --silent
+#     script:
+#       - tree -I node_modules
+#       - printenv | grep NEXT_PUBLIC > .env
+#       - printenv | grep NEXTAUTH_URL >> .env
+#       - printenv | grep GITLAB_CLIENT >> .env
+#       - serverless
+#     after_script:
+#       - aws s3 sync ./deploy/prod/.serverless s3://$DEV_STATE_BUCKET/.serverless --quiet --delete
+#     environment: 
+#       name: prod
+#       url: https://www.mutatio.co.uk
