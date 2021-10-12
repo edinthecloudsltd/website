@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 export const NavbarWrapper = styled.nav`
   position: fixed;
-  background: white;
+  background: #c7f1ff;
   width: 100%;
   height: 6rem;
-  z-index: 1;
+  z-index: 50;
   font-size: 1.4rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   top: 0;
-  box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
 `;
 
 export const NavbarInnerWrapper = styled.div`
@@ -28,6 +27,7 @@ export const NavbarLogo = styled.img`
   border-radius: 50%;
   max-height: 100%;
   cursor: pointer;
+  box-shadow: 0px 0px 12px 2px rgba(126, 179, 227, 1);
 `;
 
 export const NavbarButtons = styled.ul`

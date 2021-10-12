@@ -1,14 +1,13 @@
 const colors = {
-  purple: '#1a1762',
-  cyan: '#29D4E2',
-  turqoise: '#26A3C1',
-  navy: '#1B1862',
-  ocean: '#20528A',
-  paleblue: '#EAF3F9',
-  lightblue: '#33ABDF',
-  blue: '#127DB8',
-  darkblue: '#1B1464',
-  darkgray: '#5B5B5B',
+  blue200: '#7eb3e3',
+  blue300: '#466ba7',
+  blue400: '#37507f',
+  blue500: '#172e69',
+  blue600: '#08103e',
+  teal: '#548ca4',
+  gray: '#646584',
+  deepgray: '#34344c',
+  black: '#040416',
 };
 
 export default colors;

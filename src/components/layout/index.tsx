@@ -6,8 +6,10 @@ import Navbar from '../navbar';
 const Layout: React.FC = ({ children }) => {
   return (
     <>
-      <Navbar />
-      <div style={{ position: 'relative', overflow: 'hidden', paddingTop: '6rem' }}>{children}</div>
+      <div style={{ position: 'relative' }}>
+        <Navbar />
+      </div>
+      <div style={{ position: 'relative', overflow: 'hidden' }}>{children}</div>
       <Footer />
     </>
   );
