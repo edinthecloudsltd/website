@@ -123,27 +123,29 @@ export const Sun = styled.object`
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: white;
+  background: rgba(250, 222, 175);
   opacity: 0.9;
-  box-shadow: 0px 0px 40px 15px white;
+  box-shadow: 0px 0px 40px 15px rgba(250, 222, 175);
 
   right: 0;
+  z-index: 1;
 `;
 
 export const Ray = styled.object`
-  background: white;
   position: absolute;
   opacity: 0.4;
   transform-origin: bottom;
   border-radius: 20% 20% 0 0;
   background: linear-gradient(
     0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(250, 222, 175, 1) 0%,
+    rgba(250, 222, 175, 1) 50%,
+    rgba(250, 222, 175, 0) 100%
   );
   top: -50%;
   left: 40%;
+
+  z-index: -1;
 `;
 
 const rayContainerAnimation = keyframes`
@@ -164,6 +166,8 @@ export const RayContainer = styled.div`
   bottom: 0;
   animation: ${rayContainerAnimation} 120s linear infinite;
   overflow: visible;
+
+  z-index: -1;
 
   & ${Ray}:nth-child(1) {
     height: 500px;
@@ -202,17 +206,17 @@ export const RayContainer = styled.div`
   }
   & ${Ray}:nth-child(8) {
     height: 500px;
-    width: 60px;
+    width: 15px;
     transform: rotate(90deg);
   }
   & ${Ray}:nth-child(9) {
-    height: 500px;
+    height: 550px;
     width: 60px;
     transform: rotate(150deg);
   }
   & ${Ray}:nth-child(10) {
     height: 500px;
-    width: 60px;
+    width: 40px;
     transform: rotate(210deg);
   }
   & ${Ray}:nth-child(11) {

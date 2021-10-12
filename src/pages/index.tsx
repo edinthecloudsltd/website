@@ -1,52 +1,13 @@
 import React from 'react';
 
-// import Particles from 'react-particles-js';
-
+import BubbleScroll from 'src/components/bubble-scroll';
 import CloudParrallax from 'src/components/cloud-parrallax';
 import Hero, { HeroText } from 'src/components/hero';
+import getSkills from 'src/utils/getSkills';
 
 import Layout from '../components/layout';
 import Meta from '../components/layout/meta';
 import MaxWidthWrapper from '../components/max-width-wrapper';
-import * as Styled from '../styles/home';
-
-const platform = [
-  {
-    alt: 'Amazon Web Services',
-    src: 'assets/svg/aws.svg',
-  },
-  {
-    alt: 'Azure',
-    src: 'assets/svg/azure.svg',
-  },
-  {
-    alt: 'Kubernetes',
-    src: 'assets/svg/k8s.svg',
-  },
-];
-
-const langs = [
-  {
-    alt: 'Bash',
-    src: 'assets/svg/bash.svg',
-  },
-  {
-    alt: 'Python',
-    src: 'assets/svg/python.svg',
-  },
-  {
-    alt: 'Go',
-    src: 'assets/svg/go.svg',
-  },
-  {
-    alt: 'Javascript',
-    src: 'assets/svg/javascript.svg',
-  },
-  {
-    alt: 'Terraform',
-    src: 'assets/svg/terraform.svg',
-  },
-];
 
 const certs = [
   {
@@ -63,29 +24,7 @@ const certs = [
   },
 ];
 
-const frameworks = [
-  {
-    alt: 'Flask',
-    src: 'assets/svg/flask.svg',
-  },
-  {
-    alt: 'React',
-    src: 'assets/svg/react.svg',
-  },
-];
-
-export default function Home() {
-  // useEffect(() => {
-  //   const animate = lottie.loadAnimation({
-  //     container: document.querySelector('#cloud-brain'),
-  //     animationData: CloudEngineerAnimation,
-  //     renderer: 'svg',
-  //     loop: true,
-  //     autoplay: true,
-  //   });
-  //   animate.setSpeed(1);
-  // }, []);
-
+export default function Home(props: any) {
   return (
     <Layout>
       <Meta
@@ -101,126 +40,66 @@ export default function Home() {
             Ed in the Clouds
           </h1>
         </HeroText>
-        {/*           <Particles
-          style={{ position: 'absolute', left: 0, width: '100vw' }}
-          params={{
-            fpsLimit: 60,
-            particles: {
-              color: {
-                value: '#FFFFFF',
-              },
-              shape: {
-                type: 'image',
-                image: {
-                  src: 'assets/svg/cloud.svg',
-                },
-              },
-              opacity: {
-                value: 1,
-              },
-              size: {
-                random: true,
-                value: 15,
-              },
-              line_linked: {
-                enable: false,
-              },
-              move: {
-                enable: true,
-                speed: 4,
-                direction: 'top',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false,
-              },
-            },
-            detectRetina: true,
-          }}
-        /> */}
       </Hero>
 
-      <MaxWidthWrapper>
-        <Styled.HomeContentWrapper>
+      <main
+        style={{
+          padding: '5rem 0',
+          color: 'rgba(126, 179, 227)',
+          boxShadow: '2px 2px 10px rgba(0, 0, 0, .5)',
+        }}
+      >
+        <MaxWidthWrapper>
           <p className="my-4 text-2xl font-bold lg:text-3xl text-blue200">{`Hi, I'm Ed.`}</p>
-          <Styled.HomeContentCard>
-            <p className="my-4 text-2xl font-bold lg:text-3xl">{`Hi, I'm Ed.`}</p>
 
-            <p className="mb-12">{`I'm a Platform Engineer based in Manchester, UK.`}</p>
-            <div id="animate" className="w-3/4 mx-auto" />
+          <p className="mb-12">{`I'm a Platform Engineer based in Manchester, UK.`}</p>
+          <div id="animate" className="w-3/4 mx-auto" />
 
-            <p className="text-2xl font-bold">{`I'm in my happy place when I'm...`}</p>
+          <p className="text-2xl font-bold">{`I'm in my happy place when I'm...`}</p>
 
-            <ul className="my-10 list-disc list-inside">
-              <li className="my-4">Scripting and automating stuff</li>
-              <li className="my-4">Working with containers (and container orchestration)</li>
-              <li className="my-4">Building and engineering cloud infrastructure</li>
-              <li className="my-4">Learning!</li>
-            </ul>
+          <ul className="my-10 list-disc list-inside">
+            <li className="my-4">Scripting and automating stuff</li>
+            <li className="my-4">Coding and building apps and services</li>
+            <li className="my-4">Working with containers (and container orchestration)</li>
+            <li className="my-4">Building and engineering cloud infrastructure</li>
+            <li className="my-4">Learning!</li>
+          </ul>
+        </MaxWidthWrapper>
+      </main>
+      <main
+        style={{
+          position: 'relative',
+          background: 'rgba(126, 179, 227)',
+          width: '100%',
+          color: '#34344c',
+          padding: '5rem 0',
+        }}
+      >
+        <MaxWidthWrapper>
+          <h2 className="text-2xl font-bold">What I work with...</h2>
+          <BubbleScroll icons={props.skills} />
 
-            <h2 className="text-2xl font-bold">What I work with...</h2>
-
-            <div className="my-6">
-              <h3 className="">Platform</h3>
-              <div className="object-cover bg-gray-200 dark:bg-gray-500">
-                <div className="flex flex-row flex-wrap justify-center p-4">
-                  {platform.map((img, id) => (
-                    <img
-                      key={id}
-                      src={img.src}
-                      alt={img.alt}
-                      className="flex-shrink w-16 h-16 m-2"
-                    />
-                  ))}
-                </div>
+          <div className="my-6">
+            <h3>Certifications</h3>
+            <div className="bg-gray-200 dark:bg-gray-500">
+              <div className="flex flex-row flex-wrap justify-center p-4">
+                {certs.map((img, id) => (
+                  <img key={id} src={img.src} alt={img.alt} className="w-24 h-24 m-2" />
+                ))}
               </div>
             </div>
-
-            <div className="my-6">
-              <h3>Programming/Scripting Languages</h3>
-              <div className="bg-gray-200 dark:bg-gray-500">
-                <div className="flex flex-row flex-wrap justify-center p-4">
-                  {langs.map((img, id) => (
-                    <img
-                      key={id}
-                      src={img.src}
-                      alt={img.alt}
-                      className="flex-shrink w-16 h-16 m-2"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="my-6">
-              <h3>Certifications</h3>
-              <div className="bg-gray-200 dark:bg-gray-500">
-                <div className="flex flex-row flex-wrap justify-center p-4">
-                  {certs.map((img, id) => (
-                    <img key={id} src={img.src} alt={img.alt} className="w-24 h-24 m-2" />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="my-6">
-              <h3>Frameworks</h3>
-              <div className="bg-gray-200 dark:bg-gray-500">
-                <div className="flex flex-row flex-wrap justify-center p-4">
-                  {frameworks.map((img, id) => (
-                    <img
-                      key={id}
-                      src={img.src}
-                      alt={img.alt}
-                      className="flex-shrink w-16 h-16 mx-2"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Styled.HomeContentCard>
-        </Styled.HomeContentWrapper>
-      </MaxWidthWrapper>
+          </div>
+        </MaxWidthWrapper>
+      </main>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const skills = getSkills();
+  return {
+    props: {
+      skills,
+    }, // will be passed to the page component as props
+  };
 }

@@ -10,6 +10,7 @@ export const HomeHeadingWrapper = styled.section`
 
 export const HomeContentWrapper = styled.main`
   padding: 5rem 0;
+  color: rgba(126, 179, 227);
 `;
 
 export const HomeContentCard = styled.main`

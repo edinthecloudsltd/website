@@ -9,6 +9,7 @@ export const NavbarWrapper = styled.nav`
   font-size: 1.4rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   top: 0;
+  opacity: 0.96;
 `;
 
 export const NavbarInnerWrapper = styled.div`
