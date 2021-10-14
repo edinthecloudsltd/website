@@ -24,7 +24,11 @@ const certs = [
   },
 ];
 
-export default function Home(props: any) {
+interface IHomeProps {
+  skills: { name: string; fileName: string }[];
+}
+
+const Home: React.FC<IHomeProps> = ({ skills }) => {
   return (
     <Layout>
       <Meta
@@ -77,7 +81,7 @@ export default function Home(props: any) {
       >
         <MaxWidthWrapper>
           <h2 className="text-2xl font-bold">What I work with...</h2>
-          <BubbleScroll icons={props.skills} />
+          <BubbleScroll items={skills} />
 
           <div className="my-6">
             <h3>Certifications</h3>
@@ -93,7 +97,7 @@ export default function Home(props: any) {
       </main>
     </Layout>
   );
-}
+};
 
 export async function getStaticProps() {
   const skills = getSkills();
@@ -103,3 +107,5 @@ export async function getStaticProps() {
     }, // will be passed to the page component as props
   };
 }
+
+export default Home;

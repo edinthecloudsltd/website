@@ -1,15 +1,29 @@
 import * as fs from 'fs';
 
+const transformFileName = (str: string) => {
+  const name: string[] = str.split('.');
+
+  const arr = (name[0] || '').split('');
+
+  arr[0] = (arr[0] || '').toUpperCase();
+
+  return arr.join('');
+};
+
 const skillsDirectory = 'public/assets/svg/skills/';
 
 const getSkills = () => {
   const fileNames = fs.readdirSync(skillsDirectory);
 
-  const allSkills: any = fileNames.map((fileName) => {
-    return fileName;
+  const skills: { name: string; fileName: string }[] = fileNames.map((fileName) => {
+    const name = transformFileName(fileName);
+    return {
+      name,
+      fileName,
+    };
   });
 
-  return allSkills;
+  return skills;
 };
 
 export default getSkills;
