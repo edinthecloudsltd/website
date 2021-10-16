@@ -1,0 +1,53 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="18.88 -0.62 109.98 80"
+>
+  <title>AWS CodePipeline logo</title>
+  <defs>
+    <linearGradient
+      id="a"
+      x1="32.481"
+      x2="97.627"
+      y1="7.565"
+      y2="60.545"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0" stop-color="#2e27ad" />
+      <stop offset="1" stop-color="#527fff" />
+    </linearGradient>
+    <linearGradient id="b" x1="19.554" x2="84.7" y1="23.462" y2="76.442" xlink:href="#a" />
+    <linearGradient id="c" x1="28.277" x2="93.423" y1="12.735" y2="65.715" xlink:href="#a" />
+    <linearGradient
+      id="d"
+      x1="23.811"
+      x2="88.957"
+      y1="18.227"
+      y2="71.207"
+      gradientTransform="rotate(67.72 72.843 58.103)"
+      xlink:href="#a"
+    />
+    <linearGradient id="e" x1="37.696" x2="102.842" y1="1.153" y2="54.134" xlink:href="#a" />
+  </defs>
+  <g data-name="Icon Test">
+    <path
+      fill="url(#a)"
+      d="M103.963 1.6H40.165a8.948 8.948 0 0 0-8.997 8.898v18.093a8.948 8.948 0 0 0 8.898 8.997h2.554v44.168a1.636 1.636 0 0 0 1.635 1.636h55.62a1.636 1.636 0 0 0 1.635-1.636V37.588h2.454a8.948 8.948 0 0 0 8.997-8.899V10.596a8.948 8.948 0 0 0-8.899-8.997h-.098zm-5.79 78.52H45.824V37.588h52.347zm5.79-45.804H40.165a5.644 5.644 0 0 1-5.578-4.907h27.809v-3.272h-27.81v-15.54a5.66 5.66 0 0 1 5.579-5.726h63.798a5.66 5.66 0 0 1 5.725 5.594v15.672h-31.08v3.272h31.08a5.644 5.644 0 0 1-5.725 4.907z"
+    />
+    <path
+      fill="url(#b)"
+      d="M51.747 58.609l9.357 8.064 2.143-2.47-7.95-6.854 7.999-7.05-2.176-2.454-9.39 8.31a1.616 1.616 0 0 0 .017 2.454z"
+    />
+    <path
+      fill="url(#c)"
+      d="M83.106 66.739l9.422-8.18a1.65 1.65 0 0 0 0-2.47l-9.422-8.179-2.143 2.47 8 6.936-8 7.018z"
+    />
+    <path
+      fill="url(#d)"
+      d="M58.014 56.467h29.658v3.272H58.014z"
+      transform="rotate(-67.72 72.843 58.103)"
+    />
+    <path fill="url(#e)" d="M67.156 26.137h6.543v3.272h-6.543z" />
+  </g>
+</svg>

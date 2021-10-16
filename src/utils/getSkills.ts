@@ -1,13 +1,17 @@
 import * as fs from 'fs';
 
 const transformFileName = (str: string) => {
-  const name: string[] = str.split('.');
+  const splitStr: string[] = str.split('.');
 
-  const arr = (name[0] || '').split('');
+  const arr = (splitStr[0] || '').split('');
 
   arr[0] = (arr[0] || '').toUpperCase();
 
-  return arr.join('');
+  let name = arr.join('');
+
+  name = name.replace(/-/g, ' ');
+
+  return name;
 };
 
 const skillsDirectory = 'public/assets/svg/skills/';

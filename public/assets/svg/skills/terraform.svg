@@ -1,20 +1,5 @@
-<svg id="LOGOS" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 258">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #7b42bc;
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <polygon
-    class="cls-1"
-    points="102.58 46.91 141.41 69.33 141.41 114.16 102.58 91.75 102.58 46.91"
-  />
-  <polygon class="cls-1" points="145.67 69.33 145.67 114.16 184.5 91.75 184.5 46.91 145.67 69.33" />
-  <polygon class="cls-1" points="59.5 21.88 59.5 66.72 98.33 89.14 98.33 44.3 59.5 21.88" />
-  <polygon
-    class="cls-1"
-    points="102.58 141.49 141.41 163.91 141.41 119.38 141.41 119.08 102.58 96.66 102.58 141.49"
-  />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60.15 60.15">
+  <path class="rect-dark" fill="#4040B2" d="M36.4 20.2v18.93l16.4-9.46V10.72L36.4 20.2z"/>
+  <path class="rect-light" fill="#5C4EE5" d="M18.2 10.72l16.4 9.48v18.93l-16.4-9.47V10.72z"/>
+  <path class="rect-light" fill="#5C4EE5" d="M0 .15v18.94l16.4 9.47V9.62L0 .15zm18.2 50.53l16.4 9.47V41.21l-16.4-9.47v18.94z"/>
 </svg>
