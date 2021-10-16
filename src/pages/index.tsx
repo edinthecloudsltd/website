@@ -1,19 +1,24 @@
 import React from 'react';
 
-import BubbleScroll from 'src/components/bubble-scroll';
-import CloudParrallax from 'src/components/cloud-parrallax';
-import Hero, { HeroText } from 'src/components/hero';
+import Link from 'next/link';
+
+import Date from 'src/utils/date';
+import getPosts from 'src/utils/getPosts';
 import getSkills from 'src/utils/getSkills';
 
+import CloudParrallax from '../components/cloud-parrallax';
+import MaxWidthWrapper from '../components/common/max-width-wrapper';
+import Hero, { HeroText } from '../components/hero';
 import Layout from '../components/layout';
 import Meta from '../components/layout/meta';
-import MaxWidthWrapper from '../components/max-width-wrapper';
+import * as Styled from '../styles/index.styles';
 
 interface IHomeProps {
   skills: { name: string; fileName: string }[];
+  posts: any;
 }
 
-const Home: React.FC<IHomeProps> = ({ skills }) => {
+const Home: React.FC<IHomeProps> = ({ posts }) => {
   return (
     <Layout>
       <Meta
@@ -30,15 +35,17 @@ const Home: React.FC<IHomeProps> = ({ skills }) => {
           </h1>
         </HeroText>
       </Hero>
-
-      <main
-        style={{
-          padding: '5rem 0',
-          color: 'rgba(126, 179, 227)',
-          boxShadow: '2px 2px 10px rgba(0, 0, 0, .5)',
-        }}
-      >
-        <MaxWidthWrapper>
+      <MaxWidthWrapper>
+        <main
+          style={{
+            padding: '5rem',
+            marginTop: '5rem',
+            color: 'rgba(126, 179, 227)',
+            background: '#34344c',
+            borderRadius: '50px',
+            // boxShadow: '2px 2px 10px rgba(0, 0, 0, .5)',
+          }}
+        >
           <p className="my-4 text-2xl font-bold lg:text-4xl text-blue200">{`Hi, I'm Ed.`}</p>
 
           <p className="mb-12 text-2xl">{`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}</p>
@@ -53,9 +60,9 @@ const Home: React.FC<IHomeProps> = ({ skills }) => {
             <li className="my-4">Building and engineering cloud infrastructure</li>
             <li className="my-4">Learning!</li>
           </ul>
-        </MaxWidthWrapper>
-      </main>
-      <main
+        </main>
+      </MaxWidthWrapper>
+      {/*       <main
         style={{
           position: 'relative',
           background: 'rgba(126, 179, 227)',
@@ -66,16 +73,36 @@ const Home: React.FC<IHomeProps> = ({ skills }) => {
         <MaxWidthWrapper>
           <BubbleScroll items={skills} />
         </MaxWidthWrapper>
-      </main>
+      </main> */}
+      <MaxWidthWrapper>
+        <Styled.BlogPostsWrapper>
+          <h1 className="text-blue200">Latest Posts</h1>
+          <Styled.BlogPostsInnerWrapper>
+            {posts.map(({ id, date, title }: any) => (
+              <Styled.BlogPostCard key={id}>
+                <Link href={`/posts/${id}`}>
+                  <a>{title}</a>
+                </Link>
+                <br />
+                <small className="text-blue200">
+                  <Date dateString={date} />
+                </small>
+              </Styled.BlogPostCard>
+            ))}
+          </Styled.BlogPostsInnerWrapper>
+        </Styled.BlogPostsWrapper>
+      </MaxWidthWrapper>
     </Layout>
   );
 };
 
 export async function getStaticProps() {
   const skills = getSkills();
+  const posts = getPosts();
   return {
     props: {
       skills,
+      posts,
     }, // will be passed to the page component as props
   };
 }

@@ -4,13 +4,19 @@ import CloudSVG from '../../../public/assets/svg/cloud.svg';
 
 const layerOneAnimation = keyframes`
 100% {
-  transform: translate3d(-400px, 0, 0);
+  transform: translate3d(-300px, 0, 0);
 }
 `;
 
 const layerTwoAnimation = keyframes`
 100% {
-  transform: translate3d(-400px, 0, 0);
+  transform: translate3d(-500px, 0, 0);
+}
+
+`;
+const layerThreeAnimation = keyframes`
+100% {
+  transform: translate3d(-200px, 0, 0);
 }
 `;
 
@@ -28,7 +34,7 @@ export const CloudParrallaxWrapper = styled.div`
   width: 100%;
   bottom: 0;
   left: 0;
-  overflow: hidden;
+  overflow: visible;
 `;
 
 export const CloudLayerOne = styled.div`
@@ -39,32 +45,37 @@ export const CloudLayerOne = styled.div`
   animation: 12s ${layerOneAnimation} linear infinite;
 
   & ${Cloud} {
-    bottom: 10px;
-    fill: #fafcff;
+    bottom: 20px;
   }
 
   & ${Cloud}:nth-child(1) {
-    left: -200px;
+    left: -100px;
   }
   & ${Cloud}:nth-child(2) {
     left: 200px;
   }
   & ${Cloud}:nth-child(3) {
-    left: 600px;
+    left: 500px;
   }
   & ${Cloud}:nth-child(4) {
-    left: 1000px;
+    left: 800px;
   }
   & ${Cloud}:nth-child(5) {
-    left: 1400px;
+    left: 1100px;
   }
   & ${Cloud}:nth-child(6) {
-    left: 1800px;
+    left: 1400px;
   }
   & ${Cloud}:nth-child(7) {
-    left: 2200px;
+    left: 1700px;
   }
   & ${Cloud}:nth-child(8) {
+    left: 2000px;
+  }
+  & ${Cloud}:nth-child(9) {
+    left: 2300px;
+  }
+  & ${Cloud}:nth-child(10) {
     left: 2600px;
   }
 `;
@@ -85,29 +96,96 @@ export const CloudLayerTwo = styled.div`
     background: #203560;
   }
 
+  & ${Cloud} {
+    bottom: 0px;
+    transform: rotate(-7deg);
+  }
+
   & ${Cloud}:nth-child(1) {
-    left: 0px;
+    left: -500px;
   }
   & ${Cloud}:nth-child(2) {
-    left: 400px;
+    left: 0px;
   }
   & ${Cloud}:nth-child(3) {
-    left: 800px;
+    left: 500px;
   }
   & ${Cloud}:nth-child(4) {
-    left: 1200px;
+    left: 1000px;
   }
   & ${Cloud}:nth-child(5) {
-    left: 1600px;
+    left: 1500px;
   }
   & ${Cloud}:nth-child(6) {
     left: 2000px;
   }
   & ${Cloud}:nth-child(7) {
-    left: 2400px;
+    left: 2500px;
   }
   & ${Cloud}:nth-child(8) {
-    left: 2800px;
+    left: 3000px;
+  }
+  & ${Cloud}:nth-child(9) {
+    left: 3500px;
+  }
+  & ${Cloud}:nth-child(10) {
+    left: 4000px;
+  }
+`;
+
+export const CloudLayerThree = styled.div`
+  position: relative;
+  width: 100%;
+  z-index: 20;
+  animation: 12s ${layerThreeAnimation} linear infinite;
+
+  & div {
+    position: absolute;
+    border-radius: 8%;
+    transform: rotate(45deg);
+    bottom: -300px;
+    width: 400px;
+    height: 400px;
+    background: #203560;
+  }
+
+  & ${Cloud} {
+    bottom: 10px;
+    opacity: 0.6;
+  }
+
+  & ${Cloud}:nth-child(1) {
+    left: -200px;
+  }
+  & ${Cloud}:nth-child(2) {
+    left: 0px;
+  }
+  & ${Cloud}:nth-child(3) {
+    left: 200px;
+  }
+  & ${Cloud}:nth-child(4) {
+    left: 400px;
+  }
+  & ${Cloud}:nth-child(5) {
+    left: 600px;
+  }
+  & ${Cloud}:nth-child(6) {
+    left: 800px;
+  }
+  & ${Cloud}:nth-child(7) {
+    left: 1000px;
+  }
+  & ${Cloud}:nth-child(8) {
+    left: 1200px;
+  }
+  & ${Cloud}:nth-child(9) {
+    left: 1400px;
+  }
+  & ${Cloud}:nth-child(10) {
+    left: 1600px;
+  }
+  & ${Cloud}:nth-child(11) {
+    left: 1800px;
   }
 `;
 

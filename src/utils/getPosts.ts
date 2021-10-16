@@ -8,7 +8,7 @@ import html from 'remark-html';
 const postsDirectory = path.join(process.cwd(), 'src/data/posts');
 
 // Used to populate the blog.js page with a list of sorted posts
-export function getSortedPostsData() {
+export default function getPosts() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
 

@@ -13,6 +13,8 @@ const CloudParrallax: React.FC = () => {
           <Styled.Cloud />
           <Styled.Cloud />
           <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
         </Styled.CloudLayerOne>
       </Styled.CloudLayer>
       <Styled.CloudLayer>
@@ -25,7 +27,24 @@ const CloudParrallax: React.FC = () => {
           <Styled.Cloud />
           <Styled.Cloud />
           <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
         </Styled.CloudLayerTwo>
+      </Styled.CloudLayer>
+      <Styled.CloudLayer>
+        <Styled.CloudLayerThree>
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+          <Styled.Cloud />
+        </Styled.CloudLayerThree>
       </Styled.CloudLayer>
       <Styled.Sun>
         <Styled.RayContainer>

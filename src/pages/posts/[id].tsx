@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import MaxWidthWrapper from 'src/components/max-width-wrapper';
+import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
 
 import Layout from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';

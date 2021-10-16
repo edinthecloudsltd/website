@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import MaxWidthWrapper from 'src/components/max-width-wrapper';
+import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
 
 import Layout from '../components/layout';
 import Meta from '../components/layout/meta';
@@ -20,8 +20,8 @@ export default function Blog({ allPostsData }: { allPostsData: any }) {
       />
 
       <MaxWidthWrapper>
-        <article className="mx-auto prose dark:prose-dark">
-          <p className="text-gray-700 dark:text-gray-300">Latest Posts</p>
+        <main className="py-20 mx-auto prose text-blue-200">
+          <p className="text-blue200">Latest Posts</p>
           <ul className="list-none" style={{ zIndex: -1 }}>
             {allPostsData.map(({ id, date, title }: any) => (
               <li className={utilStyles.listItem} key={id}>
@@ -29,13 +29,13 @@ export default function Blog({ allPostsData }: { allPostsData: any }) {
                   <a>{title}</a>
                 </Link>
                 <br />
-                <small className="text-gray-700 dark:text-gray-300">
+                <small className="text-blue200">
                   <Date dateString={date} />
                 </small>
               </li>
             ))}
           </ul>
-        </article>
+        </main>
       </MaxWidthWrapper>
     </Layout>
   );
