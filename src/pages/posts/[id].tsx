@@ -1,9 +1,7 @@
 import Head from 'next/head';
 
-import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
-
-import Layout from '../../components/layout';
-import utilStyles from '../../styles/utils.module.css';
+import Layout from '../../components/common/layout';
+import MaxWidthWrapper from '../../components/common/max-width-wrapper';
 import Date from '../../utils/date';
 import { getAllPostIds, getPostData } from '../../utils/getPosts';
 
@@ -18,7 +16,7 @@ export default function Post({ postData }: { postData: any }) {
       <MaxWidthWrapper>
         <article className="mx-auto font-sans prose duration-200 dark:prose-dark">
           <h1 className="text-gray-800 dark:text-gray-200">{postData.title}</h1>
-          <div className={utilStyles.lightText}>
+          <div>
             <Date dateString={postData.date} />
           </div>
           <div

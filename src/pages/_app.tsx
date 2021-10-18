@@ -4,11 +4,11 @@ import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';
 import { AppProps } from 'next/app';
 
-import Auth from '../components/auth';
+import Auth from '../components/common/auth';
 // import Script from 'next/script';
 
 // Used to import tailwindcss
-import '../styles/global.scss';
+import '../styles/global.css';
 
 // const gtagId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 

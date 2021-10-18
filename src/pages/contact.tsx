@@ -1,5 +1,5 @@
-import Layout from '../components/layout';
-import Meta from '../components/layout/meta';
+import Layout from '../components/common/layout';
+import Meta from '../components/common/layout/meta';
 
 export default function Contact() {
   return (

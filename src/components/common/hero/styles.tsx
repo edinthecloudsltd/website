@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import devices from '../../styles/breakpoints';
+import devices from 'src/styles/breakpoints';
 
 interface StyledWrapperProps {
   size: string | undefined; // this prop is only used on the home page to allow for the larger blue background

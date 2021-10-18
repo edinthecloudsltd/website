@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import colors from './colors';
+import colors from '../../styles/colors';
 
 export const HomeHeadingWrapper = styled.section`
   display: flex;

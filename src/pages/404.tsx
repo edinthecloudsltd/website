@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import Layout from '../components/layout';
+import Layout from '../components/common/layout';
 
 const NotFoundPage: React.FC = () => {
   const router = useRouter();

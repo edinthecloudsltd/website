@@ -6,12 +6,12 @@ import Date from 'src/utils/date';
 import getPosts from 'src/utils/getPosts';
 import getSkills from 'src/utils/getSkills';
 
-import CloudParrallax from '../components/cloud-parrallax';
+import Hero, { HeroText } from '../components/common/hero';
+import Layout from '../components/common/layout';
+import Meta from '../components/common/layout/meta';
 import MaxWidthWrapper from '../components/common/max-width-wrapper';
-import Hero, { HeroText } from '../components/hero';
-import Layout from '../components/layout';
-import Meta from '../components/layout/meta';
-import * as Styled from '../styles/index.styles';
+import Styled from '../components/home';
+import CloudParrallax from '../components/home/cloud-parrallax';
 
 interface IHomeProps {
   skills: { name: string; fileName: string }[];

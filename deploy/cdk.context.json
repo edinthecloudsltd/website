@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=500405362207:domainName=dev.edintheclouds.io:region=us-east-1": {
+    "Id": "/hostedzone/Z06249209LW3W87JX91E",
+    "Name": "dev.edintheclouds.io."
+  },
+  "hosted-zone:account=500405362207:domainName=dev.edintheclouds.io:region=eu-west-1": {
+    "Id": "/hostedzone/Z06249209LW3W87JX91E",
+    "Name": "dev.edintheclouds.io."
+  }
+}

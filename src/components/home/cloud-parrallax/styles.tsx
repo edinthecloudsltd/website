@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-import CloudSVG from '../../../public/assets/svg/cloud.svg';
+import CloudSVG from 'public/assets/svg/cloud.svg';
 
 const layerOneAnimation = keyframes`
 100% {
