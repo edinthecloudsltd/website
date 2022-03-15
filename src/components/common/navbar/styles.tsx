@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 
-export const NavbarWrapper = styled.nav`
+export const NavbarWrapper = styled.nav<{ show: boolean }>`
   position: fixed;
-  background: #c7f1ff;
+  background: none;
   width: 100%;
-  height: 6rem;
+  height: var(--navbar-height);
   z-index: 50;
   font-size: 1.4rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: ${({ show }) => (show ? `6rem` : `0`)};
   top: 0;
-  opacity: 0.96;
+  opacity: ${({ show }) => (show ? `1` : `0`)};
+  transition: opacity 0.4s ease-in;
 `;
 
-export const NavbarInnerWrapper = styled.div`
+export const NavbarInnerWrapper = styled.div<{ show: boolean }>`
   display: flex;
   flex-direction: row;
   max-width: 100%;
@@ -28,7 +30,7 @@ export const NavbarLogo = styled.img`
   border-radius: 50%;
   max-height: 100%;
   cursor: pointer;
-  box-shadow: 0px 0px 12px 2px rgba(126, 179, 227, 1);
+  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
 `;
 
 export const NavbarButtons = styled.ul`
@@ -37,7 +39,7 @@ export const NavbarButtons = styled.ul`
   justify-content: end;
 
   & a {
-    font-weight: 600;
+    font-weight: 800;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
     text-decoration: none;

@@ -14,7 +14,7 @@ Special thanks to [@whaakman](https://twitter.com/whaakman) for putting it toget
 ### Solution Architecture
 
 <p align="center">
-  <img src="/images/azure-festive-hackathon/solution-diagram.png">
+  <img src="/assets/images/azure-festive-hackathon/solution-diagram.png">
 </p>
 
 ### Hosting and scaling

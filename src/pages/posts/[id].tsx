@@ -1,31 +1,38 @@
 import Head from 'next/head';
 
-import Layout from '../../components/common/layout';
+import * as Styled from 'src/components/posts/styles';
+
 import MaxWidthWrapper from '../../components/common/max-width-wrapper';
 import Date from '../../utils/date';
 import { getAllPostIds, getPostData } from '../../utils/getPosts';
 
 export default function Post({ postData }: { postData: any }) {
   return (
-    <Layout>
+    <>
       <Head>
         <title>{postData.title}</title>
         <meta name="description" content={`${postData.description} ${postData.tags}`} />
         <meta property="og:description" content={postData.description} key="ogdesc" />
       </Head>
       <MaxWidthWrapper>
-        <article className="mx-auto font-sans prose duration-200 dark:prose-dark">
-          <h1 className="text-gray-800 dark:text-gray-200">{postData.title}</h1>
-          <div>
+        <article style={{ paddingTop: 'var(--navbar-height)' }}>
+          <h1
+            style={{
+              fontFamily: 'coffee-service, sans-serif',
+              fontWeight: 700,
+              fontSize: '3rem',
+            }}
+          >
+            {postData.title}
+          </h1>
+          <div style={{ fontSize: '1.25rem' }}>
             <Date dateString={postData.date} />
           </div>
-          <div
-            className="mx-auto max-w-none"
-            dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
-          />
+          <hr style={{ margin: '1rem 0' }} />
+          <Styled.PostContent dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </article>
       </MaxWidthWrapper>
-    </Layout>
+    </>
   );
 }
 

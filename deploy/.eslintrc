@@ -44,5 +44,5 @@
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
   },
-  "ignorePatterns": []
+  "ignorePatterns": ["jest.config.js"]
 }

@@ -28,20 +28,31 @@ export const Cloud = styled(CloudSVG)`
   fill: white;
 `;
 
-export const CloudParrallaxWrapper = styled.div`
+export const CloudParrallaxWrapper = styled.div<{ size: 'sm' | 'md' }>`
   position: absolute;
   height: 100%;
   width: 100%;
   bottom: 0;
   left: 0;
-  overflow: visible;
+  margin-bottom: 2rem;
+  overflow-bottom: hidden;
+
+  --sun-size: ${({ size }) => {
+    switch (size) {
+      case 'md': {
+        return '550px';
+      }
+      default:
+        return '300px';
+    }
+  }};
 `;
 
 export const CloudLayerOne = styled.div`
   position: relative;
   width: 100%;
-  bottom: -1rem;
-  z-index: 10;
+  bottom: -5rem;
+  z-index: 20;
   animation: 12s ${layerOneAnimation} linear infinite;
 
   & ${Cloud} {
@@ -83,8 +94,9 @@ export const CloudLayerOne = styled.div`
 export const CloudLayerTwo = styled.div`
   position: relative;
   width: 100%;
-  z-index: 20;
+  z-index: 10;
   animation: 12s ${layerTwoAnimation} linear infinite;
+  bottom: -3rem;
 
   & div {
     position: absolute;
@@ -138,6 +150,7 @@ export const CloudLayerThree = styled.div`
   width: 100%;
   z-index: 20;
   animation: 12s ${layerThreeAnimation} linear infinite;
+  bottom: -2rem;
 
   & div {
     position: absolute;
@@ -198,20 +211,19 @@ export const CloudLayer = styled.div`
 export const Sun = styled.object`
   position: absolute;
   margin: auto;
-  width: 500px;
-  height: 500px;
+  height: var(--sun-size);
+  width: var(--sun-size);
+  right: 0;
   border-radius: 50%;
   background: rgba(250, 222, 175);
   opacity: 0.9;
   box-shadow: 0px 0px 40px 15px rgba(250, 222, 175);
-
-  right: 0;
   z-index: 1;
 `;
 
 export const Ray = styled.object`
   position: absolute;
-  opacity: 0.4;
+  opacity: 0.7;
   transform-origin: bottom;
   border-radius: 20% 20% 0 0;
   background: linear-gradient(
@@ -222,7 +234,6 @@ export const Ray = styled.object`
   );
   top: -50%;
   left: 40%;
-
   z-index: -1;
 `;
 
@@ -248,62 +259,62 @@ export const RayContainer = styled.div`
   z-index: -1;
 
   & ${Ray}:nth-child(1) {
-    height: 500px;
+    height: var(--sun-size);
     width: 100px;
     transform: rotate(0deg);
   }
   & ${Ray}:nth-child(2) {
-    height: 500px;
+    height: var(--sun-size);
     width: 100px;
     transform: rotate(60deg);
   }
   & ${Ray}:nth-child(3) {
-    height: 500px;
+    height: var(--sun-size);
     width: 100px;
     transform: rotate(120deg);
   }
   & ${Ray}:nth-child(4) {
-    height: 500px;
+    height: var(--sun-size);
     width: 100px;
     transform: rotate(180deg);
   }
   & ${Ray}:nth-child(5) {
-    height: 500px;
+    height: var(--sun-size);
     width: 100px;
     transform: rotate(240deg);
   }
   & ${Ray}:nth-child(6) {
-    height: 500px;
+    height: var(--sun-size);
     width: 100px;
     transform: rotate(300deg);
   }
   & ${Ray}:nth-child(7) {
-    height: 500px;
+    height: var(--sun-size);
     width: 60px;
     transform: rotate(30deg);
   }
   & ${Ray}:nth-child(8) {
-    height: 500px;
-    width: 15px;
+    height: var(--sun-size);
+    width: 40px;
     transform: rotate(90deg);
   }
   & ${Ray}:nth-child(9) {
-    height: 550px;
+    height: var(--sun-size);
     width: 60px;
     transform: rotate(150deg);
   }
   & ${Ray}:nth-child(10) {
-    height: 500px;
+    height: var(--sun-size);
     width: 40px;
     transform: rotate(210deg);
   }
   & ${Ray}:nth-child(11) {
-    height: 500px;
+    height: var(--sun-size);
     width: 60px;
     transform: rotate(270deg);
   }
   & ${Ray}:nth-child(12) {
-    height: 500px;
+    height: var(--sun-size);
     width: 60px;
     transform: rotate(330deg);
   }

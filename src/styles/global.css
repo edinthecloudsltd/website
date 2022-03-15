@@ -1,6 +1,11 @@
+@import url("https://use.typekit.net/uus7cqb.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  --navbar-height: 6rem;
+}
 
 body {
   font-family: "Source Code Pro", sans-serif;
@@ -8,7 +13,6 @@ body {
   font-style: normal;
   line-height: 1.6;
   font-size: 16px;
-  background:#c7f1ff;
   color: #34344c;
 }
 

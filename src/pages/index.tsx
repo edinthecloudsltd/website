@@ -1,17 +1,16 @@
 import React from 'react';
 
-import Link from 'next/link';
+import { useMediaQuery } from 'react-responsive';
 
-import Date from 'src/utils/date';
+import BlogPostCard from 'src/components/common/blog-post-card';
+import Hero, { HeroText } from 'src/components/common/hero';
+import Meta from 'src/components/common/layout/meta';
+import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
+import Styled from 'src/components/home';
+import CloudParrallax from 'src/components/home/cloud-parrallax';
+import { BlogPosts } from 'src/components/posts/styles';
 import getPosts from 'src/utils/getPosts';
 import getSkills from 'src/utils/getSkills';
-
-import Hero, { HeroText } from '../components/common/hero';
-import Layout from '../components/common/layout';
-import Meta from '../components/common/layout/meta';
-import MaxWidthWrapper from '../components/common/max-width-wrapper';
-import Styled from '../components/home';
-import CloudParrallax from '../components/home/cloud-parrallax';
 
 interface IHomeProps {
   skills: { name: string; fileName: string }[];
@@ -19,8 +18,10 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps> = ({ posts }) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+
   return (
-    <Layout>
+    <>
       <Meta
         title="Ed in the Clouds"
         description="Cloud and Automation engineering blog. Brought to you from Manchester, UK"
@@ -30,69 +31,96 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
       <Hero>
         <CloudParrallax />
         <HeroText>
-          <h1 style={{ fontSize: '5rem', fontWeight: 700, color: '#34344c', textAlign: 'center' }}>
+          <h1
+            style={{
+              fontFamily: 'coffee-service, sans-serif',
+              fontSize: isMobile ? '4rem' : '6rem',
+              fontWeight: 700,
+              letterSpacing: '0.5rem',
+              color: '#34344c',
+              textAlign: 'center',
+            }}
+          >
             Ed in the Clouds
           </h1>
         </HeroText>
       </Hero>
-      <MaxWidthWrapper>
-        <main
-          style={{
-            padding: '5rem',
-            marginTop: '5rem',
-            color: 'rgba(126, 179, 227)',
-            background: '#34344c',
-            borderRadius: '50px',
-            // boxShadow: '2px 2px 10px rgba(0, 0, 0, .5)',
-          }}
-        >
-          <p className="my-4 text-2xl font-bold lg:text-4xl text-blue200">{`Hi, I'm Ed.`}</p>
 
-          <p className="mb-12 text-2xl">{`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}</p>
-          <div id="animate" className="w-3/4 mx-auto" />
-
-          <p className="text-3xl font-bold">{`I'm in my happy place when I'm...`}</p>
-
-          <ul className="my-10 text-xl list-disc list-inside">
-            <li className="my-4">Scripting and automating stuff</li>
-            <li className="my-4">Coding and building apps and services</li>
-            <li className="my-4">Working with containers (and container orchestration)</li>
-            <li className="my-4">Building and engineering cloud infrastructure</li>
-            <li className="my-4">Learning!</li>
-          </ul>
-        </main>
-      </MaxWidthWrapper>
-      {/*       <main
-        style={{
-          position: 'relative',
-          background: 'rgba(126, 179, 227)',
-          width: '100%',
-          color: '#34344c',
-        }}
-      >
+      <Styled.SectionWrapper style={{ background: '#ffffff' }}>
         <MaxWidthWrapper>
-          <BubbleScroll items={skills} />
+          <Styled.ContentCard style={{ background: '#c7f1ff' }} className="space-y-6">
+            <p
+              style={{ fontFamily: 'coffee-service, sans-serif' }}
+              className="text-2xl font-bold lg:text-5xl text-blue200"
+            >{`Hi, I'm Ed.`}</p>
+
+            <p className="text-2xl">{`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}</p>
+
+            <p
+              style={{ fontFamily: 'coffee-service, sans-serif' }}
+              className="text-2xl font-bold lg:text-4xl"
+            >{`I'm in my happy place when I'm...`}</p>
+
+            <ul className="space-y-2 text-xl list-disc list-inside">
+              <li>Scripting and automating stuff</li>
+              <li>Building and engineering cloud infrastructure</li>
+              <li>Helping developers deliver faster and safely</li>
+              <li>Coding and building apps and services</li>
+              <li>Learning!</li>
+            </ul>
+          </Styled.ContentCard>
         </MaxWidthWrapper>
-      </main> */}
-      <MaxWidthWrapper>
-        <Styled.BlogPostsWrapper>
-          <h1 className="text-blue200">Latest Posts</h1>
-          <Styled.BlogPostsInnerWrapper>
-            {posts.map(({ id, date, title }: any) => (
-              <Styled.BlogPostCard key={id}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                <br />
-                <small className="text-blue200">
-                  <Date dateString={date} />
-                </small>
-              </Styled.BlogPostCard>
+      </Styled.SectionWrapper>
+      <Styled.SectionWrapper style={{ background: '#ffffff' }}>
+        <MaxWidthWrapper>
+          <Styled.ContentCard style={{ background: '#c7f1ff' }}>
+            <p
+              style={{ fontFamily: 'coffee-service, sans-serif' }}
+              className="text-2xl font-bold lg:text-5xl text-blue200"
+            >{`What can I do?`}</p>
+            <p>
+              {`If you're interested in checking out my skillset, feel free to view my CV `}
+              <a
+                href="/assets/docs/cv.pdf"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'blue', fontWeight: 700 }}
+              >
+                here
+              </a>
+            </p>
+          </Styled.ContentCard>
+        </MaxWidthWrapper>
+      </Styled.SectionWrapper>
+      <Styled.SectionWrapper style={{ background: '#ffffff' }}>
+        <MaxWidthWrapper>
+          <h1
+            style={{
+              fontFamily: 'coffee-service, sans-serif',
+              fontSize: '2.5rem',
+              fontWeight: 500,
+              letterSpacing: '0.25rem',
+              color: '#34344c',
+              marginBottom: '1rem',
+            }}
+          >
+            Latest Posts
+          </h1>
+          <BlogPosts>
+            {posts.map(({ id, date, title, tags, description }: any, i: number) => (
+              <BlogPostCard
+                key={i}
+                id={id}
+                date={date}
+                title={title}
+                tags={tags}
+                description={description}
+              />
             ))}
-          </Styled.BlogPostsInnerWrapper>
-        </Styled.BlogPostsWrapper>
-      </MaxWidthWrapper>
-    </Layout>
+          </BlogPosts>
+        </MaxWidthWrapper>
+      </Styled.SectionWrapper>
+    </>
   );
 };
 

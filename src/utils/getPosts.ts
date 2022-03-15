@@ -5,10 +5,12 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
+import { Post } from 'src/types';
+
 const postsDirectory = path.join(process.cwd(), 'src/data/posts');
 
 // Used to populate the blog.js page with a list of sorted posts
-export default function getPosts() {
+export default function getPosts(): Post[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
 

@@ -1,8 +1,12 @@
+import { useMediaQuery } from 'react-responsive';
+
 import * as Styled from './styles';
 
 const CloudParrallax: React.FC = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const size = isMobile ? 'sm' : 'md';
   return (
-    <Styled.CloudParrallaxWrapper>
+    <Styled.CloudParrallaxWrapper size={size}>
       <Styled.CloudLayer>
         <Styled.CloudLayerOne>
           <Styled.Cloud />

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledWrapper = styled.main`
   position: relative;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 32px;

@@ -38,7 +38,7 @@ export const Wrapper = styled.div<StyledWrapperProps>`
   // If on tablet or smaller device
   @media (max-width: 500px) {
     height: ${({ size }) => handleWrapperHeight(size)};
-    padding: 20% 0;
+    margin-top: 20%;
   }
 `;
 

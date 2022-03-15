@@ -1,21 +1,24 @@
 import { expect as expectCDK, matchTemplate, MatchStyle } from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
+import '@types/jest';
 
-import * as Deploy from '../lib/blog';
+import * as Deploy from '../lib/sls-next-lambda-edge';
 
 test('Empty Stack', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new Deploy.ServerlessNextJsDeployment(app, 'TestServerlessNextJsDeployment', {
+  const stack = new Deploy.ServerlessNextJsLambdaEdge(app, 'TestServerlessNextJsDeployment', {
     env: {
       account: process.env.CDK_DEFAULT_ACCOUNT,
       region: process.env.CDK_DEFAULT_REGION,
     },
     tags: {
       environment: 'development',
-      application: 'edintheclouds-blog',
+      application: 'edintheclouds-website',
     },
-    appDomain: 'dev.edintheclouds.io',
+    domainNames: ['edintheclouds.io'],
+    acmCertArn: '',
+    environment: 'test',
   });
   // THEN
   expectCDK(stack).to(
