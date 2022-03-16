@@ -19,24 +19,26 @@ export default function Navbar() {
 
   return (
     <NavbarWrapper show={show}>
-      <NavbarInnerWrapper show={show}>
-        <Link href="/" passHref>
-          <NavbarLogo src="assets/images/profile.png" />
-        </Link>
-        <a />
-        <NavbarButtons>
-          {router.pathname !== '/' && (
-            <Link href="/">
-              <a className="text-gray-700 dark:text-gray-200">Home</a>
-            </Link>
-          )}
-          {router.pathname !== '/blog' && (
-            <Link href="/posts">
-              <a className="text-gray-700 dark:text-gray-200">Blog</a>
-            </Link>
-          )}
-        </NavbarButtons>
-      </NavbarInnerWrapper>
+      {show && (
+        <NavbarInnerWrapper>
+          <Link href="/" passHref>
+            <NavbarLogo src="assets/images/profile.png" />
+          </Link>
+          <a />
+          <NavbarButtons>
+            {router.pathname !== '/' && (
+              <Link href="/">
+                <a className="text-gray-700 dark:text-gray-200">Home</a>
+              </Link>
+            )}
+            {router.pathname !== '/blog' && (
+              <Link href="/posts">
+                <a className="text-gray-700 dark:text-gray-200">Blog</a>
+              </Link>
+            )}
+          </NavbarButtons>
+        </NavbarInnerWrapper>
+      )}
     </NavbarWrapper>
   );
 }

@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import Date from 'src/utils/date';
-
 import * as Styled from './styles';
 
 export default function BlogPostCard({
@@ -34,11 +32,9 @@ export default function BlogPostCard({
           {title}
         </h2>
         <p>{description}</p>
-        <small className="text-blue200">
-          <Date dateString={date} />
-        </small>
+        <small className="text-blue200">{/* <Date dateString={date} /> */}</small>
         <Styled.TagContainer>
-          {tags.map((t, i) => (
+          {/*           {tags.map((t, i) => (
             <Link
               key={i}
               passHref
@@ -49,7 +45,7 @@ export default function BlogPostCard({
             >
               <Styled.Tag>{t}</Styled.Tag>
             </Link>
-          ))}
+          ))} */}
         </Styled.TagContainer>
       </Styled.Card>
     </Link>

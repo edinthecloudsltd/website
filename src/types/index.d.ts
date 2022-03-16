@@ -5,10 +5,13 @@ declare module '*.svg' {
   export default content;
 }
 
-export interface Post {
+export interface PostProperties {
   id: string;
-  title: string;
-  description: string;
-  date: any;
-  tags: string[];
+  Title: string;
+  Tags: string[];
+  Author: string;
+  Date: any;
+  Description: string;
+  Published: boolean;
+  Updated: string;
 }

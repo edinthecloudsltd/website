@@ -17,6 +17,6 @@ export const IconWrapper = styled.div`
   & > svg:hover {
     transition: all 0.5s ease;
     transform-origin: center;
-    transform: rotate(-20deg);
+    transform: rotate(-10deg);
   }
 `;

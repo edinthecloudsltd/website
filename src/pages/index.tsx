@@ -9,8 +9,8 @@ import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
 import Styled from 'src/components/home';
 import CloudParrallax from 'src/components/home/cloud-parrallax';
 import { BlogPosts } from 'src/components/posts/styles';
-import getPosts from 'src/utils/getPosts';
-import getSkills from 'src/utils/getSkills';
+import getPosts from 'src/lib/getPosts';
+import getSkills from 'src/lib/getSkills';
 
 interface IHomeProps {
   skills: { name: string; fileName: string }[];

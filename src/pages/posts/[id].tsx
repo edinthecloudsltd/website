@@ -1,54 +1,67 @@
+import { Client } from '@notionhq/client';
 import Head from 'next/head';
+import { NotionToMarkdown } from 'notion-to-md';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
-import * as Styled from 'src/components/posts/styles';
+import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
 import MaxWidthWrapper from '../../components/common/max-width-wrapper';
-import Date from '../../utils/date';
-import { getAllPostIds, getPostData } from '../../utils/getPosts';
+import styles from './posts.module.css';
 
-export default function Post({ postData }: { postData: any }) {
+export default function Post({ page, markdown }: { page: any; markdown: any }) {
   return (
     <>
       <Head>
-        <title>{postData.title}</title>
-        <meta name="description" content={`${postData.description} ${postData.tags}`} />
-        <meta property="og:description" content={postData.description} key="ogdesc" />
+        <title>{page.properties.Title.title[0].plain_text}</title>
+        <meta
+          name="description"
+          content={`${
+            page.properties.Description.rich_text[0].plain_text
+          } ${page.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)}`}
+        />
+        <meta
+          property="og:description"
+          content={page.properties.Description.rich_text[0].plain_text}
+          key="ogdesc"
+        />
       </Head>
+      <p>{new Date(page.created_time).toLocaleDateString()}</p>
       <MaxWidthWrapper>
-        <article style={{ paddingTop: 'var(--navbar-height)' }}>
-          <h1
-            style={{
-              fontFamily: 'coffee-service, sans-serif',
-              fontWeight: 700,
-              fontSize: '3rem',
-            }}
-          >
-            {postData.title}
-          </h1>
-          <div style={{ fontSize: '1.25rem' }}>
-            <Date dateString={postData.date} />
-          </div>
-          <hr style={{ margin: '1rem 0' }} />
-          <Styled.PostContent dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-        </article>
+        {/* eslint-disable  react/no-children-prop */}
+        <ReactMarkdown className={styles.content} remarkPlugins={[gfm]}>
+          {markdown}
+        </ReactMarkdown>
       </MaxWidthWrapper>
     </>
   );
 }
 
-export async function getStaticPaths() {
-  const paths = getAllPostIds();
+export const getStaticPaths = async () => {
+  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
   return {
-    paths,
-    fallback: false,
+    paths: database?.map((page) => ({ params: { id: page.id } })),
+    fallback: true,
   };
-}
+};
 
-export async function getStaticProps({ params }: { params: any }) {
-  const postData = await getPostData(params.id);
+export const getStaticProps = async (ctx: any) => {
+  const { id } = ctx.params;
+  const page = await getPage(id);
+  const blocks = await getBlocks(id);
+
+  const notion = new Client({});
+  const n2m = new NotionToMarkdown({
+    notionClient: notion,
+  });
+
+  const markdown = await n2m.blocksToMarkdown(blocks);
+
   return {
     props: {
-      postData,
+      page,
+      markdown: markdown.map((m) => m.parent).join('\r\n'),
     },
+    revalidate: 1,
   };
-}
+};

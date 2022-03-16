@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

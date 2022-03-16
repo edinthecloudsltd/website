@@ -23,13 +23,19 @@ const Footer: React.FC = () => {
           <p>© {date} Ed in the Clouds</p>
           <div style={{ display: 'flex', gap: '1rem' }}>
             <Styled.IconWrapper>
-              <FaTwitter size={25} />
+              <a href="https://twitter.com/ed1nthecloud">
+                <FaTwitter size={25} />
+              </a>
             </Styled.IconWrapper>
             <Styled.IconWrapper>
-              <FaLinkedinIn size={25} />
+              <a href="https://www.linkedin.com/in/edwardsmith92/">
+                <FaLinkedinIn size={25} />
+              </a>
             </Styled.IconWrapper>
             <Styled.IconWrapper>
-              <FiMail size={25} />
+              <a href="mailto:ed@edintheclouds.io">
+                <FiMail size={25} />
+              </a>
             </Styled.IconWrapper>
           </div>
         </div>

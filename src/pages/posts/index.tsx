@@ -7,28 +7,26 @@ import { FaWindowClose } from 'react-icons/fa';
 import BlogPostCard from 'src/components/common/blog-post-card';
 import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
 import * as Styled from 'src/components/posts/styles';
-import { Post } from 'src/types';
-import getPosts from 'src/utils/getPosts';
-import getTags from 'src/utils/getTags';
+import { getDatabase } from 'src/lib/notion';
 
-export default function Posts({ posts, postTags }: { posts: Post[]; postTags: string[] }) {
+export default function Posts({ posts, tags }: { posts: any; tags: any }) {
   const { query } = useRouter();
   const [tagFilter, setTagFilter] = useState<string[]>([]);
+
+  console.log(posts);
 
   useEffect(() => {
     Object.entries(query).forEach(([_, value]) => {
       if (Array.isArray(value)) {
-        const tags = value.map((t) => decodeURIComponent(t));
-        setTagFilter((prev: any) => [...prev, ...tags]);
+        const tagsQuery = value.map((t) => decodeURIComponent(t));
+        setTagFilter((prev: any) => [...prev, ...tagsQuery]);
       } else {
-        const tag = decodeURIComponent(value!);
-        setTagFilter((prev: any) => [...prev, tag]);
+        const tagQuery = decodeURIComponent(value!);
+        setTagFilter((prev: any) => [...prev, tagQuery]);
       }
     });
     return () => setTagFilter([]);
   }, [query]);
-
-  console.log(tagFilter);
 
   return (
     <Styled.Wrapper>
@@ -45,7 +43,7 @@ export default function Posts({ posts, postTags }: { posts: Post[]; postTags: st
           ))}
         </Styled.ActiveFilters>
         <Styled.TagList>
-          {postTags.map((t, i) => (
+          {tags.map((t: string, i: number) => (
             <Link
               key={i}
               passHref
@@ -61,25 +59,33 @@ export default function Posts({ posts, postTags }: { posts: Post[]; postTags: st
         <Styled.BlogPosts>
           {tagFilter.length > 0
             ? posts
-                .filter((item) => item.tags.some((t) => tagFilter.includes(t)))
-                .map(({ id, date, title, tags, description }: any, i: number) => (
+                .filter((item: any) =>
+                  item.properties.Tags.multi_select
+                    .map((t: { id: string; name: string }) => t.name)
+                    .some((t) => tagFilter.includes(t))
+                )
+                .map(({ id, properties }: { id: string; properties: any }, i: number) => (
                   <BlogPostCard
                     key={i}
                     id={id}
-                    date={date}
-                    title={title}
-                    tags={tags}
-                    description={description}
+                    date={properties.Date.date.start}
+                    title={properties.Title.title[0].plain_text}
+                    tags={properties.Tags.multi_select.map(
+                      (t: { id: string; name: string }) => t.name
+                    )}
+                    description={properties.Description.rich_text[0].plain_text}
                   />
                 ))
-            : posts.map(({ id, date, title, tags, description }: any, i: number) => (
+            : posts.map(({ id, properties }: { id: string; properties: any }, i: number) => (
                 <BlogPostCard
                   key={i}
                   id={id}
-                  date={date}
-                  title={title}
-                  tags={tags}
-                  description={description}
+                  date={properties.Date.date.start}
+                  title={properties.Title.title[0].plain_text}
+                  tags={properties.Tags.multi_select.map(
+                    (t: { id: string; name: string }) => t.name
+                  )}
+                  description={properties.Description.rich_text[0].plain_text}
                 />
               ))}
         </Styled.BlogPosts>
@@ -88,7 +94,7 @@ export default function Posts({ posts, postTags }: { posts: Post[]; postTags: st
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   const posts = getPosts();
   const postTags = getTags(posts);
   return {
@@ -96,5 +102,23 @@ export async function getStaticProps() {
       posts,
       postTags,
     }, // will be passed to the page component as props
+  };
+} */
+
+export async function getStaticProps() {
+  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
+
+  const tags = database
+    .map((post) =>
+      post.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)
+    )
+    .flat();
+
+  return {
+    props: {
+      posts: database,
+      tags,
+    },
+    revalidate: 1,
   };
 }

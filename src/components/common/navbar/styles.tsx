@@ -14,7 +14,7 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   transition: opacity 0.4s ease-in;
 `;
 
-export const NavbarInnerWrapper = styled.div<{ show: boolean }>`
+export const NavbarInnerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   max-width: 100%;
