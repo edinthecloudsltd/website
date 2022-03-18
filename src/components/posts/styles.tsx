@@ -10,6 +10,7 @@ export const BlogPosts = styled.div`
   grid-template-columns: repeat(auto-fill, 450px);
   gap: 2rem;
   justify-content: center;
+  padding-top: 2rem;
 
   @media (max-width: 568px) {
     grid-template-columns: repeat(auto-fill, 95vw);
@@ -40,6 +41,7 @@ export const Tag = styled.button`
 export const ActiveFilters = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 0.2rem;
   width: 100%;
   height: 2rem;
   margin-bottom: 1rem;

@@ -9,7 +9,7 @@ export const Card = styled.div`
   gap: 0.5rem;
   border-radius: 50px;
   padding: 3.5rem;
-  transition: 0.3s ease;
+  //transition: 0.3s ease;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
 
   &:hover {

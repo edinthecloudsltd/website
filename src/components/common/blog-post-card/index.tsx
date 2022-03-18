@@ -15,6 +15,7 @@ export default function BlogPostCard({
   tags: string[];
   description: string;
 }) {
+  console.log(date);
   return (
     <Link passHref href={`/posts/${id}`}>
       <Styled.Card key={id} style={{ background: '#c7f1ff' }}>
@@ -32,9 +33,16 @@ export default function BlogPostCard({
           {title}
         </h2>
         <p>{description}</p>
-        <small className="text-blue200">{/* <Date dateString={date} /> */}</small>
+        <small className="text-blue200">
+          {new Date(date).toLocaleDateString('en-GB', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </small>
         <Styled.TagContainer>
-          {/*           {tags.map((t, i) => (
+          {tags.map((t, i) => (
             <Link
               key={i}
               passHref
@@ -45,7 +53,7 @@ export default function BlogPostCard({
             >
               <Styled.Tag>{t}</Styled.Tag>
             </Link>
-          ))} */}
+          ))}
         </Styled.TagContainer>
       </Styled.Card>
     </Link>

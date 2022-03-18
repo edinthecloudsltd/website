@@ -6,7 +6,8 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   width: 100%;
   height: var(--navbar-height);
   z-index: 50;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  font-family: coffee-service, sans-serif;
   padding: 0.5rem 1rem;
   margin-bottom: ${({ show }) => (show ? `6rem` : `0`)};
   top: 0;

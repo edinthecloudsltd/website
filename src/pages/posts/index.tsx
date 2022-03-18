@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FaWindowClose } from 'react-icons/fa';
+import Select from 'react-select';
 
 import BlogPostCard from 'src/components/common/blog-post-card';
 import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
@@ -11,58 +10,49 @@ import { getDatabase } from 'src/lib/notion';
 
 export default function Posts({ posts, tags }: { posts: any; tags: any }) {
   const { query } = useRouter();
-  const [tagFilter, setTagFilter] = useState<string[]>([]);
-
-  console.log(posts);
+  const [selectedTags, setSelectedTags] = useState<{ value: string; label: string }[]>([]);
 
   useEffect(() => {
     Object.entries(query).forEach(([_, value]) => {
       if (Array.isArray(value)) {
         const tagsQuery = value.map((t) => decodeURIComponent(t));
-        setTagFilter((prev: any) => [...prev, ...tagsQuery]);
+        setSelectedTags((prev: any) => [...prev, ...tagsQuery]);
       } else {
         const tagQuery = decodeURIComponent(value!);
-        setTagFilter((prev: any) => [...prev, tagQuery]);
+        setSelectedTags((prev: any) => [...prev, tagQuery]);
       }
     });
-    return () => setTagFilter([]);
+    return () => setSelectedTags([]);
   }, [query]);
+
+  const handleSelect = (option) => {
+    setSelectedTags(option);
+  };
+
+  console.log(selectedTags);
 
   return (
     <Styled.Wrapper>
       <MaxWidthWrapper>
-        <Styled.ActiveFilters>
-          {tagFilter.map((t, i) => (
-            <Styled.Tag key={i}>
-              {t}
-              <FaWindowClose
-                style={{ marginLeft: '0.5rem' }}
-                onClick={() => setTagFilter((prev) => prev.filter((item) => item !== t))}
-              />
-            </Styled.Tag>
-          ))}
-        </Styled.ActiveFilters>
-        <Styled.TagList>
-          {tags.map((t: string, i: number) => (
-            <Link
-              key={i}
-              passHref
-              href={{
-                pathname: '/posts',
-                query: { tag: t },
-              }}
-            >
-              <Styled.Tag>{t}</Styled.Tag>
-            </Link>
-          ))}
-        </Styled.TagList>
+        <Select
+          isMulti
+          name="tags"
+          placeholder="Tags"
+          value={selectedTags}
+          options={tags}
+          onChange={handleSelect}
+        />
         <Styled.BlogPosts>
-          {tagFilter.length > 0
+          {selectedTags.length > 0
             ? posts
                 .filter((item: any) =>
                   item.properties.Tags.multi_select
+                    // construct list of tag values
                     .map((t: { id: string; name: string }) => t.name)
-                    .some((t) => tagFilter.includes(t))
+                    // check to see if at least 1 of the tags is in the selectedTags array
+                    .some((t: string) =>
+                      selectedTags.map((s: { value: string; label: string }) => s.value).includes(t)
+                    )
                 )
                 .map(({ id, properties }: { id: string; properties: any }, i: number) => (
                   <BlogPostCard
@@ -94,23 +84,16 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
   );
 }
 
-/* export async function getStaticProps() {
-  const posts = getPosts();
-  const postTags = getTags(posts);
-  return {
-    props: {
-      posts,
-      postTags,
-    }, // will be passed to the page component as props
-  };
-} */
-
 export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
 
   const tags = database
-    .map((post) =>
-      post.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)
+    ?.map((post) =>
+      /* @ts-ignore ts(2339) */
+      post.properties.Tags.multi_select.map((t: { id: string; name: string }) => ({
+        value: t.name,
+        label: t.name,
+      }))
     )
     .flat();
 

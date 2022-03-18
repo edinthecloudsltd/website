@@ -4,12 +4,17 @@ import { NotionToMarkdown } from 'notion-to-md';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
+import ErrorPage from 'src/components/common/error';
 import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
 import MaxWidthWrapper from '../../components/common/max-width-wrapper';
 import styles from './posts.module.css';
 
 export default function Post({ page, markdown }: { page: any; markdown: any }) {
+  if (!page) {
+    return <ErrorPage />;
+  }
+
   return (
     <>
       <Head>
@@ -26,8 +31,30 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
           key="ogdesc"
         />
       </Head>
-      <p>{new Date(page.created_time).toLocaleDateString()}</p>
       <MaxWidthWrapper>
+        <div className={styles.heading}>
+          <h1>{page.properties.Title.title[0].plain_text}</h1>
+          <h3>{page.properties.Description.rich_text[0].plain_text}</h3>
+          <div className={styles.tags}>
+            {page.properties.Tags.multi_select.map(
+              (t: { id: string; name: string; color: string }, i: number) => (
+                <span
+                  key={i}
+                  style={{
+                    color: 'white',
+                    background: t.color,
+                    borderRadius: '5px',
+                    padding: '0.1rem 0.5rem',
+                    boxShadow: '2px 2px 3px 0.2px rgba(0, 0, 0, 0.4)',
+                  }}
+                >
+                  {t.name}
+                </span>
+              )
+            )}
+          </div>
+          <p className={styles.date}>{new Date(page.created_time).toLocaleDateString()}</p>
+        </div>
         {/* eslint-disable  react/no-children-prop */}
         <ReactMarkdown className={styles.content} remarkPlugins={[gfm]}>
           {markdown}

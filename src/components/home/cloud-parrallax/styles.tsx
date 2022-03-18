@@ -219,6 +219,11 @@ export const Sun = styled.object`
   opacity: 0.9;
   box-shadow: 0px 0px 40px 15px rgba(250, 222, 175);
   z-index: 1;
+
+  @media (max-width: 568px) {
+    bottom: 10rem;
+    left: 8rem;
+  }
 `;
 
 export const Ray = styled.object`

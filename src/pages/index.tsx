@@ -9,8 +9,7 @@ import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
 import Styled from 'src/components/home';
 import CloudParrallax from 'src/components/home/cloud-parrallax';
 import { BlogPosts } from 'src/components/posts/styles';
-import getPosts from 'src/lib/getPosts';
-import getSkills from 'src/lib/getSkills';
+import { getDatabase } from 'src/lib/notion';
 
 interface IHomeProps {
   skills: { name: string; fileName: string }[];
@@ -18,8 +17,9 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps> = ({ posts }) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 568px)' });
 
+  console.log(posts);
   return (
     <>
       <Meta
@@ -78,7 +78,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               style={{ fontFamily: 'coffee-service, sans-serif' }}
               className="text-2xl font-bold lg:text-5xl text-blue200"
             >{`What can I do?`}</p>
-            <p>
+            <p className="text-xl">
               {`If you're interested in checking out my skillset, feel free to view my CV `}
               <a
                 href="/assets/docs/cv.pdf"
@@ -107,16 +107,23 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
             Latest Posts
           </h1>
           <BlogPosts>
-            {posts.map(({ id, date, title, tags, description }: any, i: number) => (
-              <BlogPostCard
-                key={i}
-                id={id}
-                date={date}
-                title={title}
-                tags={tags}
-                description={description}
-              />
-            ))}
+            {posts.map(
+              (
+                { id, properties }: { id: string; properties: any; created_time: string },
+                i: number
+              ) => (
+                <BlogPostCard
+                  key={i}
+                  id={id}
+                  date={properties.Date.date.start}
+                  title={properties.Title.title[0].plain_text}
+                  tags={properties.Tags.multi_select.map(
+                    (t: { id: string; name: string }) => t.name
+                  )}
+                  description={properties.Description.rich_text[0].plain_text}
+                />
+              )
+            )}
           </BlogPosts>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
@@ -125,13 +132,16 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-  const skills = getSkills();
-  const posts = getPosts();
+  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
+
+  // only show the 4 most recent posts
+  const posts = database?.slice(0, 4);
+
   return {
     props: {
-      skills,
       posts,
-    }, // will be passed to the page component as props
+    },
+    revalidate: 1,
   };
 }
 

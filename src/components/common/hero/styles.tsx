@@ -22,7 +22,7 @@ const handleWrapperHeight = (size: string | undefined): string => {
     case 'lg':
       return '87.5vh';
     default:
-      return '30rem';
+      return '70vh';
   }
 };
 
@@ -38,7 +38,7 @@ export const Wrapper = styled.div<StyledWrapperProps>`
   // If on tablet or smaller device
   @media (max-width: 500px) {
     height: ${({ size }) => handleWrapperHeight(size)};
-    margin-top: 20%;
+    //margin-top: 20%;
   }
 `;
 
