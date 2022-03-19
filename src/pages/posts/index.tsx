@@ -5,6 +5,7 @@ import Select from 'react-select';
 
 import BlogPostCard from 'src/components/common/blog-post-card';
 import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
+import { tagSelectColourStyles } from 'src/components/common/tag';
 import * as Styled from 'src/components/posts/styles';
 import { getDatabase } from 'src/lib/notion';
 
@@ -25,11 +26,9 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
     return () => setSelectedTags([]);
   }, [query]);
 
-  const handleSelect = (option) => {
+  const handleSelect = (option: any) => {
     setSelectedTags(option);
   };
-
-  console.log(selectedTags);
 
   return (
     <Styled.Wrapper>
@@ -39,8 +38,14 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
           name="tags"
           placeholder="Tags"
           value={selectedTags}
-          options={tags}
+          options={tags.map((t: { id: string; name: string; color: string }) => ({
+            value: t.name,
+            label: t.name,
+            color: t.color,
+          }))}
           onChange={handleSelect}
+          // @ts-ignore: weird type compatibility thing
+          styles={tagSelectColourStyles}
         />
         <Styled.BlogPosts>
           {selectedTags.length > 0
@@ -60,9 +65,7 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
                     id={id}
                     date={properties.Date.date.start}
                     title={properties.Title.title[0].plain_text}
-                    tags={properties.Tags.multi_select.map(
-                      (t: { id: string; name: string }) => t.name
-                    )}
+                    tags={properties.Tags.multi_select}
                     description={properties.Description.rich_text[0].plain_text}
                   />
                 ))
@@ -72,9 +75,7 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
                   id={id}
                   date={properties.Date.date.start}
                   title={properties.Title.title[0].plain_text}
-                  tags={properties.Tags.multi_select.map(
-                    (t: { id: string; name: string }) => t.name
-                  )}
+                  tags={properties.Tags.multi_select}
                   description={properties.Description.rich_text[0].plain_text}
                 />
               ))}
@@ -88,12 +89,10 @@ export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
 
   const tags = database
-    ?.map((post) =>
-      /* @ts-ignore ts(2339) */
-      post.properties.Tags.multi_select.map((t: { id: string; name: string }) => ({
-        value: t.name,
-        label: t.name,
-      }))
+    ?.map(
+      (post) =>
+        /* @ts-ignore ts(2339) */
+        post.properties.Tags.multi_select
     )
     .flat();
 

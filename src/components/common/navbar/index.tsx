@@ -26,11 +26,6 @@ export default function Navbar() {
           </Link>
           <a />
           <NavbarButtons>
-            {router.pathname !== '/' && (
-              <Link href="/">
-                <a className="text-gray-700 dark:text-gray-200">Home</a>
-              </Link>
-            )}
             {router.pathname !== '/blog' && (
               <Link href="/posts">
                 <a className="text-gray-700 dark:text-gray-200">Blog</a>

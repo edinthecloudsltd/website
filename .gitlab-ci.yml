@@ -1,75 +1,98 @@
 image: node:16.8.0-buster
 
 variables:
-  DEV_STATE_BUCKET: mutatio-digital-nextjs-sls-state-dev
-  PROD_STATE_BUCKET: mutatio-digital-nextjs-sls-state-prod
 
 stages:
+  - build
+  - approve
   - deploy
 
-deploy-dev:
-    stage: deploy
-    only:
-      refs:
-          - merge_requests
-      variables:
-          - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "dev"
-    cache:
-      key: ${CI_COMMIT_REF_SLUG}
-      paths:
-        - node_modules/
-        - .next/cache/
-    before_script:
-      - apt update > /dev/null
-      - apt install awscli tree -y > /dev/null
-      - npm config set prefix /usr/local
-      - npm install --silent -g serverless 
-      - |
-        if aws s3api list-objects-v2 --bucket "$DEV_STATE_BUCKET" --prefix .serverless > /dev/null; then
-          aws s3 sync s3://$DEV_STATE_BUCKET/.serverless ./deploy/dev/.serverless --quiet --delete
-        fi
-    script:
-      - cp $ENV_VARS .env
-      - tree
-      - npm ci --silent
-      - npm run build
-      - cd ./deploy/dev && APP_ENV=dev serverless
-    after_script:
-      - aws s3 sync ./deploy/dev/.serverless s3://$DEV_STATE_BUCKET/.serverless --quiet --delete
-    environment: 
-      name: dev
-      url: https://dev.mutatio.co.uk
+build:
+  stage: build
+  only:
+    - main
+    - tags
+  script:
+    # Copy environment variables to .env
+    - | 
+      if [[ $CI_COMMIT_REF_NAME == "main" ]]
+      then 
+        cp $DEV_ENV_VARS .env
+      elif [[ -n $CI_COMMIT_TAG ]]
+      then
+        cp $PROD_ENV_VARS .env
+      else
+        echo "Invalid branch or no tag found"
+        exit 1
+      fi
+    - source .env
+    # Install NextJS deps
+    - npm ci --silent
+    # Build app and run postbuild (next-sitemap)
+    - npm run build && npm run postbuild
+    # CDK synth (also bundles the app)
+    - cd deploy
+    - npm ci --silent
+    - | 
+      if [[ -n $CI_COMMIT_TAG ]]
+      then 
+        ENVIRONMENT=production npx cdk synth
+      else 
+        npx cdk synth
+      fi
+  artifacts:
+    paths:
+      - node_modules
+      - deploy/node_modules
+      - deploy/cdk.out
+      - .serverless_nextjs
 
-# deploy-prod:
-#     stage: deploy
-#     only:
-#       refs:
-#           - merge_requests
-#       variables:
-#           - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
-#     cache:
-#       key: ${CI_COMMIT_REF_SLUG}
-#       paths:
-#         - node_modules/
-#         - .next/cache/
-#     before_script:
-#       - apt update > /dev/null
-#       - apt install awscli tree -y > /dev/null
-#       - npm config set prefix /usr/local
-#       - npm install --silent -g serverless 
-#       - |
-#         if aws s3api list-objects-v2 --bucket "$PROD_STATE_BUCKET" --prefix .serverless > /dev/null; then
-#           aws s3 sync s3://$PROD_STATE_BUCKET/.serverless ./deploy/prod/.serverless --quiet --delete
-#         fi
-#       - npm ci --silent
-#     script:
-#       - tree -I node_modules
-#       - printenv | grep NEXT_PUBLIC > .env
-#       - printenv | grep NEXTAUTH_URL >> .env
-#       - printenv | grep GITLAB_CLIENT >> .env
-#       - serverless
-#     after_script:
-#       - aws s3 sync ./deploy/prod/.serverless s3://$DEV_STATE_BUCKET/.serverless --quiet --delete
-#     environment: 
-#       name: prod
-#       url: https://www.mutatio.co.uk
+development:
+  stage: deploy
+  only:
+    - main
+  dependencies:
+    - build
+  environment:
+    name: dev
+    url: https://dev.mutatio.digital
+  script:
+    - mkdir ~/.aws
+    - cp $AWS_CONFIG ~/.aws/config
+    - cp $AWS_CREDENTIALS ~/.aws/credentials
+    # CDK deploy
+    - cd deploy
+    - npx cdk deploy --require-approval never --verbose --app 'cdk.out/' Mutatio/Website
+
+approve:
+  stage: approve
+  only:
+    - tags
+  except:
+    - branches
+  environment:
+    name: prod
+    url: https://mutatio.digital
+  when: manual
+  script:
+    - echo ''
+  allow_failure: false
+
+production:
+  stage: deploy
+  only:
+    - tags
+  except:
+    - branches
+  dependencies:
+    - build
+  environment:
+    name: prod
+    url: https://mutatio.digital
+  script:
+    - mkdir ~/.aws
+    - cp $AWS_CONFIG ~/.aws/config
+    - cp $AWS_CREDENTIALS ~/.aws/credentials
+    # CDK deploy
+    - cd deploy
+    - ENVIRONMENT=production npx cdk deploy --require-approval never --verbose --app 'cdk.out/' Mutatio/Website

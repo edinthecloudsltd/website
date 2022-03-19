@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
 import ErrorPage from 'src/components/common/error';
+import { Tag } from 'src/components/common/tag';
 import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
 import MaxWidthWrapper from '../../components/common/max-width-wrapper';
@@ -33,27 +34,26 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
       </Head>
       <MaxWidthWrapper>
         <div className={styles.heading}>
-          <h1>{page.properties.Title.title[0].plain_text}</h1>
+          <h1 style={{ lineHeight: '3rem' }}>{page.properties.Title.title[0].plain_text}</h1>
           <h3>{page.properties.Description.rich_text[0].plain_text}</h3>
           <div className={styles.tags}>
             {page.properties.Tags.multi_select.map(
               (t: { id: string; name: string; color: string }, i: number) => (
-                <span
-                  key={i}
-                  style={{
-                    color: 'white',
-                    background: t.color,
-                    borderRadius: '5px',
-                    padding: '0.1rem 0.5rem',
-                    boxShadow: '2px 2px 3px 0.2px rgba(0, 0, 0, 0.4)',
-                  }}
-                >
+                <Tag key={i} color={t.color}>
                   {t.name}
-                </span>
+                </Tag>
               )
             )}
           </div>
-          <p className={styles.date}>{new Date(page.created_time).toLocaleDateString()}</p>
+          <p className={styles.date}>
+            {' '}
+            {new Date(page.properties.Date.date.start).toLocaleDateString('en-GB', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </p>
         </div>
         {/* eslint-disable  react/no-children-prop */}
         <ReactMarkdown className={styles.content} remarkPlugins={[gfm]}>

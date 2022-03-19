@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { Tag } from 'src/components/common/tag';
+
 import * as Styled from './styles';
 
 export default function BlogPostCard({
@@ -12,20 +14,19 @@ export default function BlogPostCard({
   id: string;
   date: string;
   title: string;
-  tags: string[];
+  tags: { id: string; name: string; color: string }[];
   description: string;
 }) {
-  console.log(date);
   return (
     <Link passHref href={`/posts/${id}`}>
       <Styled.Card key={id} style={{ background: '#c7f1ff' }}>
         <h2
           style={{
             fontFamily: 'coffee-service, sans-serif',
-            fontSize: '1.5rem',
+            fontSize: '2rem',
             lineHeight: 1.2,
             fontWeight: 500,
-            letterSpacing: '0.1rem',
+            letterSpacing: '-1px',
             color: '#34344c',
             marginBottom: '1rem',
           }}
@@ -43,16 +44,9 @@ export default function BlogPostCard({
         </small>
         <Styled.TagContainer>
           {tags.map((t, i) => (
-            <Link
-              key={i}
-              passHref
-              href={{
-                pathname: '/posts',
-                query: { tag: t },
-              }}
-            >
-              <Styled.Tag>{t}</Styled.Tag>
-            </Link>
+            <Tag key={i} color={t.color}>
+              {t.name}
+            </Tag>
           ))}
         </Styled.TagContainer>
       </Styled.Card>

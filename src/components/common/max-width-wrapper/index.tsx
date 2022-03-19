@@ -8,6 +8,7 @@ export const StyledWrapper = styled.main`
   margin-right: auto;
   padding-left: 32px;
   padding-right: 32px;
+  background: white;
 
   @media (max-width: 563px) {
     padding-left: 16px;

@@ -9,19 +9,19 @@ const Footer: React.FC = () => {
   const date = new Date().getFullYear();
 
   return (
-    <MaxWidthWrapper>
-      <Styled.Wrapper>
+    <Styled.Wrapper>
+      <MaxWidthWrapper>
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            marginTop: 'auto',
             width: '100%',
+            height: '100%',
             paddingBottom: '2rem',
           }}
         >
-          <p>© {date} Ed in the Clouds</p>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <p style={{ marginTop: 'auto' }}>© {date} Ed in the Clouds</p>
+          <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
             <Styled.IconWrapper>
               <a href="https://twitter.com/ed1nthecloud">
                 <FaTwitter size={25} />
@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
             </Styled.IconWrapper>
           </div>
         </div>
-      </Styled.Wrapper>
-    </MaxWidthWrapper>
+      </MaxWidthWrapper>
+    </Styled.Wrapper>
   );
 };
 

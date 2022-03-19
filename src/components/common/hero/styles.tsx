@@ -6,39 +6,20 @@ interface StyledWrapperProps {
   size: string | undefined; // this prop is only used on the home page to allow for the larger blue background
 }
 
-const handleWrapperMaxHeight = (size: string | undefined): string => {
-  switch (size) {
-    case 'sm':
-      return '425px';
-    case 'lg':
-      return '1100px';
-    default:
-      return '900px';
-  }
-};
-
-const handleWrapperHeight = (size: string | undefined): string => {
-  switch (size) {
-    case 'lg':
-      return '87.5vh';
-    default:
-      return '70vh';
-  }
-};
-
 export const Wrapper = styled.div<StyledWrapperProps>`
   position: relative;
   display: flex;
   width: 100vw;
   //max-width: 1440px;
   height: 87.5vh;
-  max-height: ${({ size }) => handleWrapperMaxHeight(size)};
+  max-height: 87.5vh;
   background: #c7f1ff;
 
   // If on tablet or smaller device
   @media (max-width: 500px) {
-    height: ${({ size }) => handleWrapperHeight(size)};
+    height: 70vh;
     //margin-top: 20%;
+    padding-top: 20%;
   }
 `;
 
@@ -89,11 +70,18 @@ export const TextWrapper = styled.div`
   width: 12ch;
   height: 100%;
   z-index: 20;
+  font-size: 6rem;
+
+  @media (max-width: 568px) {
+    font-size: 6rem;
+    letter-spacing: -3px;
+    padding-right: 7.5px;
+  }
 `;
 
 export const HeadingWrapper = styled.div`
   width: 12ch;
-  font-weight: 300;
+  font-weight: 700;
   font-size: 3rem;
   line-height: 1;
 

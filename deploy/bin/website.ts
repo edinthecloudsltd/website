@@ -27,7 +27,7 @@ const configMap: IWebsiteConfigMap = {
       'arn:aws:acm:us-east-1:500405362207:certificate/03d52b78-38ab-4bde-8774-106af9e7e516',
   },
   production: {
-    env: { account: '385278205271', region: 'us-east-1' },
+    env: { account: '912474597003', region: 'us-east-1' },
     environment: 'production',
     domainNames: [
       'edintheclouds.io',
@@ -35,7 +35,8 @@ const configMap: IWebsiteConfigMap = {
       'edintheclouds.sh',
       'prod.edintheclouds.sh',
     ],
-    acmCertArn: '',
+    acmCertArn:
+      'arn:aws:acm:us-east-1:912474597003:certificate/e21d9428-5b12-4fc9-96eb-a6b155f02ff3',
   },
 };
 

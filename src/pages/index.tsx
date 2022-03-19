@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useMediaQuery } from 'react-responsive';
-
 import BlogPostCard from 'src/components/common/blog-post-card';
 import Hero, { HeroText } from 'src/components/common/hero';
 import Meta from 'src/components/common/layout/meta';
@@ -17,11 +15,16 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps> = ({ posts }) => {
-  const isMobile = useMediaQuery({ query: '(max-width: 568px)' });
-
-  console.log(posts);
   return (
     <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            html {
+              background: #c7f1ff;
+            }   `,
+        }}
+      />
       <Meta
         title="Ed in the Clouds"
         description="Cloud and Automation engineering blog. Brought to you from Manchester, UK"
@@ -34,9 +37,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
           <h1
             style={{
               fontFamily: 'coffee-service, sans-serif',
-              fontSize: isMobile ? '4rem' : '6rem',
               fontWeight: 700,
-              letterSpacing: '0.5rem',
               color: '#34344c',
               textAlign: 'center',
             }}
@@ -50,15 +51,15 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         <MaxWidthWrapper>
           <Styled.ContentCard style={{ background: '#c7f1ff' }} className="space-y-6">
             <p
-              style={{ fontFamily: 'coffee-service, sans-serif' }}
-              className="text-2xl font-bold lg:text-5xl text-blue200"
+              style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
+              className="text-3xl font-bold lg:text-5xl text-blue200"
             >{`Hi, I'm Ed.`}</p>
 
             <p className="text-2xl">{`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}</p>
 
             <p
-              style={{ fontFamily: 'coffee-service, sans-serif' }}
-              className="text-2xl font-bold lg:text-4xl"
+              style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
+              className="text-3xl font-bold lg:text-4xl"
             >{`I'm in my happy place when I'm...`}</p>
 
             <ul className="space-y-2 text-xl list-disc list-inside">
@@ -75,13 +76,13 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         <MaxWidthWrapper>
           <Styled.ContentCard style={{ background: '#c7f1ff' }}>
             <p
-              style={{ fontFamily: 'coffee-service, sans-serif' }}
-              className="text-2xl font-bold lg:text-5xl text-blue200"
+              style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
+              className="text-3xl font-bold lg:text-4xl"
             >{`What can I do?`}</p>
             <p className="text-xl">
               {`If you're interested in checking out my skillset, feel free to view my CV `}
               <a
-                href="/assets/docs/cv.pdf"
+                href="/assets/docs/EdwardSmithCV2022.pdf"
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: 'blue', fontWeight: 700 }}
@@ -99,9 +100,8 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               fontFamily: 'coffee-service, sans-serif',
               fontSize: '2.5rem',
               fontWeight: 500,
-              letterSpacing: '0.25rem',
+              letterSpacing: '-1px',
               color: '#34344c',
-              marginBottom: '1rem',
             }}
           >
             Latest Posts
@@ -117,9 +117,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
                   id={id}
                   date={properties.Date.date.start}
                   title={properties.Title.title[0].plain_text}
-                  tags={properties.Tags.multi_select.map(
-                    (t: { id: string; name: string }) => t.name
-                  )}
+                  tags={properties.Tags.multi_select}
                   description={properties.Description.rich_text[0].plain_text}
                 />
               )

@@ -4,17 +4,16 @@ export const Wrapper = styled.footer`
   display: flex;
   justify-content: space-between;
   height: 15rem;
-  width: 100%;
+  width: 100vw;
+  background: white;
 `;
 
 export const IconWrapper = styled.div`
   cursor: pointer;
 
-  & > svg {
-    transition: all 0.5s ease;
-  }
+  transition: all 0.5s ease;
 
-  & > svg:hover {
+  &:hover {
     transition: all 0.5s ease;
     transform-origin: center;
     transform: rotate(-10deg);

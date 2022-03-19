@@ -37,15 +37,12 @@ export const CloudParrallaxWrapper = styled.div<{ size: 'sm' | 'md' }>`
   margin-bottom: 2rem;
   overflow-bottom: hidden;
 
-  --sun-size: ${({ size }) => {
-    switch (size) {
-      case 'md': {
-        return '550px';
-      }
-      default:
-        return '300px';
-    }
-  }};
+  --sun-size: 500px;
+
+  @media (max-width: 568px) {
+    --sun-size: 300px;
+    padding-top: 20%;
+  }
 `;
 
 export const CloudLayerOne = styled.div`
@@ -54,6 +51,7 @@ export const CloudLayerOne = styled.div`
   bottom: -5rem;
   z-index: 20;
   animation: 12s ${layerOneAnimation} linear infinite;
+  background: none;
 
   & ${Cloud} {
     bottom: 20px;

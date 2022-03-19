@@ -22,10 +22,3 @@ export const TagContainer = styled.div`
   gap: 0.2rem;
   flex-wrap: wrap;
 `;
-
-export const Tag = styled.a`
-  background: rgba(126, 179, 227);
-  padding: 0.3rem;
-  color: white;
-  border-radius: 5px;
-`;

@@ -1,8 +1,32 @@
 import styled from 'styled-components';
 
+const handleTagColor = (color: string): string => {
+  switch (color) {
+    case 'yellow':
+      return 'rgb(253, 236, 200)';
+    case 'green':
+      return 'rgb(219, 237, 219)';
+    case 'brown':
+      return 'rgb(238, 224, 218)';
+    case 'purple':
+      return 'rgb(232, 222, 238)';
+    case 'blue':
+      return 'rgb(211, 229, 239)';
+    case 'pink':
+      return 'rgb(245, 224, 233)';
+    case 'red':
+      return 'rgb(255, 226, 221)';
+    case 'orange':
+      return 'rgb(250, 222, 201)';
+    default:
+      return 'blue';
+  }
+};
+
 export const Wrapper = styled.main`
   padding-top: var(--navbar-height);
   padding-bottom: 4rem;
+  background: white;
 `;
 
 export const BlogPosts = styled.div`
@@ -28,14 +52,15 @@ export const TagList = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Tag = styled.button`
+export const Tag = styled.button<{ color: string }>`
   display: flex;
   flex-wrap: no-wrap;
   align-items: center;
-  background: rgba(126, 179, 227);
+  background: ${({ color }) => handleTagColor(color)};
   padding: 0.3rem;
-  color: white;
   border-radius: 5px;
+  padding: 0.1rem 0.5rem;
+  box-shadow: 2px 2px 3px 0.2px rgba(0, 0, 0, 0.4);
 `;
 
 export const ActiveFilters = styled.div`
