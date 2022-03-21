@@ -19,5 +19,8 @@
   "[jsonc]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/esmith/code/edintheclouds/application/blog2/website/.github/workflows/main.yml"
   }
 }

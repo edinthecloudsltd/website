@@ -4,9 +4,8 @@ on:
   push:
     branches:
      - main
-  create:
     tags:
-      - *
+    - '*'
 
 jobs:
   build:
@@ -28,28 +27,31 @@ jobs:
             echo "Invalid branch or no tag found"
             exit 1
           fi
+      - name: Cat out env file
+        run: cat .env
       - name: Install dependencies and bundle application
         run: |
-        source .env
-        # Install NextJS deps
-        npm ci --silent
+          cat .env
+          source .env
+          # Install NextJS deps
+          npm ci --silent
 
-        # Build app and run postbuild (next-sitemap)
-        npm run build && npm run postbuild
+          # Build app and run postbuild (next-sitemap)
+          npm run build && npm run postbuild
 
-        # CDK synth (also bundles the app)
-        cd deploy
-        npm ci --silent
-        if [[ $GITHUB_REF_TYPE == "tag" ]]
-        then 
-          ENVIRONMENT=production npx cdk synth
-        else 
-          npx cdk synth
-        fi
+          # CDK synth (also bundles the app)
+          cd deploy
+          npm ci --silent
+          if [[ $GITHUB_REF_TYPE == "tag" ]]
+          then 
+            ENVIRONMENT=production npx cdk synth
+          else 
+            npx cdk synth
+          fi
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: nextjs-app
+          name: dependencies
           path: |
             node_modules
             deploy/node_modules
@@ -58,6 +60,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependencies
       - name: Deploy
         run: |
           mkdir ~/.aws
