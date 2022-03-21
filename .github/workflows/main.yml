@@ -1,0 +1,74 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+     - main
+  create:
+    tags:
+      - *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Copy environment variables into working directory
+        run: |
+          if [[ $GITHUB_REF_TYPE == "tag" ]]
+          then 
+            echo $PROD_ENV_VARS > .env
+            cat .env
+          elif [[ $GITHUB_REF_TYPE == "branch" ]]
+          then
+            echo $DEV_ENV_VARS > .env
+            cat .env
+          else
+            echo "Invalid branch or no tag found"
+            exit 1
+          fi
+      - name: Install dependencies and bundle application
+        run: |
+        source .env
+        # Install NextJS deps
+        npm ci --silent
+
+        # Build app and run postbuild (next-sitemap)
+        npm run build && npm run postbuild
+
+        # CDK synth (also bundles the app)
+        cd deploy
+        npm ci --silent
+        if [[ $GITHUB_REF_TYPE == "tag" ]]
+        then 
+          ENVIRONMENT=production npx cdk synth
+        else 
+          npx cdk synth
+        fi
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: nextjs-app
+          path: |
+            node_modules
+            deploy/node_modules
+            deploy/cdk.out
+            .serverless_nextjs
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: |
+          mkdir ~/.aws
+          echo $AWS_CONFIG > ~/.aws/config
+          cat ~/.aws/config
+          echo $AWS_CREDENTIALS > ~/.aws/credentials
+          cat ~/.aws/credentials
+          cd deploy
+          if [[ $GITHUB_REF_TYPE == "tag" ]]
+          then
+            ENVIRONMENT=production npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
+          else
+            npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
+          fi
