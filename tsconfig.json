@@ -35,6 +35,6 @@
     "noEmit": true,
     "isolatedModules": true
   },
-  "exclude": ["./out/**/*", "./node_modules/**/*"],
+  "exclude": ["./out/**/*", "./node_modules/**/*", "./deploy"],
   "include": ["next-env.d.ts", "./src/types/*.d.ts", "**/*.ts", "**/*.tsx"]
 }
