@@ -18,23 +18,23 @@ jobs:
         with:
           node-version: 16.x
       - name: Copy environment variables into working directory
+        env:
+          DEV_ENV_VARS: ${{ secrets.DEV_ENV_VARS }}
+          PROD_ENV_VARS: ${{ secrets.PROD_ENV_VARS }}
         run: |
           if [[ $GITHUB_REF_TYPE == "tag" ]]
           then 
-            echo $PROD_ENV_VARS > .env
-            echo $(cat .env)
+            echo $PROD_ENV_VARS | base64 -d > .env
           elif [[ $GITHUB_REF_TYPE == "branch" ]]
           then
-            echo $DEV_ENV_VARS > .env
-            cat .env
-            echo $(cat .env)
+            echo $DEV_ENV_VARS | base64 -d > .env
           else
             echo "Invalid branch or no tag found"
             exit 1
           fi
       - run: |
+          ls -lah
           cat .env
-          echo $(cat .env)
       - run: source .env
       - name: Install dependencies
         run: npm ci --silent
@@ -75,11 +75,14 @@ jobs:
           name: dependencies
           path: .
       - name: Setup AWS configuration
+        env:
+          AWS_CONFIG: ${{ secrets.AWS_CONFIG }}
+          AWS_CREDENTIALS: ${{ secrets.AWS_CREDENTIALS }}
         run: |
           mkdir ~/.aws
-          echo $AWS_CONFIG > ~/.aws/config
+          echo $AWS_CONFIG | base64 -d > ~/.aws/config
           cat ~/.aws/config
-          echo $AWS_CREDENTIALS > ~/.aws/credentials
+          echo $AWS_CREDENTIALS | base64 -d > ~/.aws/credentials
           cat ~/.aws/credentials
       - name: Deploy NextJS app
         run: |
