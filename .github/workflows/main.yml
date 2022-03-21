@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
       - name: Copy environment variables into working directory
         run: |
           if [[ $GITHUB_REF_TYPE == "tag" ]]
@@ -27,19 +31,14 @@ jobs:
             echo "Invalid branch or no tag found"
             exit 1
           fi
-      - name: Cat out env file
-        run: cat .env
-      - name: Install dependencies and bundle application
+      - run: cat .env
+      - run: source .env
+      - name: Install dependencies
+        run: npm ci --silent
+      - name: Build app and run postbuild (next-sitemap)
+        run: npm run build && npm run postbuild
+      - name: CDK synth
         run: |
-          cat .env
-          source .env
-          # Install NextJS deps
-          npm ci --silent
-
-          # Build app and run postbuild (next-sitemap)
-          npm run build && npm run postbuild
-
-          # CDK synth (also bundles the app)
           cd deploy
           npm ci --silent
           if [[ $GITHUB_REF_TYPE == "tag" ]]
@@ -62,17 +61,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
       - name: Download artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dependencies
-      - name: Deploy
+          path: .
+      - name: Setup AWS configuration
         run: |
           mkdir ~/.aws
           echo $AWS_CONFIG > ~/.aws/config
           cat ~/.aws/config
           echo $AWS_CREDENTIALS > ~/.aws/credentials
           cat ~/.aws/credentials
+      - name: Deploy NextJS app
+        run: |
           cd deploy
           if [[ $GITHUB_REF_TYPE == "tag" ]]
           then
