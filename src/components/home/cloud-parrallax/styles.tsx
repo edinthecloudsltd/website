@@ -1,29 +1,34 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import CloudSVG from 'public/assets/svg/cloud.svg';
 
+const cloudWidth = 350;
+const layerOneOffset = 400;
+const layerTwoOffset = 300;
+const layerThreeOffset = 200;
+
 const layerOneAnimation = keyframes`
 100% {
-  transform: translate3d(-300px, 0, 0);
+  transform: translate3d(-${layerOneOffset}px, 0, 0);
 }
 `;
 
 const layerTwoAnimation = keyframes`
 100% {
-  transform: translate3d(-500px, 0, 0);
+  transform: translate3d(-${layerTwoOffset}px, 0, 0);
 }
 
 `;
 const layerThreeAnimation = keyframes`
 100% {
-  transform: translate3d(-200px, 0, 0);
+  transform: translate3d(-${layerThreeOffset}px, 0, 0);
 }
 `;
 
 export const Cloud = styled(CloudSVG)`
   position: absolute;
   bottom: -20px;
-  width: 350px;
+  width: ${cloudWidth}px;
   height: 300px;
   fill: white;
 `;
@@ -41,11 +46,33 @@ export const CloudParrallaxWrapper = styled.div<{ size: 'sm' | 'md' }>`
 
   @media (max-width: 568px) {
     --sun-size: 300px;
-    padding-top: 20%;
   }
 `;
 
-export const CloudLayerOne = styled.div`
+export const CloudLayer = styled.div`
+  position: absolute;
+  width: 120vw;
+  bottom: 0;
+`;
+
+function generateCloudsCSS(screenWidth: number, startingOffset: number, offset: number) {
+  const numClouds = Math.ceil(screenWidth / offset) * 2;
+  let styles = '';
+  let currentOffset = startingOffset;
+  for (let i = 0; i < numClouds; i += 1) {
+    styles += `
+    & ${Cloud}:nth-child(${i}) {
+      left: ${currentOffset}px;
+    }
+    `;
+    currentOffset += offset;
+  }
+  return css`
+    ${styles}
+  `;
+}
+
+export const CloudLayerOne = styled.div<{ width: number }>`
   position: relative;
   width: 100%;
   bottom: -5rem;
@@ -54,156 +81,40 @@ export const CloudLayerOne = styled.div`
   background: none;
 
   & ${Cloud} {
-    bottom: 20px;
+    bottom: 10px;
   }
 
-  & ${Cloud}:nth-child(1) {
-    left: -100px;
-  }
-  & ${Cloud}:nth-child(2) {
-    left: 200px;
-  }
-  & ${Cloud}:nth-child(3) {
-    left: 500px;
-  }
-  & ${Cloud}:nth-child(4) {
-    left: 800px;
-  }
-  & ${Cloud}:nth-child(5) {
-    left: 1100px;
-  }
-  & ${Cloud}:nth-child(6) {
-    left: 1400px;
-  }
-  & ${Cloud}:nth-child(7) {
-    left: 1700px;
-  }
-  & ${Cloud}:nth-child(8) {
-    left: 2000px;
-  }
-  & ${Cloud}:nth-child(9) {
-    left: 2300px;
-  }
-  & ${Cloud}:nth-child(10) {
-    left: 2600px;
-  }
+  ${({ width }) => generateCloudsCSS(width, -1000, layerOneOffset)}
 `;
 
-export const CloudLayerTwo = styled.div`
+export const CloudLayerTwo = styled.div<{ width: number }>`
   position: relative;
   width: 100%;
   z-index: 10;
   animation: 12s ${layerTwoAnimation} linear infinite;
-  bottom: -3rem;
-
-  & div {
-    position: absolute;
-    border-radius: 8%;
-    transform: rotate(45deg);
-    bottom: -300px;
-    width: 400px;
-    height: 400px;
-    background: #203560;
-  }
+  bottom: -3.5rem;
 
   & ${Cloud} {
     bottom: 0px;
     transform: rotate(-7deg);
   }
 
-  & ${Cloud}:nth-child(1) {
-    left: -500px;
-  }
-  & ${Cloud}:nth-child(2) {
-    left: 0px;
-  }
-  & ${Cloud}:nth-child(3) {
-    left: 500px;
-  }
-  & ${Cloud}:nth-child(4) {
-    left: 1000px;
-  }
-  & ${Cloud}:nth-child(5) {
-    left: 1500px;
-  }
-  & ${Cloud}:nth-child(6) {
-    left: 2000px;
-  }
-  & ${Cloud}:nth-child(7) {
-    left: 2500px;
-  }
-  & ${Cloud}:nth-child(8) {
-    left: 3000px;
-  }
-  & ${Cloud}:nth-child(9) {
-    left: 3500px;
-  }
-  & ${Cloud}:nth-child(10) {
-    left: 4000px;
-  }
+  ${({ width }) => generateCloudsCSS(width, -500, layerTwoOffset)}
 `;
 
-export const CloudLayerThree = styled.div`
+export const CloudLayerThree = styled.div<{ width: number }>`
   position: relative;
   width: 100%;
   z-index: 20;
   animation: 12s ${layerThreeAnimation} linear infinite;
   bottom: -2rem;
 
-  & div {
-    position: absolute;
-    border-radius: 8%;
-    transform: rotate(45deg);
-    bottom: -300px;
-    width: 400px;
-    height: 400px;
-    background: #203560;
-  }
-
   & ${Cloud} {
     bottom: 10px;
     opacity: 0.6;
   }
 
-  & ${Cloud}:nth-child(1) {
-    left: -200px;
-  }
-  & ${Cloud}:nth-child(2) {
-    left: 0px;
-  }
-  & ${Cloud}:nth-child(3) {
-    left: 200px;
-  }
-  & ${Cloud}:nth-child(4) {
-    left: 400px;
-  }
-  & ${Cloud}:nth-child(5) {
-    left: 600px;
-  }
-  & ${Cloud}:nth-child(6) {
-    left: 800px;
-  }
-  & ${Cloud}:nth-child(7) {
-    left: 1000px;
-  }
-  & ${Cloud}:nth-child(8) {
-    left: 1200px;
-  }
-  & ${Cloud}:nth-child(9) {
-    left: 1400px;
-  }
-  & ${Cloud}:nth-child(10) {
-    left: 1600px;
-  }
-  & ${Cloud}:nth-child(11) {
-    left: 1800px;
-  }
-`;
-
-export const CloudLayer = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: 0;
+  ${({ width }) => generateCloudsCSS(width, -400, layerThreeOffset)}
 `;
 
 export const Sun = styled.object`

@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import { useRouter } from 'next/router';
 import Select from 'react-select';
 
 import BlogPostCard from 'src/components/common/blog-post-card';
@@ -10,21 +9,7 @@ import * as Styled from 'src/components/posts/styles';
 import { getDatabase } from 'src/lib/notion';
 
 export default function Posts({ posts, tags }: { posts: any; tags: any }) {
-  const { query } = useRouter();
   const [selectedTags, setSelectedTags] = useState<{ value: string; label: string }[]>([]);
-
-  useEffect(() => {
-    Object.entries(query).forEach(([_, value]) => {
-      if (Array.isArray(value)) {
-        const tagsQuery = value.map((t) => decodeURIComponent(t));
-        setSelectedTags((prev: any) => [...prev, ...tagsQuery]);
-      } else {
-        const tagQuery = decodeURIComponent(value!);
-        setSelectedTags((prev: any) => [...prev, tagQuery]);
-      }
-    });
-    return () => setSelectedTags([]);
-  }, [query]);
 
   const handleSelect = (option: any) => {
     setSelectedTags(option);
