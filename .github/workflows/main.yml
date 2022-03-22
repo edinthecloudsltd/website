@@ -65,10 +65,9 @@ jobs:
         with:
           node-version: 16.x
       - name: Download artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: build
-          path: build.tar.gz
       - name: Extract build artifact
         run: tar xzf build.tar.gz
       - name: Setup AWS configuration
