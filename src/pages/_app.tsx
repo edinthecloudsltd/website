@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { SessionProvider } from 'next-auth/react';
-import { ThemeProvider } from 'next-themes';
 import { AppProps } from 'next/app';
 
 import Layout from 'src/components/common/layout';
@@ -22,11 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
       <SessionProvider session={pageProps.session}>
         <Auth>
-          <ThemeProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ThemeProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </Auth>
       </SessionProvider>
     );
