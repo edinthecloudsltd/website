@@ -1,9 +1,11 @@
-name: Deploy
+name: Deploy to AWS
 
 on:
   push:
+    # Pushes to main will trigger a development release to the development account.
     branches:
      - main
+    # Tags indicate that this is a production release, and will be deployed to the production account.
     tags:
     - '*'
 
