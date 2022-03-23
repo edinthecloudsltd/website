@@ -62,12 +62,17 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               className="text-3xl font-bold lg:text-4xl"
             >{`I'm in my happy place when I'm...`}</p>
 
-            <ul className="space-y-2 text-xl list-disc list-inside">
-              <li>Scripting and automating stuff</li>
-              <li>Building and engineering cloud infrastructure</li>
-              <li>Helping developers deliver faster and safely</li>
-              <li>Coding and building apps and services</li>
-              <li>Learning!</li>
+            <ul
+              className="space-y-2 text-xl list-disc list-outside"
+              style={{ paddingLeft: '1rem' }}
+            >
+              <li>⚙️ Scripting and automating stuff</li>
+              <li>
+                🧑‍💻 Improving developer experience by helping them to deliver software quicker,
+                and more safely
+              </li>
+              <li>🏗 Building and engineering cloud infrastructure</li>
+              <li>🎓 Learning!</li>
             </ul>
           </Styled.ContentCard>
         </MaxWidthWrapper>
@@ -85,10 +90,11 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
                 href="/assets/docs/EdwardSmithCV2022.pdf"
                 target="_blank"
                 rel="noreferrer"
-                style={{ color: 'blue', fontWeight: 700 }}
+                style={{ color: 'rgba(100, 150, 255, 1)', fontWeight: 700 }}
               >
-                here
+                {`here`}
               </a>
+              {` 📄`}
             </p>
           </Styled.ContentCard>
         </MaxWidthWrapper>
@@ -102,9 +108,10 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               fontWeight: 500,
               letterSpacing: '-1px',
               color: '#34344c',
+              paddingLeft: '1.5rem',
             }}
           >
-            Latest Posts
+            Latest Posts 📝
           </h1>
           <BlogPosts>
             {posts.map(

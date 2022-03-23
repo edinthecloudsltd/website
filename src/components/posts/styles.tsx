@@ -34,7 +34,6 @@ export const BlogPosts = styled.div`
   grid-template-columns: repeat(auto-fill, 450px);
   gap: 2rem;
   justify-content: center;
-  padding-top: 2rem;
 
   @media (max-width: 568px) {
     grid-template-columns: repeat(auto-fill, 95vw);
