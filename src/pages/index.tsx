@@ -34,16 +34,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
       <Hero>
         <CloudParrallax />
         <HeroText>
-          <h1
-            style={{
-              fontFamily: 'coffee-service, sans-serif',
-              fontWeight: 700,
-              color: '#34344c',
-              textAlign: 'center',
-            }}
-          >
-            Ed in the Clouds
-          </h1>
+          <Styled.Heading>Ed in the Clouds</Styled.Heading>
         </HeroText>
       </Hero>
 
@@ -85,14 +76,14 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               className="text-3xl font-bold lg:text-4xl"
             >{`What can I do?`}</p>
             <p className="text-xl">
-              {`If you're interested in checking out my skillset, feel free to view my CV `}
+              {`If you're interested in checking out my skillset, `}
               <a
                 href="/assets/docs/EdwardSmithCV2022.pdf"
                 target="_blank"
                 rel="noreferrer"
-                style={{ color: 'rgba(100, 150, 255, 1)', fontWeight: 700 }}
+                style={{ color: 'var(--blue)', fontWeight: 700 }}
               >
-                {`here`}
+                please check out my CV
               </a>
               {` 📄`}
             </p>

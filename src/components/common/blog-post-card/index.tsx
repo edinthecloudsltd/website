@@ -34,7 +34,7 @@ export default function BlogPostCard({
           {title}
         </h2>
         <p>{description}</p>
-        <small className="text-blue200">
+        <small style={{ fontWeight: 500 }} className="text-blue200">
           {new Date(date).toLocaleDateString('en-GB', {
             weekday: 'long',
             year: 'numeric',

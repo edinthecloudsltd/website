@@ -19,4 +19,8 @@ module.exports = withBundleAnalyzer({
     });
     return config;
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 });

@@ -22,14 +22,16 @@ export default function Navbar() {
       {show && (
         <NavbarInnerWrapper>
           <Link href="/" passHref>
-            <NavbarLogo src="assets/images/profile.png" />
+            <NavbarLogo src="assets/images/profile.png" alt="ed-picture" />
           </Link>
           <a />
           <NavbarButtons>
             {router.pathname !== '/blog' && (
-              <Link href="/posts">
-                <a className="text-gray-700 dark:text-gray-200">Blog</a>
-              </Link>
+              <li>
+                <Link href="/posts">
+                  <a className="text-gray-700 dark:text-gray-200">Blog</a>
+                </Link>
+              </li>
             )}
           </NavbarButtons>
         </NavbarInnerWrapper>

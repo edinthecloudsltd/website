@@ -32,20 +32,11 @@ const CloudParrallax: React.FC = () => {
           ))}
         </Styled.CloudLayerThree>
       </Styled.CloudLayer>
-      <Styled.Sun>
+      <Styled.Sun aria-label="sun">
         <Styled.RayContainer>
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
-          <Styled.Ray />
+          {Array.from(Array(12)).map((_, i) => (
+            <Styled.Ray key={i} aria-label="sun ray" />
+          ))}
         </Styled.RayContainer>
       </Styled.Sun>
     </Styled.CloudParrallaxWrapper>

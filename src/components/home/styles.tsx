@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const HomeHeadingWrapper = styled.section`
   display: flex;
@@ -6,6 +6,19 @@ export const HomeHeadingWrapper = styled.section`
   font-weight: 700;
   justify-content: center;
   align-items: center;
+`;
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
+export const Heading = styled.h1`
+  font-family: coffee-service; sans-serif;
+  font-weight: 700;
+  color: #34344c;
+  text-align: center;
+  animation: ${fadeIn} 1s;
 `;
 
 export const SectionWrapper = styled.main`
@@ -23,7 +36,7 @@ export const ContentCard = styled.main`
   border-radius: 50px;
   padding: 5rem;
   margin: 0 auto;
-  box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 12px 12px 2px rgba(0; 0; 0; 0.1);
 
   @media (max-width: 568px) {
     padding: 5rem 2rem;

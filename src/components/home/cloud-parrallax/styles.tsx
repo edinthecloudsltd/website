@@ -41,6 +41,7 @@ export const CloudParrallaxWrapper = styled.div<{ size: 'sm' | 'md' }>`
   left: 0;
   margin-bottom: 2rem;
   overflow-bottom: hidden;
+  will-change: transform;
 
   --sun-size: 500px;
 
