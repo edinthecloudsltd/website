@@ -2,6 +2,8 @@ name: Deploy to AWS
 
 on:
   push:
+    paths:
+      - src/**
     # Pushes to main will trigger a development release to the development account.
     branches:
      - main
@@ -50,13 +52,12 @@ jobs:
             npx cdk synth
           fi
       - name: Compress bundle
-        run: tar czf build.tar.gz .serverless_nextjs node_modules deploy/node_modules deploy/cdk.out 
-      - name: Upload artifacts
+        run: tar czf build.tar.gz .serverless_nextjs
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: build.tar.gz
-          retention: 1
+          retention-days: 1
   deploy:
     runs-on: ubuntu-latest
     needs: build
