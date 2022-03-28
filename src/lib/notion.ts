@@ -1,6 +1,8 @@
 import { Client } from '@notionhq/client';
 import type { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
 
+import { Page } from 'src/types';
+
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -42,13 +44,13 @@ export const getPage = async (pageId: string) => {
     const response: GetPageResponse = await notion.pages.retrieve({ page_id: pageId });
     /* @ts-ignore ts(2339) */
     if (!response.properties.Published.checkbox) {
-      return null;
+      return undefined;
     }
-    return response;
+    return response as Page;
   } catch (err) {
     console.error(err);
   }
-  return null;
+  return undefined;
 };
 
 export const getBlocks = async (pageId: string) => {

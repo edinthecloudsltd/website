@@ -77,6 +77,19 @@ export const getStaticProps = async (ctx: any) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
+  const publicPath = `/assets/images/posts/${
+    // @ts-ignore ts(2532)
+    page?.properties.Title.title[0].plain_text.replace(/ +/g, '-').toLowerCase()
+  }`;
+
+  blocks?.forEach((d: any) => {
+    if (d.type === 'image' && d.image.caption.length > 0) {
+      const caption = d.image?.caption[0].plain_text.toLowerCase();
+      /* eslint-disable  no-param-reassign */
+      d.image.file.url = `${publicPath}/${caption}.png` || '';
+    }
+  });
+
   const notion = new Client({});
   const n2m = new NotionToMarkdown({
     notionClient: notion,

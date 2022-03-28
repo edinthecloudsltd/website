@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
 
 export const Card = styled.div`
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -11,6 +16,8 @@ export const Card = styled.div`
   padding: 3.5rem;
   //transition: 0.3s ease;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
+
+  animation: ${fadeIn} 0.3s;
 
   &:hover {
     transform: scale(1.02);

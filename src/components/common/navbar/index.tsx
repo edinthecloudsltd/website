@@ -22,7 +22,7 @@ export default function Navbar() {
       {show && (
         <NavbarInnerWrapper>
           <Link href="/" passHref>
-            <NavbarLogo src="assets/images/profile.png" alt="ed-picture" />
+            <NavbarLogo src="/assets/images/profile.png" alt="ed-picture" />
           </Link>
           <a />
           <NavbarButtons>

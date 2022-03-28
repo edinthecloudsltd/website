@@ -18,20 +18,22 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
   return (
     <Styled.Wrapper>
       <MaxWidthWrapper>
-        <Select
-          isMulti
-          name="tags"
-          placeholder="Tags"
-          value={selectedTags}
-          options={tags.map((t: { id: string; name: string; color: string }) => ({
-            value: t.name,
-            label: t.name,
-            color: t.color,
-          }))}
-          onChange={handleSelect}
-          // @ts-ignore: weird type compatibility thing
-          styles={tagSelectColourStyles}
-        />
+        <div style={{ marginBottom: '2rem' }}>
+          <Select
+            isMulti
+            name="tags"
+            placeholder="Tags"
+            value={selectedTags}
+            options={tags.map((t: { id: string; name: string; color: string }) => ({
+              value: t.name,
+              label: t.name,
+              color: t.color,
+            }))}
+            onChange={handleSelect}
+            // @ts-ignore: weird type compatibility thing
+            styles={tagSelectColourStyles}
+          />
+        </div>
         <Styled.BlogPosts>
           {selectedTags.length > 0
             ? posts
