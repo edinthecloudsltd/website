@@ -36,7 +36,7 @@ export const ContentCard = styled.main`
   border-radius: 50px;
   padding: 5rem;
   margin: 0 auto;
-  box-shadow: 0px 12px 12px 2px rgba(0; 0; 0; 0.1);
+  box-shadow: rgb(0 0 0 / 10%) 0px 12px 12px 2px;
 
   @media (max-width: 568px) {
     padding: 5rem 2rem;
