@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -57,7 +58,10 @@ jobs:
           name: build
           path: build.tar.gz
           retention-days: 1
-  deploy:
+
+  deploy-dev:
+    if: github.ref_name == 'main'
+    name: Deploy to development
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -86,9 +90,37 @@ jobs:
       - name: Deploy NextJS app
         run: |
           cd deploy
-          if [[ $GITHUB_REF_TYPE == "tag" ]]
-          then
-            ENVIRONMENT=production npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
-          else
-            npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
-          fi
+          npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
+
+  deploy-prod:
+    if: github.ref_type == 'tag'
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+      - name: Extract build artifact
+        run: tar xzf build.tar.gz
+      - name: Setup AWS configuration
+        env:
+          AWS_CONFIG: ${{ secrets.AWS_CONFIG }}
+          AWS_CREDENTIALS: ${{ secrets.AWS_CREDENTIALS }}
+        run: |
+          mkdir ~/.aws
+          echo $AWS_CONFIG | base64 -d > ~/.aws/config
+          cat ~/.aws/config
+          echo $AWS_CREDENTIALS | base64 -d > ~/.aws/credentials
+          cat ~/.aws/credentials
+      - name: Deploy NextJS app
+        run: |
+          cd deploy
+          ENVIRONMENT=production npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
