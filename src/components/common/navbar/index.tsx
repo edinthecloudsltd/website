@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { FaMoon, FaSun } from 'react-icons/fa';
 import { useWindowScroll } from 'react-use';
+
+import { DisplayContext } from 'src/context/display';
 
 import { NavbarWrapper, NavbarInnerWrapper, NavbarLogo, NavbarButtons } from './styles';
 
@@ -10,12 +13,17 @@ export default function Navbar() {
   const router = useRouter();
   const { y } = useWindowScroll();
   const [show, setShow] = useState<boolean>(false);
+  const { activeTheme, setTheme } = useContext(DisplayContext);
 
   useEffect(() => {
     if (y > 50) {
       setShow(true);
+    } else {
+      setShow(false);
     }
   }, [y]);
+
+  const toggleTheme = () => (activeTheme === 'light' ? setTheme('dark') : setTheme('light'));
 
   return (
     <NavbarWrapper show={show}>
@@ -33,6 +41,9 @@ export default function Navbar() {
                 </Link>
               </li>
             )}
+            <button onClick={toggleTheme}>
+              {activeTheme === 'light' ? <FaSun /> : <FaMoon />}
+            </button>
           </NavbarButtons>
         </NavbarInnerWrapper>
       )}

@@ -26,7 +26,7 @@ const handleTagColor = (color: string): string => {
 export const Wrapper = styled.main`
   padding-top: var(--navbar-height);
   padding-bottom: 4rem;
-  background: white;
+  background: ${({ theme }) => theme.background};
 `;
 
 export const BlogPosts = styled.div`

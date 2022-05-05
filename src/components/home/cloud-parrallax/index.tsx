@@ -1,8 +1,13 @@
+import { useContext } from 'react';
+
 import { useMediaQuery } from 'react-responsive';
+
+import { DisplayContext } from 'src/context/display';
 
 import * as Styled from './styles';
 
 const CloudParrallax: React.FC = () => {
+  const { activeTheme } = useContext(DisplayContext);
   const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const size = isMobile ? 'sm' : 'md';
   const screenWidth = 2550;
@@ -32,13 +37,17 @@ const CloudParrallax: React.FC = () => {
           ))}
         </Styled.CloudLayerThree>
       </Styled.CloudLayer>
-      <Styled.Sun aria-label="sun">
-        <Styled.RayContainer>
-          {Array.from(Array(12)).map((_, i) => (
-            <Styled.Ray key={i} aria-label="sun ray" />
-          ))}
-        </Styled.RayContainer>
-      </Styled.Sun>
+      {activeTheme === 'light' ? (
+        <Styled.Sun aria-label="sun">
+          <Styled.RayContainer>
+            {Array.from(Array(12)).map((_, i) => (
+              <Styled.Ray key={i} aria-label="sun ray" />
+            ))}
+          </Styled.RayContainer>
+        </Styled.Sun>
+      ) : (
+        <Styled.Moon aria-label="moon" />
+      )}
     </Styled.CloudParrallaxWrapper>
   );
 };

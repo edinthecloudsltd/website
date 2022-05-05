@@ -10,15 +10,14 @@ export const Wrapper = styled.div<StyledWrapperProps>`
   position: relative;
   display: flex;
   width: 100vw;
-  //max-width: 1440px;
   height: 87.5vh;
   max-height: 87.5vh;
-  background: #c7f1ff;
+  background: ${({ theme }) => theme.sky};
+  overflow: hidden;
 
   // If on tablet or smaller device
   @media (max-width: 500px) {
     height: 70vh;
-    //margin-top: 20%;
     padding-top: 20%;
   }
 `;
@@ -35,7 +34,6 @@ export const Content = styled.div`
 
   @media ${devices.tablet} {
     margin: 0 auto;
-    //max-width: min(80vw, 1440px);
   }
 `;
 

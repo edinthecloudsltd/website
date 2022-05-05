@@ -3,8 +3,8 @@ import styled, { css, keyframes } from 'styled-components';
 import CloudSVG from 'public/assets/svg/cloud.svg';
 
 const cloudWidth = 350;
-const layerOneOffset = 400;
-const layerTwoOffset = 300;
+const layerOneOffset = 300;
+const layerTwoOffset = 150;
 const layerThreeOffset = 200;
 
 const layerOneAnimation = keyframes`
@@ -30,7 +30,7 @@ export const Cloud = styled(CloudSVG)`
   bottom: -20px;
   width: ${cloudWidth}px;
   height: 300px;
-  fill: white;
+  fill: ${({ theme }) => theme.clouds};
 `;
 
 export const CloudParrallaxWrapper = styled.div<{ size: 'sm' | 'md' }>`
@@ -77,7 +77,7 @@ export const CloudLayerOne = styled.div<{ width: number }>`
   position: relative;
   width: 100%;
   bottom: -5rem;
-  z-index: 20;
+  z-index: 30;
   animation: 12s ${layerOneAnimation} linear infinite;
   background: none;
 
@@ -91,13 +91,14 @@ export const CloudLayerOne = styled.div<{ width: number }>`
 export const CloudLayerTwo = styled.div<{ width: number }>`
   position: relative;
   width: 100%;
-  z-index: 10;
-  animation: 12s ${layerTwoAnimation} linear infinite;
+  z-index: 20;
+  animation: 4s ${layerTwoAnimation} linear infinite;
   bottom: -3.5rem;
 
   & ${Cloud} {
     bottom: 0px;
     transform: rotate(-7deg);
+    opacity: ${({ theme }) => theme.cloudOpacity};
   }
 
   ${({ width }) => generateCloudsCSS(width, -500, layerTwoOffset)}
@@ -106,16 +107,47 @@ export const CloudLayerTwo = styled.div<{ width: number }>`
 export const CloudLayerThree = styled.div<{ width: number }>`
   position: relative;
   width: 100%;
-  z-index: 20;
+  z-index: 10;
   animation: 12s ${layerThreeAnimation} linear infinite;
   bottom: -2rem;
 
   & ${Cloud} {
     bottom: 10px;
-    opacity: 0.6;
+    color: #f9faf7;
+    opacity: ${({ theme }) => theme.cloudOpacity};
   }
 
   ${({ width }) => generateCloudsCSS(width, -400, layerThreeOffset)}
+`;
+
+const rise = keyframes`
+  0% {
+    top: 100%;
+    z-index: 0;
+  }
+  100% {
+    top: 0;
+  }
+`;
+
+export const Moon = styled.object`
+  position: absolute;
+  margin: auto;
+  height: var(--sun-size);
+  width: var(--sun-size);
+  right: 0;
+  border-radius: 50%;
+  background: #fefcd7;
+  opacity: 0.9;
+  box-shadow: 0px 0px 40px 15px #fefcd7;
+  z-index: 1;
+
+  animation: ${rise} 1.5s;
+
+  @media (max-width: 568px) {
+    bottom: 10rem;
+    left: 8rem;
+  }
 `;
 
 export const Sun = styled.object`
@@ -129,6 +161,8 @@ export const Sun = styled.object`
   opacity: 0.9;
   box-shadow: 0px 0px 40px 15px rgba(250, 222, 175);
   z-index: 1;
+
+  animation: ${rise} 1.5s;
 
   @media (max-width: 568px) {
     bottom: 10rem;

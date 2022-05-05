@@ -9,10 +9,14 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   font-size: 1.6rem;
   font-family: coffee-service, sans-serif;
   padding: 0.5rem 1rem;
-  margin-bottom: ${({ show }) => (show ? `6rem` : `0`)};
+  margin-bottom: ${({ show }) => (show ? `var(--navbar-height)` : `0`)};
   top: 0;
   opacity: ${({ show }) => (show ? `1` : `0`)};
-  transition: opacity 0.4s ease-in;
+  transition: all 0.4s ease-in;
+
+  @media (max-width: 568px) {
+    background: ${({ theme }) => theme.background};
+  }
 `;
 
 export const NavbarInnerWrapper = styled.div`
@@ -20,9 +24,9 @@ export const NavbarInnerWrapper = styled.div`
   flex-direction: row;
   max-width: 100%;
   margin: auto;
-  padding: 0.5em 2rem;
+  padding: 0.2em 2rem;
   justify-content: space-between;
-  height: 5rem;
+  height: 100%;
 `;
 
 export const NavbarLogo = styled.img`
@@ -35,9 +39,11 @@ export const NavbarLogo = styled.img`
 `;
 
 export const NavbarButtons = styled.ul`
-  display: inline;
-  margin: auto 0;
+  display: flex;
+  gap: 2rem;
+  margin: auto 2rem;
   justify-content: end;
+  color: ${({ theme }) => theme.navButtonPrimary};
 
   & a {
     font-weight: 800;
@@ -47,12 +53,8 @@ export const NavbarButtons = styled.ul`
     cursor: pointer;
 
     &:hover {
-      color: #666464;
+      color: ${({ theme }) => theme.navButtonSecondary};
       border-bottom: 1px solid #666464;
     }
-  }
-
-  & svg {
-    margin: 0 1.5rem;
   }
 `;

@@ -3,9 +3,9 @@ import React from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 
+import Auth from 'src/components/common/auth';
 import Layout from 'src/components/common/layout';
-
-import Auth from '../components/common/auth';
+import { DisplayProvider } from 'src/context/display';
 // import Script from 'next/script';
 
 // Used to import tailwindcss
@@ -21,17 +21,21 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
       <SessionProvider session={pageProps.session}>
         <Auth>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <DisplayProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </DisplayProvider>
         </Auth>
       </SessionProvider>
     );
   }
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <DisplayProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </DisplayProvider>
   );
 }

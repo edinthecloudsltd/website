@@ -4,8 +4,16 @@
 @tailwind utilities;
 
 :root {
-  --navbar-height: 6rem;
+  --navbar-height: 5rem;
+  --text-primary: #374151;
+  --text-secondary: #fe4632;
+  --text-code: #111827;
   --blue: #0373fc;
+}
+
+[data-theme='dark'] {
+  --text-primary: white;
+  --text-code: #b5b5b5;
 }
 
 body {
@@ -14,7 +22,6 @@ body {
   font-style: normal;
   line-height: 1.6;
   font-size: 16px;
-  color: #34344c;
 }
 
 a {

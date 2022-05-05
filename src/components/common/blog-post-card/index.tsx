@@ -19,20 +19,8 @@ export default function BlogPostCard({
 }) {
   return (
     <Link passHref href={`/posts/${id}`}>
-      <Styled.Card key={id} style={{ background: '#c7f1ff' }}>
-        <h2
-          style={{
-            fontFamily: 'coffee-service, sans-serif',
-            fontSize: '2rem',
-            lineHeight: 1.2,
-            fontWeight: 500,
-            letterSpacing: '-1px',
-            color: '#34344c',
-            marginBottom: '1rem',
-          }}
-        >
-          {title}
-        </h2>
+      <Styled.Card key={id}>
+        <Styled.CardTitle>{title}</Styled.CardTitle>
         <p>{description}</p>
         <small style={{ fontWeight: 500 }} className="text-blue200">
           {new Date(date).toLocaleDateString('en-GB', {

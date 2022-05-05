@@ -16,12 +16,24 @@ export const Card = styled.div`
   padding: 3.5rem;
   //transition: 0.3s ease;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.cardBg};
 
   animation: ${fadeIn} 0.3s;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.02);
   }
+`;
+
+export const CardTitle = styled.h2`
+  font-family: coffee-service, sans-serif;
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -1px;
+  color: ${({ theme }) => theme.color}
+  margin-bottom: 1rem;
 `;
 
 export const TagContainer = styled.div`

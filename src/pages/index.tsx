@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import BlogPostCard from 'src/components/common/blog-post-card';
 import Hero, { HeroText } from 'src/components/common/hero';
@@ -7,6 +7,7 @@ import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
 import Styled from 'src/components/home';
 import CloudParrallax from 'src/components/home/cloud-parrallax';
 import { BlogPosts } from 'src/components/posts/styles';
+import { DisplayContext } from 'src/context/display';
 import { getDatabase } from 'src/lib/notion';
 
 interface IHomeProps {
@@ -15,13 +16,15 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps> = ({ posts }) => {
+  const { activeTheme } = useContext(DisplayContext);
+
   return (
     <>
       <style
         dangerouslySetInnerHTML={{
           __html: `
             html {
-              background: #c7f1ff;
+              background: ${activeTheme === 'light' ? '#c7f1ff' : '#363537'};
             }   `,
         }}
       />
@@ -38,9 +41,9 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         </HeroText>
       </Hero>
 
-      <Styled.SectionWrapper style={{ background: '#ffffff' }}>
+      <Styled.SectionWrapper>
         <MaxWidthWrapper>
-          <Styled.ContentCard style={{ background: '#c7f1ff' }} className="space-y-6">
+          <Styled.ContentCard className="space-y-6">
             <p
               style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
               className="text-3xl font-bold lg:text-5xl text-blue200"
@@ -68,9 +71,9 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
           </Styled.ContentCard>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
-      <Styled.SectionWrapper style={{ background: '#ffffff' }}>
+      <Styled.SectionWrapper>
         <MaxWidthWrapper>
-          <Styled.ContentCard style={{ background: '#c7f1ff' }}>
+          <Styled.ContentCard>
             <p
               style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
               className="text-3xl font-bold lg:text-4xl"
@@ -90,20 +93,9 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
           </Styled.ContentCard>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
-      <Styled.SectionWrapper style={{ background: '#ffffff' }}>
+      <Styled.SectionWrapper>
         <MaxWidthWrapper>
-          <h1
-            style={{
-              fontFamily: 'coffee-service, sans-serif',
-              fontSize: '2.5rem',
-              fontWeight: 500,
-              letterSpacing: '-1px',
-              color: '#34344c',
-              paddingLeft: '1.5rem',
-            }}
-          >
-            Latest Posts 📝
-          </h1>
+          <Styled.SectionHeading>Latest Posts 📝</Styled.SectionHeading>
           <BlogPosts>
             {posts.map(
               (

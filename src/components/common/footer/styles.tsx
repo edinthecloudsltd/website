@@ -5,7 +5,7 @@ export const Wrapper = styled.footer`
   justify-content: space-between;
   height: 15rem;
   width: 100vw;
-  background: white;
+  background: ${({ theme }) => theme.background};
 `;
 
 export const FooterFlex = styled.div`
