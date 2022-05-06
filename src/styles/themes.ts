@@ -2,14 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   html {
-    background: ${({ theme }: { theme: any }) => theme.background};
+    background-color: ${({ theme }: { theme: any }) => theme.background};
     color: ${({ theme }: { theme: any }) => theme.color};
-    transition: 0.5s ease-in;
-  }
-
-  #header-shape-gradient {
-    --color-stop: #f12c06;
-    --color-bot: #faed34;
+    transition: all 0.5s ease;
   }
 `;
 
@@ -28,7 +23,7 @@ export const themes = {
   },
   dark: {
     background: '#363537',
-    title: '#f4f6f0',
+    title: 'F900BF',
     titleGlow: true,
     sky: '#3b4c69',
     cloudOpacity: 1,

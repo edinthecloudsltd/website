@@ -16,7 +16,19 @@ interface IHomeProps {
 }
 
 const Home: React.FC<IHomeProps> = ({ posts }) => {
-  const { activeTheme } = useContext(DisplayContext);
+  const { activeTheme, showNav } = useContext(DisplayContext);
+
+  // handleNotchBackground figures out the bg color for the iPhone notch
+  const handleNotchBackground = (theme: 'light' | 'dark') => {
+    let color;
+    if (theme === 'light') {
+      color = showNav ? 'white' : '#c7f1ff';
+    }
+    if (theme === 'dark') {
+      color = showNav ? '#363537' : '#3b4c69';
+    }
+    return color;
+  };
 
   return (
     <>
@@ -24,7 +36,8 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         dangerouslySetInnerHTML={{
           __html: `
             html {
-              background: ${activeTheme === 'light' ? '#c7f1ff' : '#363537'};
+              background-color: ${handleNotchBackground(activeTheme)};
+              transition: all 0.3s ease-in;
             }   `,
         }}
       />

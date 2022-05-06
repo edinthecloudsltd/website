@@ -9,13 +9,11 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   font-size: 1.6rem;
   font-family: coffee-service, sans-serif;
   padding: 0.5rem 1rem;
-  margin-bottom: ${({ show }) => (show ? `var(--navbar-height)` : `0`)};
   top: 0;
-  opacity: ${({ show }) => (show ? `1` : `0`)};
-  transition: all 0.4s ease-in;
+  transition: all 0.3s ease-in;
 
   @media (max-width: 568px) {
-    background: ${({ theme }) => theme.background};
+    background: ${({ theme, show }) => show && theme.background};
   }
 `;
 
@@ -27,6 +25,10 @@ export const NavbarInnerWrapper = styled.div`
   padding: 0.2em 2rem;
   justify-content: space-between;
   height: 100%;
+
+  @media (max-width: 568px) {
+    padding: 0.2em 0.5rem;
+  }
 `;
 
 export const NavbarLogo = styled.img`
@@ -35,7 +37,6 @@ export const NavbarLogo = styled.img`
   border-radius: 50%;
   max-height: 100%;
   cursor: pointer;
-  box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.5);
 `;
 
 export const NavbarButtons = styled.ul`
@@ -44,6 +45,10 @@ export const NavbarButtons = styled.ul`
   margin: auto 2rem;
   justify-content: end;
   color: ${({ theme }) => theme.navButtonPrimary};
+
+  @media (max-width: 568px) {
+    margin: auto 0.5rem;
+  }
 
   & a {
     font-weight: 800;

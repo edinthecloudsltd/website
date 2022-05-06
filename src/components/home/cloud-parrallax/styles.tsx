@@ -97,8 +97,6 @@ export const CloudLayerTwo = styled.div<{ width: number }>`
 
   & ${Cloud} {
     bottom: 0px;
-    transform: rotate(-7deg);
-    opacity: ${({ theme }) => theme.cloudOpacity};
   }
 
   ${({ width }) => generateCloudsCSS(width, -500, layerTwoOffset)}
@@ -130,6 +128,16 @@ const rise = keyframes`
   }
 `;
 
+const riseMobile = keyframes`
+  0% {
+    bottom: -10rem;
+    z-index: 0;
+  }
+  100% {
+    bottom: 10rem;
+  }
+`;
+
 export const Moon = styled.object`
   position: absolute;
   margin: auto;
@@ -147,6 +155,7 @@ export const Moon = styled.object`
   @media (max-width: 568px) {
     bottom: 10rem;
     left: 8rem;
+    animation: ${riseMobile} 1.5s;
   }
 `;
 
@@ -167,6 +176,7 @@ export const Sun = styled.object`
   @media (max-width: 568px) {
     bottom: 10rem;
     left: 8rem;
+    animation: ${riseMobile} 1.5s;
   }
 `;
 

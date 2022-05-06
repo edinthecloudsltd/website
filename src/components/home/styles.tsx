@@ -20,7 +20,12 @@ export const Heading = styled.h1`
   text-align: center;
   animation: ${fadeIn} 1s;
   transition: 0.5s ease;
-  text-shadow: ${({ theme }) => (theme.titleGlow ? `0px 0px 2px ${theme.title}` : '')};
+  text-shadow: ${({ theme }) => (theme.titleGlow ? `0px 0px 5px white` : '')};
+  overflow: visible;
+
+  @media (max-width: 568px) {
+    text-shadow: ${({ theme }) => (theme.titleGlow ? `2px 2px 10px gray` : '')};
+  }
 `;
 
 export const SectionWrapper = styled.main`
