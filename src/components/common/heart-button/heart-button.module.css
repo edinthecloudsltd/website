@@ -1,0 +1,30 @@
+.container {
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  display: flex;
+  align-items: center;
+  right: 0;
+  height: 100vh; /* Full-height: remove this if you want "auto" height */
+  padding: 0rem 2rem;
+  z-index: 1; /* Stay on top */
+}
+
+@media (max-width: 568px) {
+  .container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    height: 35px;
+    padding: 2rem;
+    width: 100vw;
+    background: var(--background-primary);
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 35px;
+  font-size: 1.3rem;
+}

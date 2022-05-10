@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 
 import ErrorPage from 'src/components/common/error';
+import { HeartButton } from 'src/components/common/heart-button/heart-button';
 import { Tag } from 'src/components/common/tag';
 import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
@@ -32,6 +33,9 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
           key="ogdesc"
         />
       </Head>
+
+      <HeartButton />
+
       <MaxWidthWrapper>
         <div className={styles.heading}>
           <h1 style={{ lineHeight: '3rem' }}>{page.properties.Title.title[0].plain_text}</h1>

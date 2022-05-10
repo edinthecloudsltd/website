@@ -19,8 +19,10 @@ export const handleTagColor = (color: string): string => {
       return 'rgb(255, 226, 221)';
     case 'orange':
       return 'rgb(250, 222, 201)';
+    case 'gray':
+      return 'rgb(189, 189, 189)';
     default:
-      return 'blue';
+      return 'rgb(189, 189, 189)';
   }
 };
 

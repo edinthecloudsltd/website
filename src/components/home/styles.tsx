@@ -19,7 +19,7 @@ export const Heading = styled.h1`
   color: ${({ theme }) => theme.title};
   text-align: center;
   animation: ${fadeIn} 1s;
-  transition: 0.5s ease;
+  //transition: opacity 2s ease;
   text-shadow: ${({ theme }) => (theme.titleGlow ? `0px 0px 5px white` : '')};
   overflow: visible;
 

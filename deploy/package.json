@@ -21,6 +21,7 @@
     "ts-node": "^9.0.0"
   },
   "dependencies": {
+    "@aws-cdk/aws-dynamodb": "^1.155.0",
     "@aws-cdk/core": "1.115.0",
     "@sls-next/cdk-construct": "^3.4.0",
     "@sls-next/lambda-at-edge": "^3.4.0",
