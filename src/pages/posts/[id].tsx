@@ -1,18 +1,26 @@
+import { useContext } from 'react';
+
 import { Client } from '@notionhq/client';
 import Head from 'next/head';
+// @ts-ignore: import directly from node_modules to avoid https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230
+import { oneDark, oneLight } from 'node_modules/react-syntax-highlighter/dist/esm/styles/prism';
 import { NotionToMarkdown } from 'notion-to-md';
 import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import gfm from 'remark-gfm';
 
 import ErrorPage from 'src/components/common/error';
 import { HeartButton } from 'src/components/common/heart-button/heart-button';
 import { Tag } from 'src/components/common/tag';
+import { DisplayContext } from 'src/context/display';
 import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
 import MaxWidthWrapper from '../../components/common/max-width-wrapper';
 import styles from './posts.module.css';
 
 export default function Post({ page, markdown }: { page: any; markdown: any }) {
+  const { activeTheme } = useContext(DisplayContext);
+
   if (!page) {
     return <ErrorPage />;
   }
@@ -60,7 +68,29 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
           </p>
         </div>
         {/* eslint-disable  react/no-children-prop */}
-        <ReactMarkdown className={styles.content} remarkPlugins={[gfm]}>
+        <ReactMarkdown
+          className={styles.content}
+          remarkPlugins={[gfm]}
+          components={{
+            code({ inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || '');
+              return !inline && match ? (
+                // @ts-ignore: Overloads - dodgy TS support?
+                <SyntaxHighlighter
+                  children={String(children).replace(/\n$/, '')}
+                  language={match[1]}
+                  style={activeTheme === 'dark' ? oneDark : oneLight}
+                  PreTag="div"
+                  {...props}
+                />
+              ) : (
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        >
           {markdown}
         </ReactMarkdown>
       </MaxWidthWrapper>

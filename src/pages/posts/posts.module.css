@@ -157,7 +157,7 @@
 }
 .content pre {
   color: #e5e7eb;
-  background-color: #201e1e;
+  background-color: var(--primary-background);
   overflow-x: auto;
   font-size: 0.875em;
   line-height: 1.7142857;

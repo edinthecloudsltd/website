@@ -7,7 +7,7 @@ const ddb = new DynamoDBClient({ region });
 export default async function handler(req: Request, res: Response) {
   const { id } = req.query;
 
-  console.log(req);
+  // console.log(req);
 
   switch (req.method) {
     case 'GET': {
@@ -26,7 +26,7 @@ export default async function handler(req: Request, res: Response) {
         });
         return;
       } catch (err: any) {
-        console.log(err);
+        // console.log(err);
         res.status(500).json({ error: err.message });
       }
       return;
