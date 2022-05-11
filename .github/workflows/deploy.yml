@@ -90,7 +90,7 @@ jobs:
       - name: Deploy NextJS app
         run: |
           cd deploy
-          npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
+          npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/*
 
   deploy-prod:
     if: github.ref_type == 'tag'
@@ -123,4 +123,4 @@ jobs:
       - name: Deploy NextJS app
         run: |
           cd deploy
-          ENVIRONMENT=production npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/Website
+          ENVIRONMENT=production npx cdk deploy --require-approval never --verbose --app 'cdk.out/' EdintheClouds/*

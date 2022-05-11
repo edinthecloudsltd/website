@@ -1,7 +1,7 @@
-import * as cdk from '@aws-cdk/core';
-
 import { NextJSLambdaEdge } from '@sls-next/cdk-construct';
-import * as acm from '@aws-cdk/aws-certificatemanager';
+import { Construct } from 'constructs';
+import { Stack, CfnOutput } from 'aws-cdk-lib';
+import { aws_certificatemanager as acm } from 'aws-cdk-lib';
 
 import * as path from 'path';
 import { IWebsiteProps } from '../bin/website';
@@ -9,8 +9,8 @@ import { IWebsiteProps } from '../bin/website';
 const nextConfigPath = path.resolve(`${process.cwd()}/..`);
 const outputDir = path.join(nextConfigPath, '.serverless_nextjs');
 
-export class ServerlessNextJsLambdaEdge extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: IWebsiteProps) {
+export class ServerlessNextJsLambdaEdge extends Stack {
+  constructor(scope: Construct, id: string, props: IWebsiteProps) {
     super(scope, id, props);
 
     const cert = acm.Certificate.fromCertificateArn(this, 'Certificate', props.acmCertArn);
@@ -23,11 +23,11 @@ export class ServerlessNextJsLambdaEdge extends cdk.Stack {
       },
     });
 
-    new cdk.CfnOutput(this, 'CloudFrontDistributionZoneId', {
+    new CfnOutput(this, 'CloudFrontDistributionZoneId', {
       value: deployment.distribution.distributionId,
       exportName: 'CloudFrontDistributionId',
     });
-    new cdk.CfnOutput(this, 'CloudFrontDistributionDomainName', {
+    new CfnOutput(this, 'CloudFrontDistributionDomainName', {
       value: deployment.distribution.domainName,
       exportName: 'CloudFrontDistributionDomainName',
     });

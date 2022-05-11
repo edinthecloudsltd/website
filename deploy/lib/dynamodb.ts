@@ -1,10 +1,10 @@
-import * as cdk from '@aws-cdk/core';
+import { Construct } from 'constructs';
+import { Stack, CfnOutput } from 'aws-cdk-lib';
+import { aws_dynamodb as dynamodb } from 'aws-cdk-lib';
 
-import * as dynamodb from '@aws-cdk/aws-dynamodb';
-
-export class PostLikesDynamoDB extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: any) {
-    super(scope, id);
+export class PostLikesDynamoDB extends Stack {
+  constructor(scope: Construct, id: string, props: any) {
+    super(scope, id, props);
 
     const table = new dynamodb.Table(this, 'PostLikes', {
       partitionKey: { name: 'post_id', type: dynamodb.AttributeType.STRING },
@@ -12,7 +12,7 @@ export class PostLikesDynamoDB extends cdk.Stack {
     });
 
     // outputs
-    new cdk.CfnOutput(this, 'PostLikesTableName', {
+    new CfnOutput(this, 'PostLikesTableName', {
       value: table.tableName,
       exportName: 'PostLikesTableName',
     });

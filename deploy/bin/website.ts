@@ -1,5 +1,6 @@
-import * as cdk from '@aws-cdk/core';
 import * as path from 'path';
+import { Construct } from 'constructs';
+import { App, Fn, StackProps } from 'aws-cdk-lib';
 import { Builder } from '@sls-next/lambda-at-edge';
 
 import { ServerlessNextJsLambdaEdge } from '../lib/sls-next-lambda-edge';
@@ -9,7 +10,7 @@ import { PostLikesDynamoDB } from '../lib/dynamodb';
 const nextConfigPath = path.resolve(`${process.cwd()}/../`);
 const outputDir = path.resolve(`${nextConfigPath}/.serverless_nextjs`);
 
-export interface IWebsiteProps extends cdk.StackProps {
+export interface IWebsiteProps extends StackProps {
   environment: string;
   domainNames: string[];
   acmCertArn: string;
@@ -19,7 +20,7 @@ interface IWebsiteConfigMap {
   [key: string]: IWebsiteProps;
 }
 
-const configMap: IWebsiteConfigMap = {
+const env: IWebsiteConfigMap = {
   development: {
     env: { account: '500405362207', region: 'us-east-1' },
     environment: 'development',
@@ -40,13 +41,8 @@ const configMap: IWebsiteConfigMap = {
       'arn:aws:acm:us-east-1:912474597003:certificate/e21d9428-5b12-4fc9-96eb-a6b155f02ff3',
   },
 };
-
-const environment = process.env.ENVIRONMENT || 'development';
-
-const config = configMap[environment]!;
-
-export class Deployment extends cdk.Construct {
-  constructor(scope: cdk.Construct, id: string, props: IWebsiteProps) {
+export class Deployment extends Construct {
+  constructor(scope: Construct, id: string, props: IWebsiteProps) {
     super(scope, id);
 
     if (props.environment !== 'production') {
@@ -54,13 +50,13 @@ export class Deployment extends cdk.Construct {
     }
 
     new PostLikesDynamoDB(this, 'WebsitePostLikesTable', props);
-    process.env.POST_LIKES_DYNAMODB_TABLE = cdk.Fn.importValue('PostLikesTable').toString();
+    process.env.POST_LIKES_DYNAMODB_TABLE = Fn.importValue('PostLikesTable').toString();
 
     new ServerlessNextJsLambdaEdge(this, 'Website', props);
   }
 }
 
-const app = new cdk.App();
+const app = new App();
 
 const builder = new Builder(nextConfigPath, outputDir, {
   cwd: nextConfigPath, // root of our project
@@ -72,7 +68,7 @@ const builder = new Builder(nextConfigPath, outputDir, {
 builder
   .build()
   .then(() => {
-    new Deployment(app, 'EdintheClouds', config);
+    new Deployment(app, 'EdintheClouds', env[process.env.ENVIRONMENT || 'development']);
   })
   .catch((e: any) => {
     console.log('Could not build app due the exception: ', e);

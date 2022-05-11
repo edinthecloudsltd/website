@@ -1,11 +1,11 @@
-import * as cdk from '@aws-cdk/core';
-
-import * as cognito from '@aws-cdk/aws-cognito';
-import * as custom from '@aws-cdk/custom-resources';
+import { Construct } from 'constructs';
+import { Stack, CfnOutput } from 'aws-cdk-lib';
+import { aws_cognito as cognito } from 'aws-cdk-lib';
+import * as custom from 'aws-cdk-lib/custom-resources';
 import { IWebsiteProps } from '../bin/website';
 
-export class CognitoUserPool extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props: IWebsiteProps) {
+export class CognitoUserPool extends Stack {
+  constructor(scope: Construct, id: string, props: IWebsiteProps) {
     super(scope, id, props);
 
     // create user pool
@@ -66,19 +66,19 @@ export class CognitoUserPool extends cdk.Stack {
     );
 
     // outputs
-    new cdk.CfnOutput(this, 'UserPoolId', {
+    new CfnOutput(this, 'UserPoolId', {
       value: pool.userPoolId,
       exportName: 'userPoolId',
     });
-    new cdk.CfnOutput(this, 'UserPoolDomain', {
+    new CfnOutput(this, 'UserPoolDomain', {
       value: domain.domainName,
       exportName: 'userPoolDomain',
     });
-    new cdk.CfnOutput(this, 'UserPoolClientId', {
+    new CfnOutput(this, 'UserPoolClientId', {
       value: client.userPoolClientId,
       exportName: 'userPoolId',
     });
-    new cdk.CfnOutput(this, 'UserPoolClientSecret', {
+    new CfnOutput(this, 'UserPoolClientSecret', {
       value: userPoolClientSecret,
       exportName: 'userPoolClientSecret',
     });
