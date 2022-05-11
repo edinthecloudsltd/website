@@ -7,6 +7,7 @@ export class PostLikesDynamoDB extends Stack {
     super(scope, id, props);
 
     const table = new dynamodb.Table(this, 'PostLikes', {
+      tableName: 'EdintheCloudsPostLikes',
       partitionKey: { name: 'post_id', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
