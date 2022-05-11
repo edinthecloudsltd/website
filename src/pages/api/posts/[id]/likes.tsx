@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 
 const region = 'us-east-1';
 const ddb = new DynamoDBClient({ region });
+const table = process.env.POST_LIKES_DYNAMODB_TABLE || 'EdintheCloudsPostLikes';
 
 export default async function handler(req: Request, res: Response) {
   const { id } = req.query;
@@ -18,7 +19,7 @@ export default async function handler(req: Request, res: Response) {
               post_id: { S: id as string },
             },
             ProjectionExpression: 'likes',
-            TableName: process.env.POST_LIKES_DYNAMODB_TABLE,
+            TableName: table,
           })
         );
         res.status(200).json({
@@ -44,7 +45,7 @@ export default async function handler(req: Request, res: Response) {
             },
             UpdateExpression: 'SET likes = if_not_exists(likes, :init) + :increment',
             ReturnValues: 'ALL_NEW',
-            TableName: process.env.POST_LIKES_DYNAMODB_TABLE,
+            TableName: table,
           })
         );
         res.status(200).json({

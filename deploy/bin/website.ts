@@ -50,7 +50,6 @@ export class Deployment extends Construct {
     }
 
     new PostLikesDynamoDB(this, 'WebsitePostLikesTable', props);
-    process.env.POST_LIKES_DYNAMODB_TABLE = Fn.importValue('PostLikesTable').toString();
 
     new ServerlessNextJsLambdaEdge(this, 'Website', props);
   }
