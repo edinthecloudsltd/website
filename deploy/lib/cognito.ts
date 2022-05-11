@@ -76,7 +76,7 @@ export class CognitoUserPool extends Stack {
     });
     new CfnOutput(this, 'UserPoolClientId', {
       value: client.userPoolClientId,
-      exportName: 'userPoolId',
+      exportName: 'userPoolClientId',
     });
     new CfnOutput(this, 'UserPoolClientSecret', {
       value: userPoolClientSecret,
