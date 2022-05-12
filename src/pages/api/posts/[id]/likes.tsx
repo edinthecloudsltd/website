@@ -1,11 +1,13 @@
 import { DynamoDBClient, GetItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
-import { Request, Response } from 'express';
+import { NextApiRequest, NextApiResponse } from 'next';
+
+import session from 'src/pages/api/session';
 
 const region = 'us-east-1';
 const ddb = new DynamoDBClient({ region });
 const table = process.env.POST_LIKES_DYNAMODB_TABLE || 'EdintheCloudsPostLikes';
 
-export default async function handler(req: Request, res: Response) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
   // console.log(req);
@@ -27,13 +29,16 @@ export default async function handler(req: Request, res: Response) {
         });
         return;
       } catch (err: any) {
-        // console.log(err);
-        res.status(500).json({ error: err.message });
+        console.log(err);
+        res
+          .status(500)
+          .send('there was an error posting your like, please try again later. sorry!');
       }
       return;
     }
     case 'PUT': {
       try {
+        await session(req, res);
         const data = await ddb.send(
           new UpdateItemCommand({
             Key: {
@@ -53,7 +58,9 @@ export default async function handler(req: Request, res: Response) {
         });
       } catch (err: any) {
         console.log(err);
-        res.status(500).json({ error: err.message });
+        res
+          .status(500)
+          .send('there was an error posting your like, please try again later. sorry!');
       }
       return;
     }

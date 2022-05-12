@@ -4,6 +4,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 module.exports = withBundleAnalyzer({
+  compiler: {
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  },
   poweredByHeader: false,
   // trailingSlash: true,
   basePath: '',

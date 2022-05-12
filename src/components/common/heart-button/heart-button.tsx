@@ -42,9 +42,11 @@ export const HeartButton: React.FC = () => {
   }, []);
 
   const handleClick = async () => {
-    setHasClicked(true);
     const likes = await updateLikes();
-    setCounter(likes);
+    if (likes) {
+      setHasClicked(true);
+      setCounter(likes);
+    }
   };
 
   return (
