@@ -37,7 +37,9 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
         />
         <meta
           property="og:description"
-          content={page.properties.Description.rich_text[0].plain_text}
+          content={`${
+            page.properties.Description.rich_text[0].plain_text
+          } ${page.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)}`}
           key="ogdesc"
         />
       </Head>

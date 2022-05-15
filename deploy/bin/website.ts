@@ -5,7 +5,7 @@ import { Builder } from '@sls-next/lambda-at-edge';
 
 import { ServerlessNextJsLambdaEdge } from '../lib/sls-next-lambda-edge';
 import { CognitoUserPool } from '../lib/cognito';
-import { PostLikesDynamoDB } from '../lib/dynamodb';
+import { WebsiteDynamoDBTables } from '../lib/dynamodb';
 
 const nextConfigPath = path.resolve(`${process.cwd()}/../`);
 const outputDir = path.resolve(`${nextConfigPath}/.serverless_nextjs`);
@@ -49,7 +49,7 @@ export class Deployment extends Construct {
       new CognitoUserPool(this, `WebsiteCognito`, props);
     }
 
-    new PostLikesDynamoDB(this, 'WebsitePostLikesTable', props);
+    new WebsiteDynamoDBTables(this, 'WebsitePostLikesTable', props);
 
     new ServerlessNextJsLambdaEdge(this, 'Website', props);
   }

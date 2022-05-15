@@ -8,7 +8,7 @@
   z-index: 1; /* Stay on top */
 }
 
-@media (max-width: 568px) {
+@media (max-width: 1145px) {
   .container {
     position: fixed;
     display: flex;

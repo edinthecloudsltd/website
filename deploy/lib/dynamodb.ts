@@ -8,7 +8,7 @@ export class WebsiteDynamoDBTables extends Stack {
 
     const postLikes = new dynamodb.Table(this, 'PostLikes', {
       tableName: 'EdintheCloudsPostLikes',
-      partitionKey: { name: 'postId', type: dynamodb.AttributeType.STRING },
+      partitionKey: { name: 'PostId', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PROVISIONED,
       writeCapacity: 1,
       readCapacity: 1,
@@ -16,7 +16,7 @@ export class WebsiteDynamoDBTables extends Stack {
 
     const sessionStore = new dynamodb.Table(this, 'SessionStore', {
       tableName: 'EdintheCloudsSessionStore',
-      partitionKey: { name: 'sessionId', type: dynamodb.AttributeType.STRING },
+      partitionKey: { name: 'SessionId', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PROVISIONED,
       writeCapacity: 1,
       readCapacity: 1,

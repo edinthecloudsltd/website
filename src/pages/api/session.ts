@@ -1,40 +1,31 @@
 import crypto from 'crypto';
 
-import { DynamoDBClient, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import cookie from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const region = 'us-east-1';
 const ddb = new DynamoDBClient({ region });
+const ddbClient = DynamoDBDocumentClient.from(ddb);
 const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'sessionStore';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   /* eslint-disable @typescript-eslint/dot-notation */
   const session = req.cookies['_edintheclouds_session'];
 
-  if (!session) {
-    const sid = crypto.randomBytes(16).toString('hex');
-
-    res.setHeader(
-      'Set-Cookie',
-      cookie.serialize('_edintheclouds_session', `_sid=${sid}`, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== 'development',
-        maxAge: 60 * 60 * 24,
-        sameSite: 'strict',
-        path: '/',
-      })
-    );
-
+  if (session) {
+    const key = session.split('=')[1];
     try {
-      await ddb.send(
-        new UpdateItemCommand({
+      const { Item } = await ddbClient.send(
+        new GetCommand({
           Key: {
-            sessionId: { S: sid as string },
+            SessionId: key,
           },
           TableName: sessionStore,
         })
       );
+      return { req, res, sess: Item };
     } catch (err: any) {
       res.removeHeader('Set-Cookie');
       console.log(err);
@@ -42,5 +33,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  return { req, res };
+  const sid = crypto.randomBytes(16).toString('hex');
+
+  res.setHeader(
+    'Set-Cookie',
+    cookie.serialize('_edintheclouds_session', `_sid=${sid}`, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      maxAge: 60 * 60 * 24,
+      sameSite: 'strict',
+      path: '/',
+    })
+  );
+
+  try {
+    const { Attributes } = await ddbClient.send(
+      new UpdateCommand({
+        Key: {
+          SessionId: sid,
+        },
+        UpdateExpression: 'SET postLikes = :init',
+        ExpressionAttributeValues: { ':init': {} },
+        TableName: sessionStore,
+        ReturnValues: 'ALL_NEW',
+      })
+    );
+    return { req, res, sess: Attributes };
+  } catch (err: any) {
+    res.removeHeader('Set-Cookie');
+    console.log(err);
+    throw err;
+  }
 }
