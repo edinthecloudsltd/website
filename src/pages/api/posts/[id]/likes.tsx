@@ -11,7 +11,7 @@ const table = process.env.POST_LIKES_DYNAMODB_TABLE || 'EdintheCloudsPostLikes';
 const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'EdintheCloudsSessionStore';
 
 const checkForLiked = (sess: any, postId: string) => {
-  if (sess?.postLikes) {
+  if (sess.postLikes) {
     if (postId in sess.postLikes) {
       return true;
     }
@@ -22,7 +22,8 @@ const checkForLiked = (sess: any, postId: string) => {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
-  // console.log(req);
+  console.log(process.env);
+  console.log(req);
 
   switch (req.method) {
     case 'GET': {
@@ -38,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           })
         );
         res.status(200).json({
-          likes: Number(data.Item?.likes),
+          likes: Number(data.Item && data.Item.likes),
           hasLiked: checkForLiked(sess, id as string),
         });
         return;
@@ -74,7 +75,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await ddbClient.send(
           new UpdateCommand({
             Key: {
-              SessionId: sess?.SessionId as string,
+              SessionId: sess && (sess.SessionId as string),
             },
             UpdateExpression: 'SET postLikes.#postId = :val',
             ExpressionAttributeNames: { '#postId': id as string },
@@ -120,7 +121,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await ddbClient.send(
           new UpdateCommand({
             Key: {
-              SessionId: sess?.SessionId as string,
+              SessionId: sess && (sess.SessionId as string),
             },
             UpdateExpression: 'REMOVE postLikes.#postId',
             ExpressionAttributeNames: { '#postId': id as string },

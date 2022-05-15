@@ -14,6 +14,8 @@ export const Wrapper = styled.div<StyledWrapperProps>`
   max-height: 87.5vh;
   background: ${({ theme }) => theme.sky};
   overflow: hidden;
+  transition: background-color 0.5s ease;
+  transition-delay: var(--theme-transition-delay);
 
   // If on tablet or smaller device
   @media (max-width: 500px) {
