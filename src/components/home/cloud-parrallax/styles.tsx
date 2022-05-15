@@ -30,24 +30,29 @@ export const Cloud = styled(CloudSVG)`
   bottom: -20px;
   width: ${cloudWidth}px;
   height: 300px;
-  fill: ${({ theme }) => theme.clouds};
+  fill: url(${({ theme }) => theme.clouds});
 `;
 
-export const CloudParrallaxWrapper = styled.div<{ size: 'sm' | 'md' }>`
+export const CloudParrallaxWrapper = styled.div<{
+  size: 'sm' | 'md';
+}>`
   position: absolute;
   height: 100%;
   width: 100%;
   bottom: 0;
   left: 0;
   margin-bottom: 2rem;
-  overflow-bottom: hidden;
   will-change: transform;
 
-  --sun-size: 500px;
+  --sun-size: 600px;
 
   @media (max-width: 568px) {
     --sun-size: 300px;
   }
+
+  background: ${({ theme }) => theme.sky};
+  transition: background-color 0.5s ease;
+  transition-delay: var(--theme-transition-delay);
 `;
 
 export const CloudLayer = styled.div`
@@ -118,27 +123,7 @@ export const CloudLayerThree = styled.div<{ width: number }>`
   ${({ width }) => generateCloudsCSS(width, -400, layerThreeOffset)}
 `;
 
-const rise = keyframes`
-  0% {
-    top: 100%;
-    z-index: 0;
-  }
-  100% {
-    top: 0;
-  }
-`;
-
-const riseMobile = keyframes`
-  0% {
-    bottom: -10rem;
-    z-index: 0;
-  }
-  100% {
-    bottom: 10rem;
-  }
-`;
-
-export const Moon = styled.object`
+export const Moon = styled.object<{ isActive: boolean }>`
   position: absolute;
   margin: auto;
   height: var(--sun-size);
@@ -149,17 +134,17 @@ export const Moon = styled.object`
   opacity: 0.9;
   box-shadow: 0px 0px 40px 15px #fefcd7;
   z-index: 1;
+  bottom: ${({ isActive }) => (isActive ? `100px` : `-500px`)};
 
-  animation: ${rise} 1.5s;
+  transition: bottom 2s ease;
 
   @media (max-width: 568px) {
-    bottom: 10rem;
+    bottom: ${({ isActive }) => (isActive ? `10rem` : `-200px`)};
     left: 8rem;
-    animation: ${riseMobile} 1.5s;
   }
 `;
 
-export const Sun = styled.object`
+export const Sun = styled.object<{ isActive: boolean }>`
   position: absolute;
   margin: auto;
   height: var(--sun-size);
@@ -170,13 +155,12 @@ export const Sun = styled.object`
   opacity: 0.9;
   box-shadow: 0px 0px 40px 15px rgba(250, 222, 175);
   z-index: 1;
-
-  animation: ${rise} 1.5s;
+  bottom: ${({ isActive }) => (isActive ? `100px` : `-1000px`)};
+  transition: bottom 2s ease;
 
   @media (max-width: 568px) {
-    bottom: 10rem;
+    bottom: ${({ isActive }) => (isActive ? `10rem` : `-500px`)};
     left: 8rem;
-    animation: ${riseMobile} 1.5s;
   }
 `;
 
@@ -224,12 +208,12 @@ export const RayContainer = styled.div`
   }
   & ${Ray}:nth-child(2) {
     height: var(--sun-size);
-    width: 100px;
+    width: 120px;
     transform: rotate(60deg);
   }
   & ${Ray}:nth-child(3) {
     height: var(--sun-size);
-    width: 100px;
+    width: 120px;
     transform: rotate(120deg);
   }
   & ${Ray}:nth-child(4) {
@@ -239,7 +223,7 @@ export const RayContainer = styled.div`
   }
   & ${Ray}:nth-child(5) {
     height: var(--sun-size);
-    width: 100px;
+    width: 140px;
     transform: rotate(240deg);
   }
   & ${Ray}:nth-child(6) {

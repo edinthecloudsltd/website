@@ -19,7 +19,7 @@ export const Heading = styled.h1`
   color: ${({ theme }) => theme.title};
   text-align: center;
   animation: ${fadeIn} 1s;
-  //transition: opacity 2s ease;
+  transition: color 2s ease;
   text-shadow: ${({ theme }) => (theme.titleGlow ? `0px 0px 5px white` : '')};
   overflow: visible;
 
@@ -30,7 +30,8 @@ export const Heading = styled.h1`
 
 export const SectionWrapper = styled.main`
   padding: 3rem 0;
-  background: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.background};
+  //transition: background-color 1s ease;
 
   @media (max-width: 568px) {
     padding: 3rem 0 1rem 0;

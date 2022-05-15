@@ -37,17 +37,14 @@ const CloudParrallax: React.FC = () => {
           ))}
         </Styled.CloudLayerThree>
       </Styled.CloudLayer>
-      {activeTheme === 'light' ? (
-        <Styled.Sun aria-label="sun">
-          <Styled.RayContainer>
-            {Array.from(Array(12)).map((_, i) => (
-              <Styled.Ray key={i} aria-label="sun ray" />
-            ))}
-          </Styled.RayContainer>
-        </Styled.Sun>
-      ) : (
-        <Styled.Moon aria-label="moon" />
-      )}
+      <Styled.Sun aria-label="sun" isActive={activeTheme === 'light'}>
+        <Styled.RayContainer>
+          {Array.from(Array(12)).map((_, i) => (
+            <Styled.Ray key={i} aria-label="sun ray" />
+          ))}
+        </Styled.RayContainer>
+      </Styled.Sun>
+      <Styled.Moon aria-label="moon" isActive={activeTheme === 'dark'} />
     </Styled.CloudParrallaxWrapper>
   );
 };

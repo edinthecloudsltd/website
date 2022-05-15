@@ -8,7 +8,7 @@ const region = 'us-east-1';
 const ddb = new DynamoDBClient({ region });
 const ddbClient = DynamoDBDocumentClient.from(ddb);
 const table = process.env.POST_LIKES_DYNAMODB_TABLE || 'EdintheCloudsPostLikes';
-const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'sessionStore';
+const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'EdintheCloudsSessionStore';
 
 const checkForLiked = (sess: any, postId: string) => {
   if (sess?.postLikes) {

@@ -48,9 +48,7 @@ export class Deployment extends Construct {
     if (props.environment !== 'production') {
       new CognitoUserPool(this, `WebsiteCognito`, props);
     }
-
     new WebsiteDynamoDBTables(this, 'WebsiteDynamoDBTables', props);
-
     new ServerlessNextJsLambdaEdge(this, 'Website', props);
   }
 }
