@@ -23,7 +23,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { id } = req.query;
 
   console.log(process.env);
-  console.log(req);
 
   switch (req.method) {
     case 'GET': {
@@ -39,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           })
         );
         res.status(200).json({
-          likes: Number(data.Item && data.Item.likes),
+          likes: Number(data.Item?.likes),
           hasLiked: checkForLiked(sess, id as string),
         });
         return;
@@ -75,7 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await ddbClient.send(
           new UpdateCommand({
             Key: {
-              SessionId: sess && (sess.SessionId as string),
+              SessionId: sess?.SessionId as string,
             },
             UpdateExpression: 'SET postLikes.#postId = :val',
             ExpressionAttributeNames: { '#postId': id as string },
@@ -121,7 +120,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await ddbClient.send(
           new UpdateCommand({
             Key: {
-              SessionId: sess && (sess.SessionId as string),
+              SessionId: sess?.SessionId as string,
             },
             UpdateExpression: 'REMOVE postLikes.#postId',
             ExpressionAttributeNames: { '#postId': id as string },
