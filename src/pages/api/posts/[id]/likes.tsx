@@ -22,8 +22,6 @@ const checkForLiked = (sess: any, postId: string) => {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
-  console.log(process.env);
-
   switch (req.method) {
     case 'GET': {
       try {

@@ -37,7 +37,8 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
           __html: `
             html {
               background-color: ${handleNotchBackground(activeTheme)};
-              transition: all 0.3s ease-in;
+              transition: background-color 0.5s ease;
+              transition-delay: var(--theme-transition-delay);
             }   `,
         }}
       />

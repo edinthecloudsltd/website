@@ -45,10 +45,8 @@ export const HeartButton: React.FC = () => {
 
   const handleClick = async () => {
     const { likes, hasLiked: liked } = await updateLikes();
-    if (likes) {
-      setCounter(likes);
-      setHasLiked(liked);
-    }
+    setCounter(likes);
+    setHasLiked(liked);
   };
 
   return (
