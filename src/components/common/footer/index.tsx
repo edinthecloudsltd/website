@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
             )}
             <Styled.SocialIcons>
               <Styled.IconWrapper>
-                <a href="https://twitter.com/ed1nthecloud">
+                <a href="https://twitter.com/_edintheclouds">
                   <FaTwitter size={25} />
                 </a>
               </Styled.IconWrapper>
