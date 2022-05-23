@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+COMMIT_MESSAGE_REGEX='(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert): \S+.*'
+
+MATCH=$(cat $1 | grep -o -E "$COMMIT_MESSAGE_REGEX" || true)
+
+if [[ -z "$MATCH" ]]; then
+  echo "[commit-msg hook] Your commit message is not valid. Please ensure your message follows the regex: $COMMIT_MESSAGE_REGEX"
+  exit 1
+fi
+
