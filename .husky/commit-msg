@@ -9,4 +9,3 @@ if [[ -z "$MATCH" ]]; then
   echo "[commit-msg hook] Your commit message is not valid. Please ensure your message follows the regex: $COMMIT_MESSAGE_REGEX"
   exit 1
 fi
-

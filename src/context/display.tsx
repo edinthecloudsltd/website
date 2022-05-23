@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 import { useWindowScroll } from 'react-use';
 
 interface IDisplayContext {
-  activeTheme: 'light' | 'dark';
+  activeTheme: 'light' | 'dark' | undefined;
   setTheme: (mode: 'light' | 'dark') => void;
   showNav: boolean;
 }
@@ -15,7 +15,7 @@ export const DisplayContext = createContext<IDisplayContext>({
 });
 
 export const DisplayProvider: React.FC = (props) => {
-  const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>('light');
+  const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>();
   const [showNav, setShowNav] = useState<boolean>(false);
 
   const { y } = useWindowScroll();
@@ -40,6 +40,8 @@ export const DisplayProvider: React.FC = (props) => {
       const savedTheme = window.localStorage.getItem('theme');
       if (savedTheme === 'light' || savedTheme === 'dark') {
         setActiveTheme(savedTheme);
+      } else {
+        setActiveTheme('light');
       }
     }
   }, []);

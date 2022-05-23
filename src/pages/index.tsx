@@ -19,7 +19,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
   const { activeTheme, showNav } = useContext(DisplayContext);
 
   // handleNotchBackground figures out the bg color for the iPhone notch
-  const handleNotchBackground = (theme: 'light' | 'dark') => {
+  const handleNotchBackground = (theme: 'light' | 'dark' | undefined) => {
     let color;
     if (theme === 'light') {
       color = showNav ? 'white' : '#c7f1ff';

@@ -4,8 +4,6 @@ export const GlobalStyles = createGlobalStyle`
   html {
     background-color: ${({ theme }: { theme: any }) => theme.background};
     color: ${({ theme }: { theme: any }) => theme.color};
-    transition: all 0.5s ease;
-    transition-delay: var(--theme-transition-delay);
   }
 `;
 

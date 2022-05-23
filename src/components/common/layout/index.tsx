@@ -14,7 +14,7 @@ const Layout: React.FC = ({ children }) => {
   useEffect(() => setShow(true), []);
   const { activeTheme } = useContext(DisplayContext);
 
-  return (
+  return activeTheme ? (
     <ThemeProvider theme={themes[activeTheme]}>
       <GlobalStyles />
       <div style={{ visibility: show ? 'visible' : 'hidden' }} data-theme={activeTheme}>
@@ -23,7 +23,7 @@ const Layout: React.FC = ({ children }) => {
         <Footer />
       </div>
     </ThemeProvider>
-  );
+  ) : null;
 };
 
 export default Layout;
