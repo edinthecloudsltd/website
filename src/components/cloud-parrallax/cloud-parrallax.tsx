@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import { DisplayContext } from 'src/context/display';
 
-import * as Styled from './styles';
+import * as Styled from './cloud-parrallax.styles';
 
 const CloudParrallax: React.FC = () => {
   const { activeTheme } = useContext(DisplayContext);

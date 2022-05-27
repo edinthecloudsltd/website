@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 
-import BlogPostCard from 'src/components/common/blog-post-card';
-import Hero, { HeroText } from 'src/components/common/hero';
-import Meta from 'src/components/common/layout/meta';
-import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
-import Styled from 'src/components/home';
-import CloudParrallax from 'src/components/home/cloud-parrallax';
-import { BlogPosts } from 'src/components/posts/styles';
+import BlogPostCard from 'src/components/blog-post-card';
+import CloudParrallax from 'src/components/cloud-parrallax';
+import Hero from 'src/components/hero';
+import Meta from 'src/components/layout/meta';
+import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { DisplayContext } from 'src/context/display';
 import { getDatabase } from 'src/lib/notion';
+
+import * as Styled from './index.styles';
 
 interface IHomeProps {
   skills: { name: string; fileName: string }[];
@@ -48,12 +48,12 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         canonical={'https://edintheclouds.io'}
       />
 
-      <Hero>
+      <Hero.Wrapper>
         <CloudParrallax />
-        <HeroText>
+        <Hero.Text>
           <Styled.Heading>Ed in the Clouds</Styled.Heading>
-        </HeroText>
-      </Hero>
+        </Hero.Text>
+      </Hero.Wrapper>
 
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
@@ -110,7 +110,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.SectionHeading>Latest Posts 📝</Styled.SectionHeading>
-          <BlogPosts>
+          <Styled.BlogPosts>
             {posts.map(
               (
                 { id, properties }: { id: string; properties: any; created_time: string },
@@ -126,7 +126,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
                 />
               )
             )}
-          </BlogPosts>
+          </Styled.BlogPosts>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
     </>

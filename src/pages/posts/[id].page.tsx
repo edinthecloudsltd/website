@@ -9,13 +9,13 @@ import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import gfm from 'remark-gfm';
 
-import ErrorPage from 'src/components/common/error';
-import { HeartButton } from 'src/components/common/heart-button/heart-button';
-import { Tag } from 'src/components/common/tag';
+import ErrorPage from 'src/components/error';
+import HeartButton from 'src/components/heart-button';
+import { Tag } from 'src/components/tag/tag';
 import { DisplayContext } from 'src/context/display';
 import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
-import MaxWidthWrapper from '../../components/common/max-width-wrapper';
+import MaxWidthWrapper from '../../components/max-width-wrapper/max-width-wrapper';
 import styles from './posts.module.css';
 
 export default function Post({ page, markdown }: { page: any; markdown: any }) {

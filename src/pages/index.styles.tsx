@@ -61,3 +61,15 @@ export const ContentCard = styled.main`
     padding: 5rem 2rem;
   }
 `;
+
+export const BlogPosts = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 450px);
+  gap: 2rem;
+  justify-content: center;
+
+  @media (max-width: 568px) {
+    grid-template-columns: repeat(auto-fill, 95vw);
+    gap: 1.5rem 4rem;
+  }
+`;

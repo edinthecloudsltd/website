@@ -17,7 +17,7 @@ const Heart = styled(FaHeart)<{ hasLiked: boolean }>`
   }
 `;
 
-export const HeartButton: React.FC = () => {
+const HeartButton: React.FC = () => {
   const router = useRouter();
   const [counter, setCounter] = useState<number>(0);
   const [hasLiked, setHasLiked] = useState<boolean>(false);
@@ -58,3 +58,5 @@ export const HeartButton: React.FC = () => {
     </div>
   );
 };
+
+export default HeartButton;

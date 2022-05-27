@@ -6,7 +6,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 import { DisplayContext } from 'src/context/display';
 
-import { NavbarWrapper, NavbarInnerWrapper, NavbarLogo, NavbarButtons } from './styles';
+import { NavbarWrapper, NavbarInnerWrapper, NavbarLogo, NavbarButtons } from './navbar.styles';
 
 export default function Navbar() {
   const router = useRouter();

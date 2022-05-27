@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import { FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 
-import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
+import MaxWidthWrapper from 'src/components/max-width-wrapper';
 
-import * as Styled from './styles';
+import * as Styled from './footer.styles';
 
 const Footer: React.FC = () => {
   const router = useRouter();

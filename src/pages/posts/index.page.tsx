@@ -2,11 +2,12 @@ import { useState } from 'react';
 
 import Select from 'react-select';
 
-import BlogPostCard from 'src/components/common/blog-post-card';
-import MaxWidthWrapper from 'src/components/common/max-width-wrapper';
-import { tagSelectColourStyles } from 'src/components/common/tag';
-import * as Styled from 'src/components/posts/styles';
+import BlogPostCard from 'src/components/blog-post-card';
+import MaxWidthWrapper from 'src/components/max-width-wrapper';
+import { tagSelectColourStyles } from 'src/components/tag/tag';
 import { getDatabase } from 'src/lib/notion';
+
+import * as Styled from './posts.styles';
 
 export default function Posts({ posts, tags }: { posts: any; tags: any }) {
   const [selectedTags, setSelectedTags] = useState<{ value: string; label: string }[]>([]);

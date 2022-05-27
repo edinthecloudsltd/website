@@ -3,8 +3,8 @@ import React from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 
-import Auth from 'src/components/common/auth';
-import Layout from 'src/components/common/layout';
+import Auth from 'src/components/auth';
+import Layout from 'src/components/layout/layout';
 import { DisplayProvider } from 'src/context/display';
 // import Script from 'next/script';
 

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { Tag } from 'src/components/common/tag';
+import Tag from 'src/components/tag';
 
-import * as Styled from './styles';
+import * as Styled from './blog-post-card.styles';
 
 export default function BlogPostCard({
   id,

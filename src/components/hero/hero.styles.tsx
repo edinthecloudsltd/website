@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import devices from 'src/styles/breakpoints';
-
 interface StyledWrapperProps {
   size: string | undefined; // this prop is only used on the home page to allow for the larger blue background
 }
@@ -18,7 +16,7 @@ export const Wrapper = styled.div<StyledWrapperProps>`
   transition-delay: var(--theme-transition-delay);
 
   // If on tablet or smaller device
-  @media (max-width: 500px) {
+  @media (max-width: 568px) {
     height: 70vh;
     padding-top: 20%;
   }
@@ -34,7 +32,7 @@ export const Content = styled.div`
   color: white;
   z-index: 10;
 
-  @media ${devices.tablet} {
+  @media (max-width: 568px) {
     margin: 0 auto;
   }
 `;
@@ -85,7 +83,7 @@ export const HeadingWrapper = styled.div`
   font-size: 3rem;
   line-height: 1;
 
-  @media ${devices.laptopL} {
+  @media (min-width: 1440px) {
     font-size: 4.5rem;
   }
 `;
@@ -96,7 +94,7 @@ export const TaglineWrapper = styled.div`
   line-height: 2.25rem;
   margin-top: 2.5rem;
 
-  @media ${devices.laptop} {
+  @media (min-width: 1024px) {
     font-size: 1.5rem;
     line-height: 2rem;
     margin-top: 2rem;

@@ -1,3 +1,5 @@
+// This is pretty much a copy+paste job. I copied the stylesheet that was produced by the typography tailwindcss plugin on my old blog and shoved it in here.
+
 .heading {
   display: flex;
   flex-direction: column;

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import * as Styled from './styles';
+import * as Styled from './hero.styles';
 
 interface Props {
   size?: string;
 }
 
-const Hero: React.FC<Props> = ({ children, size }) => {
+export const Wrapper: React.FC<Props> = ({ children, size }) => {
   return (
     <Styled.Wrapper size={size}>
       <Styled.Content>{children}</Styled.Content>
@@ -18,7 +18,7 @@ interface IHeroText {
   circular?: boolean;
 }
 
-export const HeroText: React.FC<IHeroText> = ({ children, circular }) => {
+export const Text: React.FC<IHeroText> = ({ children, circular }) => {
   if (circular) {
     return (
       <>
@@ -29,16 +29,14 @@ export const HeroText: React.FC<IHeroText> = ({ children, circular }) => {
   return <Styled.TextWrapper>{children}</Styled.TextWrapper>;
 };
 
-export const HeroHeading: React.FC = ({ children }) => {
+export const Heading: React.FC = ({ children }) => {
   return <Styled.HeadingWrapper>{children}</Styled.HeadingWrapper>;
 };
 
-export const HeroTagline: React.FC = ({ children }) => {
+export const Tagline: React.FC = ({ children }) => {
   return <Styled.TaglineWrapper>{children}</Styled.TaglineWrapper>;
 };
 
-export const HeroImage: React.FC = ({ children }) => {
+export const Image: React.FC = ({ children }) => {
   return <Styled.ImageWrapper>{children}</Styled.ImageWrapper>;
 };
-
-export default Hero;
