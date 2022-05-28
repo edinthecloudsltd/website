@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import { Client } from '@notionhq/client';
-import Head from 'next/head';
 // @ts-ignore: import directly from node_modules to avoid https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230
 import { oneDark, oneLight } from 'node_modules/react-syntax-highlighter/dist/esm/styles/prism';
 import { NotionToMarkdown } from 'notion-to-md';
@@ -11,11 +10,12 @@ import gfm from 'remark-gfm';
 
 import ErrorPage from 'src/components/error';
 import HeartButton from 'src/components/heart-button';
+import Meta from 'src/components/layout/meta';
+import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { Tag } from 'src/components/tag/tag';
 import { DisplayContext } from 'src/context/display';
 import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
 
-import MaxWidthWrapper from '../../components/max-width-wrapper/max-width-wrapper';
 import styles from './posts.module.css';
 
 export default function Post({ page, markdown }: { page: any; markdown: any }) {
@@ -27,22 +27,13 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
 
   return (
     <>
-      <Head>
-        <title>{page.properties.Title.title[0].plain_text}</title>
-        <meta
-          name="description"
-          content={`${
-            page.properties.Description.rich_text[0].plain_text
-          } ${page.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)}`}
-        />
-        <meta
-          property="og:description"
-          content={`${
-            page.properties.Description.rich_text[0].plain_text
-          } ${page.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)}`}
-          key="ogdesc"
-        />
-      </Head>
+      <Meta
+        title={`${page.properties.Title.title[0].plain_text} - Ed in the Clouds`}
+        description={`${
+          page.properties.Description.rich_text[0].plain_text
+        } ${page.properties.Tags.multi_select.map((t: { id: string; name: string }) => t.name)}`}
+        canonical={`https://edintheclouds.io/posts/${page.id}`}
+      />
 
       <HeartButton />
 
