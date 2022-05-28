@@ -2,7 +2,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import session from 'src/pages/api/session';
+import session from 'src/pages/api/session.page';
 
 const region = 'us-east-1';
 const ddb = new DynamoDBClient({ region });
