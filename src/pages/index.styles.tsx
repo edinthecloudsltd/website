@@ -26,6 +26,7 @@ export const Heading = styled.h1`
 
   @media (max-width: 568px) {
     text-shadow: ${({ theme }) => (theme.titleGlow ? `2px 2px 10px gray` : '')};
+    font-size: 5.2rem;
   }
 `;
 
