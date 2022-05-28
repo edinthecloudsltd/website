@@ -6,7 +6,13 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 import { DisplayContext } from 'src/context/display';
 
-import { NavbarWrapper, NavbarInnerWrapper, NavbarLogo, NavbarButtons } from './navbar.styles';
+import {
+  NavbarWrapper,
+  NavbarInnerWrapper,
+  NavbarLogo,
+  NavbarButtons,
+  ThemeToggle,
+} from './navbar.styles';
 
 export default function Navbar() {
   const router = useRouter();
@@ -23,13 +29,15 @@ export default function Navbar() {
         <a />
         <NavbarButtons>
           {router.pathname !== '/blog' && (
-            <li>
+            <li style={{ listStyleType: 'none' }}>
               <Link href="/posts">
-                <a className="text-gray-700 dark:text-gray-200">Blog</a>
+                <a style={{ color: 'var(--text-primary)' }}>Blog</a>
               </Link>
             </li>
           )}
-          <button onClick={toggleTheme}>{activeTheme === 'light' ? <FaSun /> : <FaMoon />}</button>
+          <ThemeToggle onClick={toggleTheme}>
+            {activeTheme === 'light' ? <FaSun /> : <FaMoon />}
+          </ThemeToggle>
         </NavbarButtons>
       </NavbarInnerWrapper>
     </NavbarWrapper>

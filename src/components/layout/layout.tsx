@@ -5,8 +5,8 @@ import { ThemeProvider } from 'styled-components';
 import { DisplayContext } from 'src/context/display';
 import { GlobalStyles, themes } from 'src/styles/themes';
 
-import Footer from '../footer';
-import Navbar from '../navbar';
+import Footer from '../footer/footer';
+import Navbar from '../navbar/navbar';
 
 const Layout: React.FC = ({ children }) => {
   // Workaroud FOUC

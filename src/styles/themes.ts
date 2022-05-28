@@ -5,6 +5,40 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }: { theme: any }) => theme.background};
     color: ${({ theme }: { theme: any }) => theme.color};
   }
+
+  *, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+  }
+
+  button {
+    display: flex;
+    background-color: transparent;
+    background-image: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
 `;
 
 export const themes = {

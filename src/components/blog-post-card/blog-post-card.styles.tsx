@@ -13,7 +13,7 @@ export const Card = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   border-radius: 50px;
-  padding: 3.5rem;
+  padding: 3rem 3.5rem;
   //transition: 0.3s ease;
   box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
   background: ${({ theme }) => theme.cardBg};
@@ -24,6 +24,15 @@ export const Card = styled.div`
   &:hover {
     transform: scale(1.02);
   }
+
+  & * {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+
+  @media (max-width: 568px) {
+    padding: 3rem 2rem;
+  }
 `;
 
 export const CardTitle = styled.h2`
@@ -32,8 +41,11 @@ export const CardTitle = styled.h2`
   line-height: 1.2;
   font-weight: 500;
   letter-spacing: -1px;
-  color: ${({ theme }) => theme.color}
-  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.color};
+
+  @media (max-width: 568px) {
+    margin: 0.2rem 0;
+  }
 `;
 
 export const TagContainer = styled.div`

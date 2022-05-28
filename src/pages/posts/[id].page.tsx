@@ -69,6 +69,7 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
             })}
           </p>
         </div>
+        <hr style={{ border: '.2px solid var(--text-primary)' }} />
         {/* eslint-disable  react/no-children-prop */}
         <ReactMarkdown
           className={styles.content}
@@ -118,6 +119,8 @@ export const getStaticProps = async (ctx: any) => {
     page?.properties.Title.title[0].plain_text.replace(/ +/g, '-').toLowerCase()
   }`;
 
+  // intercept each img block and use the caption to lookup the public img file, this allows us
+  // to host the images and not rely on notion, since access to the images is temporary
   blocks?.forEach((d: any) => {
     if (d.type === 'image' && d.image.caption.length > 0) {
       const caption = d.image?.caption[0].plain_text.toLowerCase();

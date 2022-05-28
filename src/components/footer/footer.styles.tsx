@@ -55,8 +55,11 @@ export const SocialIcons = styled.div`
 
 export const IconWrapper = styled.div`
   cursor: pointer;
-
   transition: all 0.5s ease;
+
+  & a {
+    color: var(--text-primary);
+  }
 
   &:hover {
     transition: all 0.5s ease;

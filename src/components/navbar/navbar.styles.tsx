@@ -11,6 +11,7 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   padding: 0.5rem 1rem;
   top: 0;
   transition: all 0.3s ease-in;
+  color: var(--text-primary);
 
   @media (max-width: 568px) {
     background: ${({ theme, show }) => show && theme.background};
@@ -56,10 +57,16 @@ export const NavbarButtons = styled.ul`
     margin: 0 1.5rem;
     text-decoration: none;
     cursor: pointer;
+    transition: all 0.3s ease-in;
 
     &:hover {
       color: ${({ theme }) => theme.navButtonSecondary};
       border-bottom: 1px solid #666464;
     }
   }
+`;
+
+export const ThemeToggle = styled.button`
+  color: var(--text-primary);
+  transition: all 0.3s ease-in;
 `;

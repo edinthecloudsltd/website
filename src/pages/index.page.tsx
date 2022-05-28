@@ -57,23 +57,13 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
 
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
-          <Styled.ContentCard className="space-y-6">
-            <p
-              style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
-              className="text-3xl font-bold lg:text-5xl text-blue200"
-            >{`Hi, I'm Ed.`}</p>
-
-            <p className="text-2xl">{`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}</p>
-
-            <p
-              style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
-              className="text-3xl font-bold lg:text-4xl"
-            >{`I'm in my happy place when I'm...`}</p>
-
-            <ul
-              className="space-y-2 text-xl list-disc list-outside"
-              style={{ paddingLeft: '1rem' }}
-            >
+          <Styled.ContentCard>
+            <Styled.StrongL style={{ color: 'var(--gray-blue)' }}>{`Hi, I'm Ed.`}</Styled.StrongL>
+            <Styled.TextM>
+              {`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}
+            </Styled.TextM>
+            <Styled.StrongM>{`I'm in my happy place when I'm ...`}</Styled.StrongM>
+            <Styled.ListHappyPlace>
               <li>⚙️ Scripting and automating stuff</li>
               <li>
                 🧑‍💻 Improving developer experience by helping them to deliver software quicker,
@@ -81,18 +71,15 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               </li>
               <li>🏗 Building and engineering cloud infrastructure</li>
               <li>🎓 Learning!</li>
-            </ul>
+            </Styled.ListHappyPlace>
           </Styled.ContentCard>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.ContentCard>
-            <p
-              style={{ fontFamily: 'coffee-service, sans-serif', letterSpacing: '-1px' }}
-              className="text-3xl font-bold lg:text-4xl"
-            >{`What can I do?`}</p>
-            <p className="text-xl">
+            <Styled.StrongM>{`What can I do?`}</Styled.StrongM>
+            <p style={{ fontSize: '1.25rem' }}>
               {`If you're interested in checking out my skillset, `}
               <a
                 href="/assets/docs/EdwardSmithCV2022.pdf"
