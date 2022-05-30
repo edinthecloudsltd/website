@@ -78,7 +78,7 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
               <a
                 data-tip
                 data-for="cv"
-                href="/assets/docs/EdwardSmithCV.pdf"
+                href="/assets/docs/EdSmithCV.pdf"
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: 'var(--blue)', fontWeight: 700 }}
@@ -103,25 +103,6 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
           </Styled.ContentCard>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
-      {/*       <Styled.SectionWrapper>
-        <MaxWidthWrapper>
-          <Styled.ContentCard>
-            <Styled.StrongM>{`What can I do?`}</Styled.StrongM>
-            <p style={{ fontSize: '1.25rem' }}>
-              {`If you are interested in engaging my services, please email me at ed@edintheclouds.io `}
-              <a
-                href="/assets/docs/EdwardSmithCV2022.pdf"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--blue)', fontWeight: 700 }}
-              >
-                please check out my CV
-              </a>
-              {` 📄`}
-            </p>
-          </Styled.ContentCard>
-        </MaxWidthWrapper>
-      </Styled.SectionWrapper> */}
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.SectionHeading>Latest Posts 📝</Styled.SectionHeading>
@@ -150,7 +131,7 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
 
 export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
-  const cvLastModified = await getFileLastUpdated('public/assets/docs/EdwardSmithCV.pdf');
+  const cvLastModified = await getFileLastUpdated('public/assets/docs/EdSmithCV.pdf');
 
   // only show the 4 most recent posts
   const posts = database?.slice(0, 4);

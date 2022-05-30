@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { FaTwitter, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 
 import MaxWidthWrapper from 'src/components/max-width-wrapper';
@@ -24,6 +24,11 @@ const Footer: React.FC = () => {
               </Styled.CompanyInfo>
             )}
             <Styled.SocialIcons>
+              <Styled.IconWrapper>
+                <a href="https://github.com/tedsmitt">
+                  <FaGithub size={25} />
+                </a>
+              </Styled.IconWrapper>
               <Styled.IconWrapper>
                 <a href="https://twitter.com/_edintheclouds">
                   <FaTwitter size={25} />
