@@ -136,3 +136,11 @@ export const TextM = styled.p`
     font-size: 1.25rem;
   }
 `;
+
+export const TextS = styled.p`
+  font-size: 1.25rem;
+
+  @media (max-width: 568px) {
+    font-size: 1.25rem;
+  }
+`;

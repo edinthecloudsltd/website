@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 
+import ReactTooltip from 'react-tooltip';
+
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
 import Hero from 'src/components/hero';
 import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { DisplayContext } from 'src/context/display';
+import getFileLastUpdated from 'src/lib/getFileLastUpdated';
 import { getDatabase } from 'src/lib/notion';
 
 import * as Styled from './index.styles';
@@ -13,9 +16,10 @@ import * as Styled from './index.styles';
 interface IHomeProps {
   skills: { name: string; fileName: string }[];
   posts: any;
+  cvLastModified: string;
 }
 
-const Home: React.FC<IHomeProps> = ({ posts }) => {
+const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
   const { activeTheme, showNav } = useContext(DisplayContext);
 
   // handleNotchBackground figures out the bg color for the iPhone notch
@@ -59,28 +63,52 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         <MaxWidthWrapper>
           <Styled.ContentCard>
             <Styled.StrongL style={{ color: 'var(--gray-blue)' }}>{`Hi, I'm Ed.`}</Styled.StrongL>
-            <Styled.TextM>
-              {`I'm a freelance contract Cloud Engineer based in Manchester, UK.`}
-            </Styled.TextM>
+            <Styled.TextM>{`I'm a Freelance Platform/Cloud Engineer based in Manchester, UK.`}</Styled.TextM>
             <Styled.StrongM>{`I'm in my happy place when I'm ...`}</Styled.StrongM>
             <Styled.ListHappyPlace>
               <li>⚙️ Scripting and automating stuff</li>
-              <li>
-                🧑‍💻 Improving developer experience by helping them to deliver software quicker,
-                and more safely
-              </li>
+              <li>🧑‍💻 Improving developer experience</li>
               <li>🏗 Building and engineering cloud infrastructure</li>
+              <li>🛠 Writing code and creating tools to help make life easier</li>
               <li>🎓 Learning!</li>
             </Styled.ListHappyPlace>
+            <Styled.StrongM>{`What can I do?`}</Styled.StrongM>
+            <Styled.TextS>
+              {`If you are interested in engaging my services, `}
+              <a
+                data-tip
+                data-for="cv"
+                href="/assets/docs/EdwardSmithCV.pdf"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--blue)', fontWeight: 700 }}
+              >
+                please check out my CV
+              </a>
+              <ReactTooltip id="cv" type="success">
+                <Styled.TextS style={{ fontSize: '1rem' }}>
+                  CV Last updated {cvLastModified}
+                </Styled.TextS>
+              </ReactTooltip>
+            </Styled.TextS>
+            <Styled.TextS>
+              {`Alternatively you can email me at `}
+              <a
+                href="mailto:ed@edintheclouds.io"
+                style={{ color: 'var(--blue)', fontWeight: 700 }}
+              >
+                ed@edintheclouds.io
+              </a>
+            </Styled.TextS>
           </Styled.ContentCard>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
-      <Styled.SectionWrapper>
+      {/*       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.ContentCard>
             <Styled.StrongM>{`What can I do?`}</Styled.StrongM>
             <p style={{ fontSize: '1.25rem' }}>
-              {`If you're interested in checking out my skillset, `}
+              {`If you are interested in engaging my services, please email me at ed@edintheclouds.io `}
               <a
                 href="/assets/docs/EdwardSmithCV2022.pdf"
                 target="_blank"
@@ -93,7 +121,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
             </p>
           </Styled.ContentCard>
         </MaxWidthWrapper>
-      </Styled.SectionWrapper>
+      </Styled.SectionWrapper> */}
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.SectionHeading>Latest Posts 📝</Styled.SectionHeading>
@@ -122,6 +150,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
 
 export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
+  const cvLastModified = await getFileLastUpdated('public/assets/docs/EdwardSmithCV.pdf');
 
   // only show the 4 most recent posts
   const posts = database?.slice(0, 4);
@@ -129,6 +158,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts,
+      cvLastModified: cvLastModified.toLocaleDateString(),
     },
     revalidate: 1,
   };
