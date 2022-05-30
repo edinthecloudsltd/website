@@ -21,11 +21,10 @@ export const Heading = styled.h1`
   text-align: center;
   animation: ${fadeIn} 1s;
   transition: color 2s ease;
-  text-shadow: ${({ theme }) => (theme.titleGlow ? `0px 0px 5px white` : '')};
+  text-shadow: ${({ theme }) => theme.titleGlow};
   overflow: visible;
 
   @media (max-width: 568px) {
-    text-shadow: ${({ theme }) => (theme.titleGlow ? `2px 2px 10px gray` : '')};
     font-size: 5.2rem;
   }
 `;

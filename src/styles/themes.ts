@@ -45,6 +45,7 @@ export const themes = {
   light: {
     background: 'white',
     title: '#34344c',
+    titleGlow: '0px 0px 1.5px #34344c',
     sky: '#c7f1ff',
     clouds: '#cloud_svg__GradientLight',
     cloudOpacity: 0.7,
@@ -56,8 +57,8 @@ export const themes = {
   },
   dark: {
     background: '#363537',
-    title: 'F900BF',
-    titleGlow: true,
+    title: '#FFFFFF',
+    titleGlow: '0px 0px 5px white',
     sky: '#3b4c69',
     clouds: '#cloud_svg__GradientDark',
     cloudOpacity: 1,
