@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     cookie.serialize('_edintheclouds_session', `_sid=${sid}`, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'development',
-      maxAge: 60 * 60 * 24,
+      maxAge: 34560000, // 400 days
       sameSite: 'strict',
       path: '/',
     })
