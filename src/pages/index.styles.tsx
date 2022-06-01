@@ -59,7 +59,7 @@ export const ContentCard = styled.main`
   border-radius: 50px;
   padding: 5rem;
   margin: 0 auto;
-  box-shadow: rgb(0 0 0 / 10%) 0px 12px 12px 2px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: ${({ theme }) => theme.cardBg};
 
   & * {
@@ -89,6 +89,33 @@ export const BlogPosts = styled.div`
   }
 `;
 
+export const ListHappyPlace = styled.ul`
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  list-style-type: disc;
+  list-style-position: outside;
+
+  & li {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 568px) {
+    & li {
+      font-size: 1rem;
+    }
+  }
+`;
+
+export const FunStuff = styled.div`
+  display: flex;
+  gap: 3rem;
+
+  @media (max-width: 568px) {
+    flex-direction: column;
+  }
+`;
+
 export const StrongL = styled.strong`
   font-family: coffee-service, sans-serif;
   letter-spacing: -1px;
@@ -107,25 +134,7 @@ export const StrongM = styled.strong`
   font-weight: 700;
 
   @media (max-width: 568px) {
-    font-size: 1.875rem;
-  }
-`;
-
-export const ListHappyPlace = styled.ul`
-  padding-left: 1rem;
-  font-size: 1.25rem;
-  list-style-type: disc;
-  list-style-position: outside;
-
-  & li {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-
-  @media (max-width: 568px) {
-    & li {
-      font-size: 1.1rem;
-    }
+    font-size: 1.6rem;
   }
 `;
 
@@ -133,7 +142,7 @@ export const TextM = styled.p`
   font-size: 1.5rem;
 
   @media (max-width: 568px) {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 `;
 
@@ -141,6 +150,6 @@ export const TextS = styled.p`
   font-size: 1.25rem;
 
   @media (max-width: 568px) {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 `;

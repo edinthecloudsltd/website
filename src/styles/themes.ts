@@ -54,6 +54,7 @@ export const themes = {
     cardBg: '#c7f1ff',
     navButtonPrimary: '#34344c',
     navButtonSecondary: '#adadad',
+    appleMusicPlayerCard: '#fc9ddb',
   },
   dark: {
     background: '#363537',
@@ -67,5 +68,6 @@ export const themes = {
     cardBg: '#3b4c69',
     navButtonPrimary: '#adadad',
     navButtonSecondary: 'white',
+    appleMusicPlayerCard: '#fc9ddb',
   },
 };

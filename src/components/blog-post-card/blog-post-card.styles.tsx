@@ -15,7 +15,7 @@ export const Card = styled.div`
   border-radius: 50px;
   padding: 3rem 3.5rem;
   //transition: 0.3s ease;
-  box-shadow: 0px 12px 12px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: ${({ theme }) => theme.cardBg};
 
   animation: ${fadeIn} 0.3s;

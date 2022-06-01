@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import ReactTooltip from 'react-tooltip';
 
+import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-player';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
 import Hero from 'src/components/hero';
@@ -103,6 +104,7 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
           </Styled.ContentCard>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
+
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.SectionHeading>Latest Posts 📝</Styled.SectionHeading>
@@ -123,6 +125,22 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
               )
             )}
           </Styled.BlogPosts>
+        </MaxWidthWrapper>
+      </Styled.SectionWrapper>
+
+      <Styled.SectionWrapper>
+        <MaxWidthWrapper>
+          <Styled.FunStuff>
+            <AppleMusicPlayer />
+            {/*             <Styled.ContentCard style={{ margin: 0, flexBasis: '66.6%', maxHeight: '350px' }}>
+              <Styled.TextS>Outside of work I enjoy</Styled.TextS>
+              <Styled.ListHappyPlace>
+                <li>Doing a bit of coding/development</li>
+                <li>Going for a pint</li>
+                <li>Playing Xbox (specifically Deep Rock Galactic!)</li>
+              </Styled.ListHappyPlace>
+            </Styled.ContentCard> */}
+          </Styled.FunStuff>
         </MaxWidthWrapper>
       </Styled.SectionWrapper>
     </>

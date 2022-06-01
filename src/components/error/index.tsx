@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import MaxWidthWrapper from '../max-width-wrapper';
+import MaxWidthWrapper from '../max-width-wrapper/max-width-wrapper';
 
 export default function ErrorPage() {
   const router = useRouter();

@@ -10,8 +10,8 @@ export const StyledWrapper = styled.main`
   padding-right: 32px;
 
   @media (max-width: 563px) {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
