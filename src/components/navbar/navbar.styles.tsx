@@ -7,7 +7,6 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   height: var(--navbar-height);
   z-index: 50;
   font-size: 1.6rem;
-  font-family: coffee-service, sans-serif;
   padding: 0.5rem 1rem;
   top: 0;
   transition: all 0.3s ease-in;

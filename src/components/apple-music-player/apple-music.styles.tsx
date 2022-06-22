@@ -101,6 +101,7 @@ export const RecentlyPlayedSong = styled.div`
 export const Text = styled.p`
   margin: 0 0.2rem;
   color: white;
+  font-weight: 700;
 `;
 
 export const AppleMusicLogo = styled(AppleMusicLogoSVG)`

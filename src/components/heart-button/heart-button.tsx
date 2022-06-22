@@ -52,7 +52,7 @@ const HeartButton: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
-        <p>{counter}</p>
+        <p className={styles.counter}>{counter}</p>
         <Heart hasLiked={hasLiked} onClick={handleClick} />
       </div>
     </div>

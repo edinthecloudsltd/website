@@ -11,7 +11,7 @@ export const Card = styled.div`
     Noto Color Emoji;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.9rem;
   border-radius: 50px;
   padding: 3rem 3.5rem;
   //transition: 0.3s ease;
@@ -36,10 +36,9 @@ export const Card = styled.div`
 `;
 
 export const CardTitle = styled.h2`
-  font-family: coffee-service, sans-serif;
   font-size: 2rem;
+  font-weight: 800;
   line-height: 1.2;
-  font-weight: 500;
   letter-spacing: -1px;
   color: ${({ theme }) => theme.color};
 

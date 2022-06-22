@@ -56,7 +56,7 @@ const AppleMusicPlayer: React.FC = () => {
         {songs && (
           <>
             <Styled.NowPlaying>
-              <Styled.Text style={{ fontWeight: 500 }}>Now Playing</Styled.Text>
+              <Styled.Text>Now Playing...</Styled.Text>
               <a href={songs[0].attributes.url} target="_blank" rel="noreferrer">
                 <Styled.AlbumArt
                   src={songs[0].attributes.artwork.url.replace('{w}', '500').replace('{h}', '500')}
@@ -73,7 +73,7 @@ const AppleMusicPlayer: React.FC = () => {
               </Marquee>
             </Styled.NowPlaying>
             <Styled.RecentlyPlayed>
-              <Styled.Text>Recently Played</Styled.Text>
+              <Styled.Text style={{ fontWeight: 500 }}>Recently Played</Styled.Text>
               <Styled.RecentlyPlayedList>
                 {songs.slice(1).map((song, i) => (
                   <Styled.RecentlyPlayedSong key={i}>

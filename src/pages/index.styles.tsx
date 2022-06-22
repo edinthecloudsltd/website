@@ -40,9 +40,8 @@ export const SectionWrapper = styled.main`
 `;
 
 export const SectionHeading = styled.h1`
-  font-family: coffee-service, sans-serif;
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: -1px;
   color: ${({ theme }) => theme.color};
   padding-left: 1.5rem;
@@ -63,8 +62,8 @@ export const ContentCard = styled.main`
   background: ${({ theme }) => theme.cardBg};
 
   & * {
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (max-width: 568px) {
@@ -117,10 +116,9 @@ export const FunStuff = styled.div`
 `;
 
 export const StrongL = styled.strong`
-  font-family: coffee-service, sans-serif;
   letter-spacing: -1px;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 800;
 
   @media (max-width: 568px) {
     font-size: 2rem;
@@ -128,7 +126,6 @@ export const StrongL = styled.strong`
 `;
 
 export const StrongM = styled.strong`
-  font-family: coffee-service, sans-serif;
   letter-spacing: -1px;
   font-size: 2.25rem;
   font-weight: 700;
