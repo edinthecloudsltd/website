@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Marquee from 'react-fast-marquee';
+import { useMediaQuery } from 'react-responsive';
 
 import * as Styled from './apple-music.styles';
 
@@ -29,6 +30,7 @@ interface AppleMusicSong {
 }
 
 const AppleMusicPlayer: React.FC = () => {
+  const isMobileViewport = useMediaQuery({ query: '(max-width: 1024px)' });
   const [songs, setSongs] = useState<AppleMusicSong[]>();
 
   useEffect(() => {
@@ -52,34 +54,37 @@ const AppleMusicPlayer: React.FC = () => {
   return (
     <Styled.MusicPlayerCard>
       <Styled.AppleMusicLogo />
-      <Styled.InnerWrapper>
+      <Styled.Body>
         {songs && (
           <>
             <Styled.NowPlaying>
-              <Styled.Text>Now Playing...</Styled.Text>
-              <a href={songs[0].attributes.url} target="_blank" rel="noreferrer">
-                <Styled.AlbumArt
+              <Styled.Text style={{ fontSize: '1.5rem' }}>Now Playing...</Styled.Text>
+              <Styled.AlbumArt href={songs[0].attributes.url} target="_blank" rel="noreferrer">
+                <Styled.AlbumArtImage
                   src={songs[0].attributes.artwork.url.replace('{w}', '500').replace('{h}', '500')}
                 />
-              </a>
-              <Marquee gradient={false}>
-                <Styled.Text>{`${songs[0].attributes.name} -`} </Styled.Text>
-                <Styled.Text style={{ fontWeight: 500 }}>
-                  {songs[0].attributes.artistName}
-                </Styled.Text>
-                <Styled.Text style={{ fontStyle: 'italic' }}>
-                  {` - ${songs[0].attributes.albumName} •`}{' '}
-                </Styled.Text>
-              </Marquee>
+              </Styled.AlbumArt>
             </Styled.NowPlaying>
+            {isMobileViewport && Array.isArray(songs) && (
+              <Marquee gradient={false}>
+                <Styled.Text>{`${songs[0].attributes.name} —`} </Styled.Text>
+                <Styled.Text>{songs[0].attributes.artistName}</Styled.Text>
+                <Styled.Text>{` — ${songs[0].attributes.albumName} ...`} </Styled.Text>
+              </Marquee>
+            )}
             <Styled.RecentlyPlayed>
-              <Styled.Text style={{ fontWeight: 500 }}>Recently Played</Styled.Text>
+              <Styled.Text style={{ fontWeight: 600 }}>Recently Played</Styled.Text>
               <Styled.RecentlyPlayedList>
                 {songs.slice(1).map((song, i) => (
-                  <Styled.RecentlyPlayedSong key={i}>
-                    <a href={song.attributes.url} target="_blank" rel="noreferrer">
-                      {song.attributes.name}
-                    </a>
+                  <Styled.RecentlyPlayedSong
+                    key={i}
+                    href={song.attributes.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Styled.Text style={{ fontSize: '0.8rem', overflow: 'hidden' }}>
+                      {song.attributes.name} — {song.attributes.artistName}
+                    </Styled.Text>
                     <img
                       src={song.attributes.artwork.url.replace('{w}', '200').replace('{h}', '200')}
                       alt={song.attributes.name}
@@ -90,7 +95,18 @@ const AppleMusicPlayer: React.FC = () => {
             </Styled.RecentlyPlayed>
           </>
         )}
-      </Styled.InnerWrapper>
+      </Styled.Body>
+      {!isMobileViewport && (
+        <Styled.Footer>
+          {Array.isArray(songs) && (
+            <Marquee gradient={false}>
+              <Styled.Text>{`${songs[0].attributes.name} —`} </Styled.Text>
+              <Styled.Text>{songs[0].attributes.artistName}</Styled.Text>
+              <Styled.Text>{` — ${songs[0].attributes.albumName} ...`} </Styled.Text>
+            </Marquee>
+          )}
+        </Styled.Footer>
+      )}
     </Styled.MusicPlayerCard>
   );
 };
