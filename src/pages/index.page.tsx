@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 
-import ReactTooltip from 'react-tooltip';
-
 import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-player';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
@@ -9,7 +7,6 @@ import Hero from 'src/components/hero';
 import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { DisplayContext } from 'src/context/display';
-import getFileLastUpdated from 'src/lib/getFileLastUpdated';
 import { getDatabase } from 'src/lib/notion';
 
 import * as Styled from './index.styles';
@@ -17,10 +14,9 @@ import * as Styled from './index.styles';
 interface IHomeProps {
   skills: { name: string; fileName: string }[];
   posts: any;
-  cvLastModified: string;
 }
 
-const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
+const Home: React.FC<IHomeProps> = ({ posts }) => {
   const { activeTheme, showNav } = useContext(DisplayContext);
 
   // handleNotchBackground figures out the bg color for the iPhone notch
@@ -86,11 +82,6 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
               >
                 please check out my CV
               </a>
-              <ReactTooltip id="cv" type="success">
-                <Styled.TextS style={{ fontSize: '1rem' }}>
-                  CV Last updated {cvLastModified}
-                </Styled.TextS>
-              </ReactTooltip>
             </Styled.TextS>
             <Styled.TextS>
               {`Alternatively you can email me at `}
@@ -149,7 +140,6 @@ const Home: React.FC<IHomeProps> = ({ posts, cvLastModified }) => {
 
 export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
-  const cvLastModified = await getFileLastUpdated('public/assets/docs/EdSmithCV.pdf');
 
   // only show the 4 most recent posts
   const posts = database?.slice(0, 4);
@@ -157,7 +147,6 @@ export async function getStaticProps() {
   return {
     props: {
       posts,
-      cvLastModified: cvLastModified.toLocaleDateString(),
     },
     revalidate: 1,
   };

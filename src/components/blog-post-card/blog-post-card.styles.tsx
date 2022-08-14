@@ -11,6 +11,7 @@ export const Card = styled.div`
     Noto Color Emoji;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   gap: 0.9rem;
   border-radius: 50px;
   padding: 3rem 3.5rem;
@@ -30,6 +31,10 @@ export const Card = styled.div`
     margin-bottom: 0rem;
   }
 
+  @media (max-width: 1100px) {
+    padding: 3rem;
+  }
+
   @media (max-width: 568px) {
     padding: 3rem 2rem;
   }
@@ -42,8 +47,26 @@ export const CardTitle = styled.h2`
   letter-spacing: -1px;
   color: ${({ theme }) => theme.color};
 
+  @media (max-width: 1100px) {
+    font-size: 1.5rem;
+  }
+
   @media (max-width: 568px) {
     margin: 0.2rem 0;
+  }
+`;
+
+export const CardDescription = styled.p`
+  font-size: 1rem;
+
+  @media (max-width: 1100px) {
+    height: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media (max-width: 568px) {
+    font-size: 1rem;
   }
 `;
 

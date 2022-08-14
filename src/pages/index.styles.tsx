@@ -82,8 +82,14 @@ export const BlogPosts = styled.div`
   gap: 2rem;
   justify-content: center;
 
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-auto-rows: 350px;
+    gap: 2rem 2rem;
+  }
+
   @media (max-width: 568px) {
-    grid-template-columns: repeat(auto-fill, 95vw);
+    grid-template-columns: repeat(auto-fill, 90vw);
     gap: 1.5rem 4rem;
   }
 `;

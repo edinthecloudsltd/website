@@ -21,7 +21,7 @@ export default function BlogPostCard({
     <Link passHref href={`/posts/${id}`}>
       <Styled.Card key={id}>
         <Styled.CardTitle>{title}</Styled.CardTitle>
-        <p>{description}</p>
+        <Styled.CardDescription>{description}</Styled.CardDescription>
         <small style={{ fontWeight: 500, color: 'var(--gray-blue)' }}>
           {new Date(date).toLocaleDateString('en-GB', {
             weekday: 'long',
