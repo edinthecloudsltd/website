@@ -52,7 +52,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
       <Hero.Wrapper>
         <CloudParrallax />
         <Hero.Text>
-          <Styled.Heading>Ed in the Clouds</Styled.Heading>
+          <Styled.Heading>Ed in the Clouds Preview!</Styled.Heading>
         </Hero.Text>
       </Hero.Wrapper>
 
