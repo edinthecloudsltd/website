@@ -5,7 +5,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import session from 'src/pages/api/session.page';
 
 const region = 'us-east-1';
-const ddb = new DynamoDBClient({ region });
+const ddb = new DynamoDBClient({
+  region,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_KEY,
+  },
+});
 const ddbClient = DynamoDBDocumentClient.from(ddb);
 const table = process.env.POST_LIKES_DYNAMODB_TABLE || 'EdintheCloudsPostLikes';
 const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'EdintheCloudsSessionStore';

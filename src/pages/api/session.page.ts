@@ -6,9 +6,15 @@ import cookie from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const region = 'us-east-1';
-const ddb = new DynamoDBClient({ region });
+const ddb = new DynamoDBClient({
+  region,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_KEY,
+  },
+});
 const ddbClient = DynamoDBDocumentClient.from(ddb);
-const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'sessionStore';
+const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'EdintheCloudsSessionStore';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   /* eslint-disable @typescript-eslint/dot-notation */
