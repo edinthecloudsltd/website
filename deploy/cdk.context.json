@@ -1,4 +1,0 @@
-{
-  "assume-role-credentials:writeIamRoleName": "OpsCrossAccountRole",
-  "assume-role-credentials:readIamRoleName": "OpsCrossAccountRole"
-}
