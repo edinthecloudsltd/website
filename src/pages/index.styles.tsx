@@ -115,6 +115,7 @@ export const ListHappyPlace = styled.ul`
 export const FunStuff = styled.div`
   display: flex;
   gap: 3rem;
+  justify-content: center;
 
   @media (max-width: 568px) {
     flex-direction: column;
