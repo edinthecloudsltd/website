@@ -65,20 +65,20 @@ const AppleMusicPlayer: React.FC = () => {
             <Styled.NowPlaying>
               <Styled.Text style={{ fontSize: '1.5rem' }}>Now Playing...</Styled.Text>
               <Styled.AlbumArt
-                href={songs[0].relationships.catalog.data[0].attributes.url}
+                href={songs[0].relationships.catalog.data[0]?.attributes.url}
                 target="_blank"
                 rel="noreferrer"
               >
                 <Styled.AlbumArtImage
-                  src={songs[0].attributes.artwork.url.replace('{w}', '500').replace('{h}', '500')}
+                  src={songs[0]?.attributes.artwork.url.replace('{w}', '500').replace('{h}', '500')}
                 />
               </Styled.AlbumArt>
             </Styled.NowPlaying>
             {isMobileViewport && Array.isArray(songs) && (
               <Marquee gradient={false}>
-                <Styled.Text>{`${songs[0].attributes.name} —`} </Styled.Text>
-                <Styled.Text>{songs[0].attributes.artistName}</Styled.Text>
-                <Styled.Text>{` — ${songs[0].attributes.albumName} ...`} </Styled.Text>
+                <Styled.Text>{`${songs[0]?.attributes.name} —`} </Styled.Text>
+                <Styled.Text>{songs[0]?.attributes.artistName}</Styled.Text>
+                <Styled.Text>{` — ${songs[0]?.attributes.albumName} ...`} </Styled.Text>
               </Marquee>
             )}
             <Styled.RecentlyPlayed>
@@ -87,13 +87,13 @@ const AppleMusicPlayer: React.FC = () => {
                 {songs.slice(1).map((song, i) => (
                   <Styled.RecentlyPlayedSong
                     key={i}
-                    href={song.relationships.catalog.data[0].attributes.url}
+                    href={song.relationships.catalog.data[0]?.attributes.url}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <Styled.RecentlyPlayedAlbumArt
-                      src={song.attributes.artwork.url.replace('{w}', '200').replace('{h}', '200')}
-                      alt={song.attributes.name}
+                      src={song?.attributes.artwork.url.replace('{w}', '200').replace('{h}', '200')}
+                      alt={song?.attributes.name}
                     />
                     <Styled.Text
                       style={{
@@ -103,7 +103,7 @@ const AppleMusicPlayer: React.FC = () => {
                         textDecoration: 'none',
                       }}
                     >
-                      {song.attributes.name} — {song.attributes.artistName}
+                      {song?.attributes.name} — {song?.attributes.artistName}
                     </Styled.Text>
                   </Styled.RecentlyPlayedSong>
                 ))}
@@ -116,9 +116,9 @@ const AppleMusicPlayer: React.FC = () => {
         <Styled.Footer>
           {Array.isArray(songs) && (
             <Marquee gradient={false}>
-              <Styled.Text>{`${songs[0].attributes.name} —`} </Styled.Text>
-              <Styled.Text>{songs[0].attributes.artistName}</Styled.Text>
-              <Styled.Text>{` — ${songs[0].attributes.albumName} ...`} </Styled.Text>
+              <Styled.Text>{`${songs[0]?.attributes.name} —`} </Styled.Text>
+              <Styled.Text>{songs[0]?.attributes.artistName}</Styled.Text>
+              <Styled.Text>{` — ${songs[0]?.attributes.albumName} ...`} </Styled.Text>
             </Marquee>
           )}
         </Styled.Footer>
