@@ -27,6 +27,11 @@ interface AppleMusicSong {
     name: string;
     albumName: string;
   };
+  relationships: {
+    catalog: {
+      data: AppleMusicSong[];
+    };
+  };
 }
 
 const AppleMusicPlayer: React.FC = () => {
@@ -59,7 +64,11 @@ const AppleMusicPlayer: React.FC = () => {
           <>
             <Styled.NowPlaying>
               <Styled.Text style={{ fontSize: '1.5rem' }}>Now Playing...</Styled.Text>
-              <Styled.AlbumArt href={songs[0].attributes.url} target="_blank" rel="noreferrer">
+              <Styled.AlbumArt
+                href={songs[0].relationships.catalog.data[0].attributes.url}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Styled.AlbumArtImage
                   src={songs[0].attributes.artwork.url.replace('{w}', '500').replace('{h}', '500')}
                 />
@@ -78,17 +87,24 @@ const AppleMusicPlayer: React.FC = () => {
                 {songs.slice(1).map((song, i) => (
                   <Styled.RecentlyPlayedSong
                     key={i}
-                    href={song.attributes.url}
+                    href={song.relationships.catalog.data[0].attributes.url}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <Styled.Text style={{ fontSize: '0.8rem', overflow: 'hidden' }}>
-                      {song.attributes.name} — {song.attributes.artistName}
-                    </Styled.Text>
-                    <img
+                    <Styled.RecentlyPlayedAlbumArt
                       src={song.attributes.artwork.url.replace('{w}', '200').replace('{h}', '200')}
                       alt={song.attributes.name}
                     />
+                    <Styled.Text
+                      style={{
+                        fontSize: '0.8rem',
+                        overflow: 'hidden',
+                        padding: '0.4rem',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {song.attributes.name} — {song.attributes.artistName}
+                    </Styled.Text>
                   </Styled.RecentlyPlayedSong>
                 ))}
               </Styled.RecentlyPlayedList>
