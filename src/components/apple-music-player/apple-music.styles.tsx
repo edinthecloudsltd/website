@@ -23,7 +23,7 @@ export const MusicPlayerCard = styled.main`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
   @media (max-width: 1024px) {
-    max-width: 375px;
+    max-width: min(100%, 375px);
     margin: 0 auto;
     padding: 1rem 2rem;
     gap: 0rem;
@@ -62,9 +62,14 @@ export const AlbumArt = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 100%;
   width: 100%;
   padding: 1rem;
+  transition: transform ease-in-out 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 export const AlbumArtImage = styled.img`
@@ -93,34 +98,50 @@ export const RecentlyPlayed = styled.div`
     width: 100%;
     text-align: left;
   }
-
-  & img {
-    height: 20px;
-    width: auto;
-  }
 `;
 
 export const RecentlyPlayedList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  padding: 0.5rem;
+  padding: 0.2rem;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px inset;
+
+  @media (max-width: 1024px) {
+    gap: 0.2rem;
+    padding: 0.5rem;
+  }
 `;
 
 export const RecentlyPlayedSong = styled.a`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
+  height: 40px;
   max-width: 100%;
-  padding: 0.4rem;
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+  transition: transform ease-in-out 0.2s;
+
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 1024px) {
+    flex-wrap: nowrap;
+    gap: 0rem;
+    max-height: 100%;
+  }
+`;
+
+export const RecentlyPlayedAlbumArt = styled.img`
+  height: 95%;
+  width: auto;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px;
 `;
 
 export const Text = styled.p`

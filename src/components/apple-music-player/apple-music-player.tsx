@@ -91,13 +91,20 @@ const AppleMusicPlayer: React.FC = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <Styled.Text style={{ fontSize: '0.8rem', overflow: 'hidden' }}>
-                      {song.attributes.name} — {song.attributes.artistName}
-                    </Styled.Text>
-                    <img
+                    <Styled.RecentlyPlayedAlbumArt
                       src={song.attributes.artwork.url.replace('{w}', '200').replace('{h}', '200')}
                       alt={song.attributes.name}
                     />
+                    <Styled.Text
+                      style={{
+                        fontSize: '0.8rem',
+                        overflow: 'hidden',
+                        padding: '0.4rem',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {song.attributes.name} — {song.attributes.artistName}
+                    </Styled.Text>
                   </Styled.RecentlyPlayedSong>
                 ))}
               </Styled.RecentlyPlayedList>
