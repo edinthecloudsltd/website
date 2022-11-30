@@ -6,7 +6,7 @@ export default async function handler(_: NextApiRequest, res: NextApiResponse) {
   try {
     const data = await (
       await fetch(
-        `https://api.music.apple.com/v1/me/recent/played/tracks?types=songs,library-songs&limit=6`,
+        `https://api.music.apple.com/v1/me/recent/played/tracks?types=songs,library-songs&limit=6&include=catalog`,
         {
           headers: {
             Authorization: `Bearer ${process.env.APPLE_DEVELOPER_TOKEN}`,
