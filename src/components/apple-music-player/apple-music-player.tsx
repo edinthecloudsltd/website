@@ -65,7 +65,7 @@ const AppleMusicPlayer: React.FC = () => {
             <Styled.NowPlaying>
               <Styled.Text style={{ fontSize: '1.5rem' }}>Now Playing...</Styled.Text>
               <Styled.AlbumArt
-                href={songs[0].relationships.catalog.data[0]?.attributes.url}
+                href={songs[0].relationships?.catalog.data[0]?.attributes.url}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -87,7 +87,7 @@ const AppleMusicPlayer: React.FC = () => {
                 {songs.slice(1).map((song, i) => (
                   <Styled.RecentlyPlayedSong
                     key={i}
-                    href={song.relationships.catalog.data[0]?.attributes.url}
+                    href={song.relationships?.catalog.data[0]?.attributes.url}
                     target="_blank"
                     rel="noreferrer"
                   >
