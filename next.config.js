@@ -5,18 +5,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+  poweredByHeader: false,
+  trailingSlash: false,
+  basePath: '',
   compiler: {
-    // ssr and displayName are configured by default
     styledComponents: true,
   },
-  poweredByHeader: false,
-  // trailingSlash: true,
-  basePath: '',
   // The starter code load resources from `public` folder with `router.basePath` in React components.
   // So, the source code is "basePath-ready".
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
-  optimizeFont: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -25,8 +23,20 @@ module.exports = withBundleAnalyzer({
     });
     return config;
   },
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'is4-ssl.mzstatic.com',
+        port: '',
+        pathname: '/image/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'is1-ssl.mzstatic.com',
+        port: '',
+        pathname: '/image/**',
+      },
+    ],
   },
 });

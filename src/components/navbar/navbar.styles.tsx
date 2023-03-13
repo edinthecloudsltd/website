@@ -7,7 +7,7 @@ export const NavbarWrapper = styled.nav<{ show: boolean }>`
   height: var(--navbar-height);
   z-index: 50;
   font-size: 1.6rem;
-  padding: 0.5rem 1rem;
+  padding: 8px;
   top: 0;
   transition: all 0.3s ease-in;
   color: var(--text-primary);
@@ -69,3 +69,17 @@ export const ThemeToggle = styled.button`
   color: var(--text-primary);
   transition: all 0.3s ease-in;
 `;
+
+export const ProfilePicture = styled.div<{ show: boolean }>`
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: all 0.3s ease-in;
+	opacity: ${({ show }) => (show ? '1' : '0')};
+}`;

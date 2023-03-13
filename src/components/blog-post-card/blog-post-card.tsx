@@ -22,7 +22,7 @@ export default function BlogPostCard({
       <Styled.Card key={id}>
         <Styled.CardTitle>{title}</Styled.CardTitle>
         <Styled.CardDescription>{description}</Styled.CardDescription>
-        <small style={{ fontWeight: 500, color: 'var(--gray-blue)' }}>
+        <small style={{ fontWeight: 500, color: 'var(--color-light-blue)' }}>
           {new Date(date).toLocaleDateString('en-GB', {
             weekday: 'long',
             year: 'numeric',

@@ -27,13 +27,13 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  //max-height: 45rem;
   padding: 2.5rem;
   color: white;
   z-index: 10;
 
   @media (max-width: 568px) {
     margin: 0 auto;
+    padding: 0;
   }
 `;
 

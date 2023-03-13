@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import Image from 'next/image';
+
 import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-player';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
@@ -51,15 +53,13 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
 
       <Hero.Wrapper>
         <CloudParrallax />
-        <Hero.Text>
-          <Styled.Heading>Ed in the Clouds</Styled.Heading>
-        </Hero.Text>
+        <Image src="/assets/svg/edintheclouds-logo.svg" fill alt="logo" />
       </Hero.Wrapper>
 
       <Styled.SectionWrapper>
         <MaxWidthWrapper>
           <Styled.ContentCard>
-            <Styled.StrongL style={{ color: 'var(--gray-blue)' }}>{`Hi, I'm Ed.`}</Styled.StrongL>
+            <Styled.StrongL>{`Hi, I'm Ed.`}</Styled.StrongL>
             <Styled.TextM>{`I'm a Freelance Platform/Cloud Engineer based in Manchester, UK.`}</Styled.TextM>
             <Styled.StrongM>{`I'm in my happy place when I'm ...`}</Styled.StrongM>
             <Styled.ListHappyPlace>

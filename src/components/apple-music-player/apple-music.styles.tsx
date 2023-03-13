@@ -72,7 +72,8 @@ export const AlbumArt = styled.a`
   }
 `;
 
-export const AlbumArtImage = styled.img`
+export const AlbumArtImage = styled.div`
+  position: relative;
   width: 190px;
   height: 190px;
   border-radius: 5px;

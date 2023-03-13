@@ -7,8 +7,10 @@
   --text-primary: #374151;
   --text-secondary: #fe4632;
   --text-code: #111827;
-  --blue: #0373fc;
-  --gray-blue: #7eb3e3d9;
+  --color-blue: #0373fc;
+  --color-gray-blue: #DCF8FF;
+	--color-light-blue: #8FA4FF;
+	--color-midnight-blue: #002C44;
 }
 
 [data-theme='dark'] {

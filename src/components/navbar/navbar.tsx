@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FaMoon, FaSun } from 'react-icons/fa';
@@ -9,9 +10,9 @@ import { DisplayContext } from 'src/context/display';
 import {
   NavbarWrapper,
   NavbarInnerWrapper,
-  NavbarLogo,
   NavbarButtons,
   ThemeToggle,
+  ProfilePicture,
 } from './navbar.styles';
 
 export default function Navbar() {
@@ -24,13 +25,15 @@ export default function Navbar() {
     <NavbarWrapper show={showNav}>
       <NavbarInnerWrapper>
         <Link href="/" passHref>
-          <NavbarLogo src="/assets/images/profile.png" alt="ed-picture" />
+          <ProfilePicture show={showNav}>
+            <Image src="/assets/images/edintheclouds-badge.gif" alt="ed-picture" fill />
+          </ProfilePicture>
         </Link>
         <a />
         <NavbarButtons>
           {router.pathname !== '/blog' && (
             <li style={{ listStyleType: 'none' }}>
-              <Link href="/posts">
+              <Link href="/posts" legacyBehavior>
                 <a style={{ color: 'var(--text-primary)' }}>Blog</a>
               </Link>
             </li>

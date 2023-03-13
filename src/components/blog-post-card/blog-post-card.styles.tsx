@@ -6,6 +6,7 @@ const fadeIn = keyframes`
 `;
 
 export const Card = styled.div`
+  position: relative;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Noto Color Emoji;
@@ -14,16 +15,31 @@ export const Card = styled.div`
   justify-content: space-evenly;
   gap: 0.9rem;
   border-radius: 50px;
-  padding: 3rem 3.5rem;
-  //transition: 0.3s ease;
+  border: 6px solid ${({ theme }) => theme.cardBorder};
+  padding: 40px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: ${({ theme }) => theme.cardBg};
+  min-height: 325px;
 
   animation: ${fadeIn} 0.3s;
   cursor: pointer;
 
   &:hover {
     transform: scale(1.02);
+  }
+
+  &:before {
+    background: none;
+    border: 6px solid #fff;
+    border-radius: 42px;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
   }
 
   & * {
@@ -58,6 +74,7 @@ export const CardTitle = styled.h2`
 
 export const CardDescription = styled.p`
   font-size: 1rem;
+  color: ${({ theme }) => theme.color};
 
   @media (max-width: 1100px) {
     height: 75px;
