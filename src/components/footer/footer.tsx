@@ -6,7 +6,7 @@ import MaxWidthWrapper from 'src/components/max-width-wrapper';
 
 import * as Styled from './footer.styles';
 
-const Footer: React.FC = () => {
+function Footer() {
   const router = useRouter();
   const date = new Date().getFullYear();
 
@@ -50,6 +50,6 @@ const Footer: React.FC = () => {
       </MaxWidthWrapper>
     </Styled.Wrapper>
   );
-};
+}
 
 export default Footer;

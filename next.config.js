@@ -27,13 +27,7 @@ module.exports = withBundleAnalyzer({
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'is4-ssl.mzstatic.com',
-        port: '',
-        pathname: '/image/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'is1-ssl.mzstatic.com',
+        hostname: 'is*-ssl.mzstatic.com',
         port: '',
         pathname: '/image/**',
       },

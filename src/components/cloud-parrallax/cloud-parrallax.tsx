@@ -6,7 +6,7 @@ import { DisplayContext } from 'src/context/display';
 
 import * as Styled from './cloud-parrallax.styles';
 
-const CloudParrallax: React.FC = () => {
+function CloudParrallax() {
   const { activeTheme } = useContext(DisplayContext);
   const isMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const size = isMobile ? 'sm' : 'md';
@@ -47,6 +47,6 @@ const CloudParrallax: React.FC = () => {
       <Styled.Moon aria-label="moon" isActive={activeTheme === 'dark'} />
     </Styled.CloudParrallaxWrapper>
   );
-};
+}
 
 export default CloudParrallax;

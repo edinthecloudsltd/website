@@ -35,7 +35,7 @@ interface AppleMusicSong {
   };
 }
 
-const AppleMusicPlayer: React.FC = () => {
+function AppleMusicPlayer() {
   const isMobileViewport = useMediaQuery({ query: '(max-width: 1024px)' });
   const [songs, setSongs] = useState<AppleMusicSong[]>();
 
@@ -132,6 +132,6 @@ const AppleMusicPlayer: React.FC = () => {
       )}
     </Styled.MusicPlayerCard>
   );
-};
+}
 
 export default AppleMusicPlayer;

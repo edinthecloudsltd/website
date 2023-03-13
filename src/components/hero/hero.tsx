@@ -6,19 +6,19 @@ interface Props {
   size?: string;
 }
 
-export const Wrapper: React.FC<Props> = ({ children, size }) => {
+export function Wrapper({ children, size }: React.PropsWithChildren<Props>) {
   return (
     <Styled.Wrapper size={size}>
       <Styled.Content>{children}</Styled.Content>
     </Styled.Wrapper>
   );
-};
+}
 
 interface IHeroText {
   circular?: boolean;
 }
 
-export const Text: React.FC<IHeroText> = ({ children, circular }) => {
+export function Text({ children, circular }: React.PropsWithChildren<IHeroText>) {
   if (circular) {
     return (
       <>
@@ -27,16 +27,16 @@ export const Text: React.FC<IHeroText> = ({ children, circular }) => {
     );
   }
   return <Styled.TextWrapper>{children}</Styled.TextWrapper>;
-};
+}
 
-export const Heading: React.FC = ({ children }) => {
+export function Heading({ children }: React.PropsWithChildren<{}>) {
   return <Styled.HeadingWrapper>{children}</Styled.HeadingWrapper>;
-};
+}
 
-export const Tagline: React.FC = ({ children }) => {
+export function Tagline({ children }: React.PropsWithChildren<{}>) {
   return <Styled.TaglineWrapper>{children}</Styled.TaglineWrapper>;
-};
+}
 
-export const Image: React.FC = ({ children }) => {
+export function Image({ children }: React.PropsWithChildren<{}>) {
   return <Styled.ImageWrapper>{children}</Styled.ImageWrapper>;
-};
+}

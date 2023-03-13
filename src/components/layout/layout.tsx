@@ -8,7 +8,7 @@ import { GlobalStyles, themes } from 'src/styles/themes';
 import Footer from '../footer/footer';
 import Navbar from '../navbar/navbar';
 
-const Layout: React.FC = ({ children }) => {
+function Layout({ children }: React.PropsWithChildren<{}>) {
   // Workaroud FOUC
   const [show, setShow] = useState<boolean>(false);
   useEffect(() => setShow(true), []);
@@ -24,6 +24,6 @@ const Layout: React.FC = ({ children }) => {
       </div>
     </ThemeProvider>
   ) : null;
-};
+}
 
 export default Layout;

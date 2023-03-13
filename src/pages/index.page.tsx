@@ -14,11 +14,10 @@ import { getDatabase } from 'src/lib/notion';
 import * as Styled from './index.styles';
 
 interface IHomeProps {
-  skills: { name: string; fileName: string }[];
   posts: any;
 }
 
-const Home: React.FC<IHomeProps> = ({ posts }) => {
+function Home({ posts }: IHomeProps) {
   const { activeTheme, showNav } = useContext(DisplayContext);
 
   // handleNotchBackground figures out the bg color for the iPhone notch
@@ -60,7 +59,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
         <MaxWidthWrapper>
           <Styled.ContentCard>
             <Styled.StrongL>{`Hi, I'm Ed.`}</Styled.StrongL>
-            <Styled.TextM>{`I'm a Freelance Platform/Cloud Engineer based in Manchester, UK.`}</Styled.TextM>
+            <Styled.TextM>{`I'm an independent Platform/Cloud/DevOps Engineer based in Manchester, UK 🇬🇧`}</Styled.TextM>
             <Styled.StrongM>{`I'm in my happy place when I'm ...`}</Styled.StrongM>
             <Styled.ListHappyPlace>
               <li>⚙️ Scripting and automating stuff</li>
@@ -91,6 +90,29 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
               >
                 ed@edintheclouds.io
               </a>
+            </Styled.TextS>
+            <Styled.TextS>
+              {`...or connect with me on `}
+              <a
+                href="https://www.linkedin.com/in/edwardsmith92/"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--blue)', fontWeight: 700 }}
+              >
+                LinkedIn
+              </a>
+            </Styled.TextS>
+            <Styled.TextS>
+              {`...or DM me on `}
+              <a
+                href="https://twitter.com/_edintheclouds"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--blue)', fontWeight: 700 }}
+              >
+                Twitter
+              </a>
+              {`!`}
             </Styled.TextS>
           </Styled.ContentCard>
         </MaxWidthWrapper>
@@ -136,7 +158,7 @@ const Home: React.FC<IHomeProps> = ({ posts }) => {
       </Styled.SectionWrapper>
     </>
   );
-};
+}
 
 export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
