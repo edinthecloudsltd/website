@@ -52,6 +52,7 @@ export const SectionHeading = styled.h1`
 `;
 
 export const ContentCard = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,6 +61,21 @@ export const ContentCard = styled.main`
   margin: 0 auto;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   background: ${({ theme }) => theme.cardBg};
+  border: 6px solid ${({ theme }) => theme.cardBorder};
+
+  &:before {
+    background: none;
+    border: 6px solid #fff;
+    border-radius: 42px;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
 
   & * {
     margin-top: 0.5rem;
@@ -68,6 +84,7 @@ export const ContentCard = styled.main`
 
   @media (max-width: 568px) {
     padding: 3rem 2rem;
+    border: 6px solid ${({ theme }) => theme.cardBorder};
 
     & * {
       margin-top: 0.45rem;

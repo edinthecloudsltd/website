@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
 import { useMediaQuery } from 'react-responsive';
 
@@ -69,9 +70,15 @@ const AppleMusicPlayer: React.FC = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Styled.AlbumArtImage
-                  src={songs[0]?.attributes.artwork.url.replace('{w}', '500').replace('{h}', '500')}
-                />
+                <Styled.AlbumArtImage>
+                  <Image
+                    src={songs[0]?.attributes.artwork.url
+                      .replace('{w}', '500')
+                      .replace('{h}', '500')}
+                    fill
+                    alt={songs[0]?.attributes.name}
+                  />
+                </Styled.AlbumArtImage>
               </Styled.AlbumArt>
             </Styled.NowPlaying>
             {isMobileViewport && Array.isArray(songs) && (
