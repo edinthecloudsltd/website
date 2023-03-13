@@ -15,8 +15,8 @@ export const StyledWrapper = styled.main`
   }
 `;
 
-const MaxWidthWrapper: React.FC = ({ children }) => {
+function MaxWidthWrapper({ children }: React.PropsWithChildren<{}>) {
   return <StyledWrapper>{children}</StyledWrapper>;
-};
+}
 
 export default MaxWidthWrapper;

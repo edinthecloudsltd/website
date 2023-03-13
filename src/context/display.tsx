@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
+import { useRouter } from 'next/router';
 import { useWindowScroll } from 'react-use';
 
 interface IDisplayContext {
@@ -14,14 +15,17 @@ export const DisplayContext = createContext<IDisplayContext>({
   showNav: false,
 });
 
-export const DisplayProvider: React.FC = (props) => {
-  const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>();
+export function DisplayProvider(props: React.PropsWithChildren<{}>) {
+  const router = useRouter();
   const [showNav, setShowNav] = useState<boolean>(false);
+  const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>();
 
   const { y } = useWindowScroll();
 
   useEffect(() => {
-    if (y > 50) {
+    if (router.pathname !== '/') {
+      setShowNav(true);
+    } else if (router.pathname === '/' && y > 50) {
       setShowNav(true);
     } else {
       setShowNav(false);
@@ -51,4 +55,4 @@ export const DisplayProvider: React.FC = (props) => {
       {props.children}
     </DisplayContext.Provider>
   );
-};
+}
