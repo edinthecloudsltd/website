@@ -3,7 +3,7 @@
 :root {
   --background-primary: white;
   --theme-transition-delay: .4s;
-  --navbar-height: 96px;
+  --navbar-height: 80px;
   --text-primary: #374151;
   --text-secondary: #fe4632;
   --text-code: #111827;
@@ -42,3 +42,8 @@ a:hover {
   z-index: 0;
 }
 
+@media (max-width: 568px) {
+	:root {
+		--navbar-height: 92px;
+	}
+}

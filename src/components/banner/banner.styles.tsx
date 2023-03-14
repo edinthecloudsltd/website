@@ -25,9 +25,9 @@ export const Wrapper = styled.div<StyledWrapperProps>`
 export const Content = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  padding: 2.5rem;
+  padding-top: 3vh;
   color: white;
   z-index: 10;
 

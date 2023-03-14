@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as Styled from './hero.styles';
+import * as Styled from './banner.styles';
 
 interface Props {
   size?: string;
@@ -14,11 +14,11 @@ export function Wrapper({ children, size }: React.PropsWithChildren<Props>) {
   );
 }
 
-interface IHeroText {
+interface IBannerText {
   circular?: boolean;
 }
 
-export function Text({ children, circular }: React.PropsWithChildren<IHeroText>) {
+export function Text({ children, circular }: React.PropsWithChildren<IBannerText>) {
   if (circular) {
     return (
       <>

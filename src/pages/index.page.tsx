@@ -3,9 +3,9 @@ import React, { useContext } from 'react';
 import Image from 'next/image';
 
 import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-player';
+import Banner from 'src/components/banner';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
-import Hero from 'src/components/hero';
 import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { DisplayContext } from 'src/context/display';
@@ -51,29 +51,42 @@ function Home({ posts }: IHomeProps) {
         canonical={'https://edintheclouds.io'}
       />
 
-      <Hero.Wrapper>
+      <Banner.Wrapper>
         <CloudParrallax />
-        <Styled.VideoWrapper>
-          <div style={{ opacity: bannerLoaded ? 1 : 0, transition: 'all 1s ease' }}>
+        <div
+          style={{
+            opacity: bannerLoaded ? 1 : 0,
+            transition: 'all 1s ease',
+          }}
+        >
+          <Styled.VideoWrapper>
             {browser === 'chrome' || browser === 'firefox' ? (
-              <video autoPlay loop muted playsInline onLoadedData={() => setBannerLoaded(true)}>
+              <Styled.Video
+                autoPlay
+                loop
+                muted
+                playsInline
+                onLoadedData={() => setBannerLoaded(true)}
+              >
                 <source
                   src="assets/animations/edintheclouds-logo-float-lg.webm"
                   type="video/webm"
                 />
-              </video>
+              </Styled.Video>
             ) : (
               <Image
                 src="/assets/svg/edintheclouds-logo.svg"
-                width={600}
-                height={700}
                 alt="logo"
+                width={700}
+                height={800}
                 onLoadingComplete={() => setBannerLoaded(true)}
+                sizes="(max-width: 568px) 100vw,
+								50vh"
               />
             )}
-          </div>
-        </Styled.VideoWrapper>
-      </Hero.Wrapper>
+          </Styled.VideoWrapper>
+        </div>
+      </Banner.Wrapper>
 
       <Styled.SectionWrapper>
         <MaxWidthWrapper>

@@ -19,12 +19,18 @@ export const VideoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 640px;
   height: 100%;
+  width: 100%;
+  max-width: 80vh;
 
   @media (max-width: 568px) {
     max-width: 400px;
   }
+`;
+
+export const Video = styled.video`
+  width: 100%;
+  height: 100%;
 `;
 
 export const Heading = styled.h1`
