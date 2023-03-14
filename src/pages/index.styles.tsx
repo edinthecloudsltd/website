@@ -13,6 +13,20 @@ const fadeIn = keyframes`
   100% { opacity: 1; }
 `;
 
+export const VideoWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 640px;
+  height: 100%;
+
+  @media (max-width: 568px) {
+    max-width: 400px;
+  }
+`;
+
 export const Heading = styled.h1`
   font-family: coffee-service, sans-serif;
   font-size: 6rem;
@@ -30,12 +44,12 @@ export const Heading = styled.h1`
 `;
 
 export const SectionWrapper = styled.main`
-  padding: 3rem 0;
+  padding: 16px 0;
   background-color: ${({ theme }) => theme.background};
   //transition: background-color 1s ease;
 
   @media (max-width: 568px) {
-    padding: 2rem 0 1rem 0;
+    padding: 32px 0 32px 0;
   }
 `;
 

@@ -31,6 +31,12 @@ module.exports = withBundleAnalyzer({
         port: '',
         pathname: '/image/**',
       },
+      {
+        protocol: 'https',
+        hostname: '*apple.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 });
