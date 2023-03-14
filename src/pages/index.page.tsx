@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import Image from 'next/image';
+
 import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-player';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
@@ -16,7 +18,7 @@ interface IHomeProps {
 }
 
 function Home({ posts }: IHomeProps) {
-  const { activeTheme, showNav } = useContext(DisplayContext);
+  const { activeTheme, showNav, browser } = useContext(DisplayContext);
 
   // handleNotchBackground figures out the bg color for the iPhone notch
   const handleNotchBackground = (theme: 'light' | 'dark' | undefined) => {
@@ -51,10 +53,13 @@ function Home({ posts }: IHomeProps) {
       <Hero.Wrapper>
         <CloudParrallax />
         <Styled.VideoWrapper>
-          <video autoPlay loop muted playsInline>
-            <source src="assets/animations/edintheclouds-logo-float-lg.webm" type="video/webm" />
-            <source src="assets/svg/edintheclouds-logo.svg" type="image/svg" />
-          </video>
+          {browser === 'chrome' || browser === 'firefox' ? (
+            <video autoPlay loop muted playsInline>
+              <source src="assets/animations/edintheclouds-logo-float-lg.webm" type="video/webm" />
+            </video>
+          ) : (
+            <Image src="/assets/svg/edintheclouds-logo.svg" width={600} height={700} alt="logo" />
+          )}
         </Styled.VideoWrapper>
       </Hero.Wrapper>
 

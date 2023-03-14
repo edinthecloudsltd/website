@@ -21,6 +21,10 @@ export const VideoWrapper = styled.div`
   margin: 0 auto;
   width: 640px;
   height: 100%;
+
+  @media (max-width: 568px) {
+    max-width: 400px;
+  }
 `;
 
 export const Heading = styled.h1`
