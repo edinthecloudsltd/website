@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FaMoon, FaSun } from 'react-icons/fa';
@@ -26,7 +25,9 @@ export default function Navbar() {
       <NavbarInnerWrapper>
         <Link href="/" passHref>
           <ProfilePicture show={showNav}>
-            <Image src="/assets/images/edintheclouds-badge.gif" alt="ed-picture" fill />
+            <video autoPlay loop muted playsInline>
+              <source src="assets/animations/edintheclouds-badge-float.webm" type="video/webm" />
+            </video>
           </ProfilePicture>
         </Link>
         <a />

@@ -3,7 +3,7 @@
 :root {
   --background-primary: white;
   --theme-transition-delay: .4s;
-  --navbar-height: 5rem;
+  --navbar-height: 96px;
   --text-primary: #374151;
   --text-secondary: #fe4632;
   --text-code: #111827;

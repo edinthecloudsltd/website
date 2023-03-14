@@ -72,14 +72,12 @@ export const ThemeToggle = styled.button`
 
 export const ProfilePicture = styled.div<{ show: boolean }>`
 	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	border-radius: 50%;
-	width: 60px;
-	height: 60px;
+	width: 80px;
+	height: 80px;
 	overflow: hidden;
 	cursor: pointer;
 	transition: all 0.3s ease-in;
+	border: solid 3px black;
 	opacity: ${({ show }) => (show ? '1' : '0')};
 }`;

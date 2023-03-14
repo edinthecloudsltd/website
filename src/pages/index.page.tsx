@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 
-import Image from 'next/image';
-
 import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-player';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
@@ -52,7 +50,12 @@ function Home({ posts }: IHomeProps) {
 
       <Hero.Wrapper>
         <CloudParrallax />
-        <Image src="/assets/svg/edintheclouds-logo.svg" fill alt="logo" />
+        <Styled.VideoWrapper>
+          <video autoPlay loop muted playsInline>
+            <source src="assets/animations/edintheclouds-logo-float-lg.webm" type="video/webm" />
+            <source src="assets/svg/edintheclouds-logo.svg" type="image/svg" />
+          </video>
+        </Styled.VideoWrapper>
       </Hero.Wrapper>
 
       <Styled.SectionWrapper>

@@ -13,6 +13,16 @@ const fadeIn = keyframes`
   100% { opacity: 1; }
 `;
 
+export const VideoWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 640px;
+  height: 100%;
+`;
+
 export const Heading = styled.h1`
   font-family: coffee-service, sans-serif;
   font-size: 6rem;

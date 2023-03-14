@@ -30,7 +30,7 @@ export function DisplayProvider(props: React.PropsWithChildren<{}>) {
     } else {
       setShowNav(false);
     }
-  }, [y]);
+  }, [y, router]);
 
   const setTheme = (mode: 'light' | 'dark') => {
     if (process.browser) {
