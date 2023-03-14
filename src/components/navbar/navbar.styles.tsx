@@ -73,17 +73,12 @@ export const ThemeToggle = styled.button`
 export const ProfilePicture = styled.div<{ show: boolean }>`
 	position: relative;
 	border-radius: 50%;
-	width: 80px;
-	height: 80px;
+	width: 70px;
+	height: 70px;
 	overflow: hidden;
 	cursor: pointer;
 	transition: all 0.3s ease-in;
 	border: solid 3px black;
 	background: white;
 	opacity: ${({ show }) => (show ? '1' : '0')};
-
-	@media (max-width: 568px) {
-		width: 70px;
-		height: 70px;
-  }
 }`;
