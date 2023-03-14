@@ -44,12 +44,12 @@ export const Heading = styled.h1`
 `;
 
 export const SectionWrapper = styled.main`
-  padding: 3rem 0;
+  padding: 16px 0;
   background-color: ${({ theme }) => theme.background};
   //transition: background-color 1s ease;
 
   @media (max-width: 568px) {
-    padding: 2rem 0 1rem 0;
+    padding: 32px 0 32px 0;
   }
 `;
 
