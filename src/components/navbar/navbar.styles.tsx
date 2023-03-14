@@ -79,5 +79,11 @@ export const ProfilePicture = styled.div<{ show: boolean }>`
 	cursor: pointer;
 	transition: all 0.3s ease-in;
 	border: solid 3px black;
+	background: white;
 	opacity: ${({ show }) => (show ? '1' : '0')};
+
+	@media (max-width: 568px) {
+		width: 70px;
+		height: 70px;
+  }
 }`;

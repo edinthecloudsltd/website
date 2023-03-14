@@ -19,6 +19,7 @@ interface IHomeProps {
 
 function Home({ posts }: IHomeProps) {
   const { activeTheme, showNav, browser } = useContext(DisplayContext);
+  const [bannerLoaded, setBannerLoaded] = React.useState(false);
 
   // handleNotchBackground figures out the bg color for the iPhone notch
   const handleNotchBackground = (theme: 'light' | 'dark' | undefined) => {
@@ -53,13 +54,24 @@ function Home({ posts }: IHomeProps) {
       <Hero.Wrapper>
         <CloudParrallax />
         <Styled.VideoWrapper>
-          {browser === 'chrome' || browser === 'firefox' ? (
-            <video autoPlay loop muted playsInline>
-              <source src="assets/animations/edintheclouds-logo-float-lg.webm" type="video/webm" />
-            </video>
-          ) : (
-            <Image src="/assets/svg/edintheclouds-logo.svg" width={600} height={700} alt="logo" />
-          )}
+          <div style={{ opacity: bannerLoaded ? 1 : 0, transition: 'all 1s ease' }}>
+            {browser === 'chrome' || browser === 'firefox' ? (
+              <video autoPlay loop muted playsInline onLoadedData={() => setBannerLoaded(true)}>
+                <source
+                  src="assets/animations/edintheclouds-logo-float-lg.webm"
+                  type="video/webm"
+                />
+              </video>
+            ) : (
+              <Image
+                src="/assets/svg/edintheclouds-logo.svg"
+                width={600}
+                height={700}
+                alt="logo"
+                onLoadingComplete={() => setBannerLoaded(true)}
+              />
+            )}
+          </div>
         </Styled.VideoWrapper>
       </Hero.Wrapper>
 
