@@ -1,9 +1,13 @@
+import { DynaPuff } from 'next/font/google';
 import styled from 'styled-components';
+
+const dynapuff = DynaPuff({ subsets: ['latin'] });
 
 export const NavbarWrapper = styled.nav<{ show: boolean }>`
   position: fixed;
   background: none;
   width: 100%;
+  font-family: ${dynapuff.style.fontFamily};
   height: var(--navbar-height);
   z-index: 50;
   font-size: 1.6rem;
@@ -51,16 +55,17 @@ export const NavbarButtons = styled.ul`
   }
 
   & a {
+    display: inline-block;
     font-weight: 800;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease-in;
+    transition: all 0.2s ease-in;
 
     &:hover {
       color: ${({ theme }) => theme.navButtonSecondary};
-      border-bottom: 1px solid #666464;
+      transform: scale(1.05);
     }
   }
 `;
@@ -68,6 +73,10 @@ export const NavbarButtons = styled.ul`
 export const ThemeToggle = styled.button`
   color: var(--text-primary);
   transition: all 0.3s ease-in;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ProfilePicture = styled.div<{ show: boolean }>`

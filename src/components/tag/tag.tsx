@@ -1,5 +1,8 @@
+import { DynaPuff } from 'next/font/google';
 import { GroupBase, StylesConfig } from 'react-select';
 import styled from 'styled-components';
+
+const dynapuff = DynaPuff({ subsets: ['latin'] });
 
 export const handleTagColor = (color: string): string => {
   switch (color) {
@@ -49,12 +52,17 @@ interface TagOption {
 }
 
 export const tagSelectColourStyles: StylesConfig<TagOption, true, GroupBase<TagOption>> = {
-  control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+  control: (styles) => ({
+    ...styles,
+    backgroundColor: 'white',
+    fontFamily: dynapuff.style.fontFamily,
+  }),
   option: (styles, { isDisabled }) => {
     return {
       ...styles,
       color: 'rgb(73,41,14)',
       cursor: isDisabled ? 'not-allowed' : 'default',
+      fontFamily: dynapuff.style.fontFamily,
     };
   },
   multiValue: (styles, { data }) => {
@@ -62,6 +70,7 @@ export const tagSelectColourStyles: StylesConfig<TagOption, true, GroupBase<TagO
     return {
       ...styles,
       backgroundColor: handleTagColor(color),
+      fontFamily: dynapuff.style.fontFamily,
     };
   },
   multiValueLabel: (styles) => ({

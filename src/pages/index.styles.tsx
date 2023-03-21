@@ -52,6 +52,8 @@ export const Heading = styled.h1`
 export const SectionWrapper = styled.main`
   padding: 16px 0;
   background-color: ${({ theme }) => theme.background};
+  margin-bottom: 16px;
+  height: fit-content;
   //transition: background-color 1s ease;
 
   @media (max-width: 568px) {
@@ -121,7 +123,6 @@ export const BlogPosts = styled.div`
 
   @media (max-width: 1100px) {
     grid-template-columns: repeat(auto-fill, 350px);
-    grid-auto-rows: 350px;
     gap: 2rem 2rem;
   }
 

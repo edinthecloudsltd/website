@@ -1,6 +1,10 @@
+import { DynaPuff } from 'next/font/google';
 import styled from 'styled-components';
 
+const dynapuff = DynaPuff({ subsets: ['latin'] });
+
 export const Wrapper = styled.footer`
+  font-family: ${dynapuff.style.fontFamily};
   display: flex;
   justify-content: space-between;
   height: 15rem;

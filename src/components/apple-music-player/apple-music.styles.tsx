@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import AppleMusicLogoSVG from 'public/assets/svg/apple-music.svg';
 
 export const MusicPlayerCard = styled.main`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-basis: 75%;
@@ -12,6 +13,7 @@ export const MusicPlayerCard = styled.main`
   max-width: 600px;
   padding: 1rem 3rem;
   border-radius: 50px;
+  border: 6px solid ${({ theme }) => theme.cardBorder};
   background-image: linear-gradient(
     -45deg,
     #35c3f3 0%,
@@ -21,6 +23,20 @@ export const MusicPlayerCard = styled.main`
     #fed2ce 100%
   );
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+  &:before {
+    background: none;
+    border: 10px solid #fff;
+    border-radius: 42px;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
 
   @media (max-width: 1024px) {
     max-width: min(100%, 375px);

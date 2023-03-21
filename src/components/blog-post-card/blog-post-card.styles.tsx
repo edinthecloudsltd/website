@@ -1,4 +1,7 @@
+import { DynaPuff } from 'next/font/google';
 import styled, { keyframes } from 'styled-components';
+
+const dynapuff = DynaPuff({ subsets: ['latin'] });
 
 const fadeIn = keyframes`
   0% { opacity: 0; }
@@ -7,9 +10,6 @@ const fadeIn = keyframes`
 
 export const Card = styled.div`
   position: relative;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Noto Color Emoji;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -88,6 +88,7 @@ export const CardDescription = styled.p`
 `;
 
 export const TagContainer = styled.div`
+  font-family: ${dynapuff.style.fontFamily};
   display: flex;
   gap: 0.2rem;
   flex-wrap: wrap;
