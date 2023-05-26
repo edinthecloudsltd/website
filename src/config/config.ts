@@ -5,4 +5,5 @@ export const config = {
   DESCRIPTION: 'Cloud and Automation engineering blog. Brought to you from Manchester, UK',
   LOCALE: 'en',
   TWITTER_HANDLE: '@ed1ntheclouds',
+  OPENGRAPH_IMAGE_URL: 'https://edintheclouds.io/assets/images/edintheclouds-mascot-og.png',
 };
