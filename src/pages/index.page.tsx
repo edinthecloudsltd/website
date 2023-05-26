@@ -9,7 +9,7 @@ import CloudParrallax from 'src/components/cloud-parrallax';
 import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { DisplayContext } from 'src/context/display';
-import { getDatabase } from 'src/lib/notion';
+import { getPostsDatabase } from 'src/lib/notion';
 
 import * as Styled from './index.styles';
 
@@ -103,20 +103,10 @@ function Home({ posts }: IHomeProps) {
             </Styled.ListHappyPlace>
             <Styled.StrongM>{`What can I do?`}</Styled.StrongM>
             <Styled.TextS>
-              {`If you are interested in engaging my services, `}
-              <a
-                data-tip
-                data-for="cv"
-                href="/assets/docs/EdSmithCV.pdf"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--blue)', fontWeight: 700 }}
-              >
-                please check out my CV
-              </a>
+              {`If you are interested in engaging my services, please get in touch for a copy of my CV`}
             </Styled.TextS>
             <Styled.TextS>
-              {`Alternatively you can email me at `}
+              {`You can reach me via email me at `}
               <a
                 href="mailto:ed@edintheclouds.io"
                 style={{ color: 'var(--blue)', fontWeight: 700 }}
@@ -125,7 +115,7 @@ function Home({ posts }: IHomeProps) {
               </a>
             </Styled.TextS>
             <Styled.TextS>
-              {`...or connect with me on `}
+              {`...or you can connect with me on `}
               <a
                 href="https://www.linkedin.com/in/edwardsmith92/"
                 target="_blank"
@@ -194,10 +184,10 @@ function Home({ posts }: IHomeProps) {
 }
 
 export async function getStaticProps() {
-  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
+  const postDatabase = await getPostsDatabase(process.env.NOTION_DATABASE_ID || '');
 
   // only show the 4 most recent posts
-  const posts = database?.slice(0, 4);
+  const posts = postDatabase?.slice(0, 4);
 
   return {
     props: {

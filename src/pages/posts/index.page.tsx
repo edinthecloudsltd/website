@@ -6,7 +6,7 @@ import BlogPostCard from 'src/components/blog-post-card';
 import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper';
 import { tagSelectColourStyles } from 'src/components/tag/tag';
-import { getDatabase } from 'src/lib/notion';
+import { getPostsDatabase } from 'src/lib/notion';
 
 import * as Styled from './posts.styles';
 
@@ -85,7 +85,7 @@ export default function Posts({ posts, tags }: { posts: any; tags: any }) {
 }
 
 export async function getStaticProps() {
-  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
+  const database = await getPostsDatabase(process.env.NOTION_DATABASE_ID || '');
 
   const tags = database
     ?.map(

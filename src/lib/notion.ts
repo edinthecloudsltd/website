@@ -7,7 +7,19 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
-export const getDatabase = async (databaseId: string) => {
+export const getNotionDatabase = async (databaseId: string) => {
+  try {
+    const { results } = await notion.databases.query({
+      database_id: databaseId,
+    });
+    return results;
+  } catch (err) {
+    console.log(err);
+  }
+  return null;
+};
+
+export const getPostsDatabase = async (databaseId: string) => {
   try {
     const { results } = await notion.databases.query({
       database_id: databaseId,

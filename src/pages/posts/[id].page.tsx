@@ -14,7 +14,7 @@ import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { Tag } from 'src/components/tag/tag';
 import { DisplayContext } from 'src/context/display';
-import { getDatabase, getPage, getBlocks } from 'src/lib/notion';
+import { getPostsDatabase, getPage, getBlocks } from 'src/lib/notion';
 
 import styles from './posts.module.css';
 
@@ -93,7 +93,7 @@ export default function Post({ page, markdown }: { page: any; markdown: any }) {
 }
 
 export const getStaticPaths = async () => {
-  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '');
+  const database = await getPostsDatabase(process.env.NOTION_DATABASE_ID || '');
   return {
     paths: database?.map((page) => ({ params: { id: page.id } })),
     fallback: true,
