@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import fetch from 'node-fetch';
 
 // Returns last 6 played songs (current and most recent 5)
 export default async function handler(_: NextApiRequest, res: NextApiResponse) {

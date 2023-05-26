@@ -1,4 +1,7 @@
+import { NextSeo } from 'next-seo';
 import Head from 'next/head';
+
+import config from 'src/config';
 
 type IMetaProps = {
   title: string;
@@ -15,25 +18,42 @@ const Meta = (props: IMetaProps) => {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="light only" />
+        <meta name="og:title" content={props.title} />
+        <meta
+          property="twitter:image"
+          content="https://edintheclouds.io/assets/images/edintheclouds-mascot-square.png"
+        />
+        <meta property="twitter:card" content="summary_large_image" />
         <link rel="apple-touch-icon" href={`/apple-touch-icon.png`} key="apple" />
         <link rel="icon" type="image/png" sizes="32x32" href={`/favicon-32x32.png`} key="icon32" />
         <link rel="icon" type="image/png" sizes="16x16" href={`/favicon-16x16.png`} key="icon16" />
         <link rel="icon" href={`/favicon.ico`} key="favicon" />
-
-        {/* OpenGraph */}
-        <meta property="og:url" content="https://edintheclouds.io/" />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:description" content={props.description} />
-        <meta
-          property="og:image"
-          content="https://edintheclouds.io/assets/images/edintheclouds-mascot-square.png"
-        />
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="edintheclouds.io" />
-        <meta property="twitter:url" content="https://edintheclouds.io/" />
       </Head>
+      <NextSeo
+        title={props.title}
+        description={props.description}
+        canonical={props.canonical}
+        openGraph={{
+          title: props.title,
+          description: props.description,
+          url: props.canonical,
+          locale: config.LOCALE,
+          site_name: config.SITE_NAME,
+          images: [
+            {
+              url: 'https://edintheclouds.io/assets/images/edintheclouds-mascot-square.png',
+              width: 123,
+              height: 128,
+              alt: 'Og Image Alt',
+            },
+          ],
+        }}
+        twitter={{
+          handle: config.TWITTER_HANDLE,
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
     </>
   );
 };

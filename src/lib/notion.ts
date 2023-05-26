@@ -72,7 +72,6 @@ export const getBlocks = async (pageId: string) => {
 
   try {
     while (hasMore) {
-      /* eslint-disable @typescript-eslint/naming-convention, no-await-in-loop */
       const { results, next_cursor, has_more } = await notion.blocks.children.list({
         start_cursor: cursor,
         block_id: pageId,

@@ -17,7 +17,6 @@ const ddbClient = DynamoDBDocumentClient.from(ddb);
 const sessionStore = process.env.SESSION_STORE_DYNAMODB_TABLE || 'EdintheCloudsSessionStore';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  /* eslint-disable @typescript-eslint/dot-notation */
   const session = req.cookies['_edintheclouds_session'];
 
   if (session) {
