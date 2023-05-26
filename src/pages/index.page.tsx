@@ -6,7 +6,6 @@ import AppleMusicPlayer from 'src/components/apple-music-player/apple-music-play
 import Banner from 'src/components/banner';
 import BlogPostCard from 'src/components/blog-post-card';
 import CloudParrallax from 'src/components/cloud-parrallax';
-import Meta from 'src/components/layout/meta';
 import MaxWidthWrapper from 'src/components/max-width-wrapper/max-width-wrapper';
 import { DisplayContext } from 'src/context/display';
 import { getPostsDatabase } from 'src/lib/notion';
@@ -45,12 +44,6 @@ function Home({ posts }: IHomeProps) {
             }   `,
         }}
       />
-      <Meta
-        title="Ed in the Clouds"
-        description="Cloud and Automation engineering blog. Brought to you from Manchester, UK"
-        canonical={'https://edintheclouds.io'}
-      />
-
       <Banner.Wrapper>
         <CloudParrallax />
         <div
